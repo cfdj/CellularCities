@@ -15,11 +15,10 @@ func generate():
 		for x in checking:
 			if(tileLocations[x] == i):
 				tiles.append(x);
-		tileMap.set_cells_terrain_connect(i,tiles,0,0)
+		tileMap.set_cells_terrain_connect(i,tiles,0,0,true)
 	
 
 func placeTile(layer:int,location:Vector2i,tile:Vector2i):
-	tileMap.set_cell(layer,location,0,tile);
+	##tileMap.set_cell(layer,location,0,tile);
 	tileLocations[location] = layer
-	##tileMap.set_cells_terrain_connect(layer,tileLocations.keys(),0,0)
 	tileMap.erase_cell(6,location);
