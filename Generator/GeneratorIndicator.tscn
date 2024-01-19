@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjskqj2mgsxkd"]
+
+[ext_resource type="Script" path="res://Generator/Tile.gd" id="1_1a61v"]
+[ext_resource type="Texture2D" uid="uid://dto7y2bdkf405" path="res://Sprites/MapDrawing/default.png" id="1_lwoqo"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_1a61v")
+layer = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lwoqo")

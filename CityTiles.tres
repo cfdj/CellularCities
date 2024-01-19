@@ -1,16 +1,39 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cjfswth0q6t18"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cjfswth0q6t18"]
 
 [ext_resource type="Texture2D" uid="uid://bvkm8ssauxf48" path="res://CityMap.png" id="1_jde14"]
+[ext_resource type="PackedScene" uid="uid://rkhn4ibppnk5" path="res://Generator/base.tscn" id="2_uyexd"]
+[ext_resource type="PackedScene" uid="uid://cnx0vop711fuk" path="res://Generator/hill.tscn" id="3_gjy2u"]
+[ext_resource type="PackedScene" uid="uid://dn4qmtuwc4ncv" path="res://Generator/valley.tscn" id="4_7mu3h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dl6gh"]
 texture = ExtResource("1_jde14")
 texture_region_size = Vector2i(62, 48)
 use_texture_padding = false
 0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/bottom_right_side = 0
+0:0/0/terrains_peering_bit/bottom_left_side = 0
+0:0/0/terrains_peering_bit/top_left_side = 0
+0:0/0/terrains_peering_bit/top_right_side = 0
 1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/bottom_right_side = 0
+1:0/0/terrains_peering_bit/top_left_side = 0
+1:0/0/terrains_peering_bit/top_right_side = 0
 2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrains_peering_bit/top_left_side = 0
+2:0/0/terrains_peering_bit/top_right_side = 0
 3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/bottom_left_side = 0
+3:0/0/terrains_peering_bit/top_left_side = 0
+3:0/0/terrains_peering_bit/top_right_side = 0
 4:0/0 = 0
+4:0/0/terrain_set = 0
 5:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
@@ -18,6 +41,10 @@ use_texture_padding = false
 3:1/0 = 0
 4:1/0 = 0
 5:1/0 = 0
+5:1/0/terrain_set = 0
+5:1/0/terrain = 0
+5:1/0/terrains_peering_bit/bottom_right_side = 0
+5:1/0/terrains_peering_bit/top_right_side = 0
 0:2/0 = 0
 1:2/0 = 0
 2:2/0 = 0
@@ -39,8 +66,40 @@ use_texture_padding = false
 6:0/0 = 0
 7:0/0 = 0
 6:1/0 = 0
+6:1/0/terrain_set = 0
+6:1/0/terrain = 0
+6:1/0/terrains_peering_bit/bottom_left_side = 0
+6:1/0/terrains_peering_bit/top_left_side = 0
+6:4/0 = 0
+6:3/0 = 0
+6:3/0/terrain_set = 0
+6:3/0/terrain = 0
+6:3/0/terrains_peering_bit/bottom_right_side = 0
+6:3/0/terrains_peering_bit/bottom_left_side = 0
+6:3/0/terrains_peering_bit/top_left_side = 0
+7:3/0 = 0
+7:3/0/terrain_set = 0
+7:3/0/terrain = 0
+7:3/0/terrains_peering_bit/bottom_right_side = 0
+7:3/0/terrains_peering_bit/bottom_left_side = 0
+6:2/0 = 0
+6:2/0/terrain_set = 0
+6:2/0/terrain = 0
+6:2/0/terrains_peering_bit/bottom_right_side = 0
+6:2/0/terrains_peering_bit/bottom_left_side = 0
+6:2/0/terrains_peering_bit/top_right_side = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cc4pn"]
+resource_name = "GenerationTiles"
+scenes/1/scene = ExtResource("2_uyexd")
+scenes/2/scene = ExtResource("3_gjy2u")
+scenes/3/scene = ExtResource("4_7mu3h")
 
 [resource]
 tile_shape = 1
 tile_size = Vector2i(60, 30)
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Hills"
+terrain_set_0/terrain_0/color = Color(0.635294, 0.211765, 0.32549, 1)
 sources/0 = SubResource("TileSetAtlasSource_dl6gh")
+sources/1 = SubResource("TileSetScenesCollectionSource_cc4pn")

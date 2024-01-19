@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn4qmtuwc4ncv"]
+
+[ext_resource type="Script" path="res://Generator/Tile.gd" id="1_5dy3j"]
+[ext_resource type="Texture2D" uid="uid://dkvxmkfpb07me" path="res://Sprites/MapDrawing/valley.png" id="2_eei3d"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_5dy3j")
+layer = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_eei3d")
