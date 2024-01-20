@@ -18,7 +18,7 @@ func generate():
 		tileMap.set_cells_terrain_connect(i,tiles,0,0,true)
 	
 
-func placeTile(layer:int,location:Vector2i,tile:Vector2i):
+func placeTile(layer:int,location:Vector2i,tile:Vector2i,terrainLevel:int):
 	##tileMap.set_cell(layer,location,0,tile);
 	tileLocations[location] = layer
-	tileMap.erase_cell(6,location);
+	tileMap.erase_cell(2,location);
