@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b86k6fntbup5u"]
+
+[ext_resource type="Script" path="res://Generator/BuildingTypes/Street.gd" id="1_bs1wj"]
+[ext_resource type="Texture2D" uid="uid://y3po8f87p8e5" path="res://Buildings.png" id="2_3cu0p"]
+
+[node name="Tile" type="Node2D"]
+script = ExtResource("1_bs1wj")
+workers = 1
+upgradeThreshold = 4
+tileID = 2
+foundryDraw = 1
+officeDraw = 1
+amenityDraw = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3cu0p")
+hframes = 9
+vframes = 9
+frame = 28
