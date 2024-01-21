@@ -1,9 +1,11 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cjfswth0q6t18"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://cjfswth0q6t18"]
 
 [ext_resource type="Texture2D" uid="uid://bvkm8ssauxf48" path="res://CityMap.png" id="1_jde14"]
 [ext_resource type="PackedScene" uid="uid://cjskqj2mgsxkd" path="res://Generator/GeneratorIndicator.tscn" id="2_jvt5g"]
 [ext_resource type="PackedScene" uid="uid://b86k6fntbup5u" path="res://Generator/Street.tscn" id="3_60o8p"]
 [ext_resource type="PackedScene" uid="uid://dvij4fvmja3pr" path="res://Generator/Foundry.tscn" id="5_e3e15"]
+[ext_resource type="PackedScene" uid="uid://biwqsls11omfo" path="res://Generator/Flat.tscn" id="5_wcas5"]
+[ext_resource type="Texture2D" uid="uid://y3po8f87p8e5" path="res://Buildings.png" id="6_rrkny"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dl6gh"]
 texture = ExtResource("1_jde14")
@@ -371,6 +373,53 @@ resource_name = "GenerationTiles"
 scenes/0/scene = ExtResource("2_jvt5g")
 scenes/1/scene = ExtResource("5_e3e15")
 scenes/2/scene = ExtResource("3_60o8p")
+scenes/3/scene = ExtResource("5_wcas5")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_okm4o"]
+texture = ExtResource("6_rrkny")
+texture_region_size = Vector2i(62, 48)
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
 
 [resource]
 tile_shape = 1
@@ -388,3 +437,4 @@ custom_data_layer_1/name = "Height"
 custom_data_layer_1/type = 2
 sources/0 = SubResource("TileSetAtlasSource_dl6gh")
 sources/1 = SubResource("TileSetScenesCollectionSource_cc4pn")
+sources/2 = SubResource("TileSetAtlasSource_okm4o")

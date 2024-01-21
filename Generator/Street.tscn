@@ -7,6 +7,7 @@
 script = ExtResource("1_bs1wj")
 workers = 1
 upgradeThreshold = 4
+upgradeID = 3
 tileID = 2
 foundryDraw = 1
 officeDraw = 1
