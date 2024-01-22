@@ -25,7 +25,13 @@ func addFoundry(location:Vector2i,foundry:Foundry):
 	currentFoundries[location] = foundry;
 func removeFoundry(location:Vector2i,foundry:Foundry):
 	currentFoundries.erase(location);
-	set_cell(0,location,1,Vector2i(0,0),0)
+	set_cell(0,location,1,Vector2i(0,0),0);
+func addOffice(location:Vector2i,office:Office):
+	currentEmptyTiles.erase(location);
+	currentOffices[location] = office;
+func removeOffice(location:Vector2i,office:Office):
+	currentOffices.erase(location);
+	set_cell(0,location,1,Vector2i(0,0),0);
 func addFlat(location:Vector2i,flat:Flat):
 	currentEmptyTiles.erase(location);
 	currentFlats[location] = flat;

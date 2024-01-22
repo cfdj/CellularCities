@@ -7,7 +7,7 @@
 script = ExtResource("1_p3hwd")
 workers = 1
 streetID = 3
-tileID = 2
+tileID = 3
 foundryDraw = 1
 officeDraw = 1
 amenityDraw = 2

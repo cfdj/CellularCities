@@ -13,8 +13,13 @@ func _ready():
 	location = map.local_to_map(position);
 	add_to_group("Tiles")
 	map.currentEmptyTiles[location] = self;
+##Calculates desire based on neighbours, and neighbours neighbours (not including itself, double counting diagonals)
 func calculateDesire():
-	var neighbours = map.get_surrounding_cells(location);
+	var immediateNeighbours = map.get_surrounding_cells(location);
+	var neighbours = immediateNeighbours.duplicate();
+	for n in immediateNeighbours:
+		neighbours.append_array(map.get_surrounding_cells(n));
+	neighbours.filter(removeSelf);
 	desire = 0;
 	for n in neighbours:
 		if(!map.currentEmptyTiles.has(n)):
@@ -24,3 +29,5 @@ func calculateDesire():
 				desire+=officeDraw;
 			elif (map.currentAmmenities.has(n)):
 				desire+=amenityDraw;
+func removeSelf(l):
+	return l != location;
