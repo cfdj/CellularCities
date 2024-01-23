@@ -13,6 +13,8 @@ officeDraw = 1
 amenityDraw = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 texture = ExtResource("2_m8uvg")
 hframes = 9
 vframes = 9

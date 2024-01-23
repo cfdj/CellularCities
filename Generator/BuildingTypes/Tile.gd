@@ -20,7 +20,7 @@ func calculateDesire():
 	for n in immediateNeighbours:
 		neighbours.append_array(map.get_surrounding_cells(n));
 	neighbours.filter(removeSelf);
-	desire = 0;
+	desire = 1;
 	for n in neighbours:
 		if(!map.currentEmptyTiles.has(n)):
 			if(map.currentFoundries.has(n)):

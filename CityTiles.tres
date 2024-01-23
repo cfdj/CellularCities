@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://cjfswth0q6t18"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://cjfswth0q6t18"]
 
 [ext_resource type="Texture2D" uid="uid://bvkm8ssauxf48" path="res://CityMap.png" id="1_jde14"]
 [ext_resource type="PackedScene" uid="uid://cjskqj2mgsxkd" path="res://Generator/GeneratorIndicator.tscn" id="2_jvt5g"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://biwqsls11omfo" path="res://Generator/Flat.tscn" id="5_wcas5"]
 [ext_resource type="PackedScene" uid="uid://dj4u6qieajy56" path="res://Generator/Office.tscn" id="6_atdew"]
 [ext_resource type="Texture2D" uid="uid://y3po8f87p8e5" path="res://Buildings.png" id="6_rrkny"]
+[ext_resource type="PackedScene" uid="uid://7878gtnd5fn" path="res://Generator/Ammenity.tscn" id="7_meh3y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dl6gh"]
 texture = ExtResource("1_jde14")
@@ -376,6 +377,7 @@ scenes/1/scene = ExtResource("5_e3e15")
 scenes/2/scene = ExtResource("3_60o8p")
 scenes/3/scene = ExtResource("5_wcas5")
 scenes/4/scene = ExtResource("6_atdew")
+scenes/5/scene = ExtResource("7_meh3y")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_okm4o"]
 texture = ExtResource("6_rrkny")

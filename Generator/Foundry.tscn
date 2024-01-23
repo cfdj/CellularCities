@@ -5,8 +5,14 @@
 
 [node name="Tile" type="Node2D"]
 script = ExtResource("1_rkrks")
+tileID = 1
+foundryDraw = 1
+officeDraw = 1
+amenityDraw = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 texture = ExtResource("2_ewpuw")
 hframes = 9
 vframes = 9

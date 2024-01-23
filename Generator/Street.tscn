@@ -1,19 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://b86k6fntbup5u"]
 
-[ext_resource type="Script" path="res://Generator/BuildingTypes/Street.gd" id="1_bs1wj"]
+[ext_resource type="Script" path="res://Generator/BuildingTypes/Ammenity.gd" id="1_n5lcl"]
 [ext_resource type="Texture2D" uid="uid://y3po8f87p8e5" path="res://Buildings.png" id="2_3cu0p"]
 
 [node name="Tile" type="Node2D"]
-script = ExtResource("1_bs1wj")
+script = ExtResource("1_n5lcl")
 workers = 1
-upgradeThreshold = 4
-upgradeID = 3
+alternativeFrames = Array[Vector2i]([Vector2i(0, 3), Vector2i(1, 3), Vector2i(0, 4), Vector2i(1, 4)])
 tileID = 2
 foundryDraw = 1
 officeDraw = 1
 amenityDraw = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 texture = ExtResource("2_3cu0p")
 hframes = 9
 vframes = 9

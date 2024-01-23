@@ -44,6 +44,12 @@ func upgradeToFlat(location:Vector2i,tileID:int):
 func addEmptyTile(location:Vector2i,tile:Tile):
 	currentEmptyTiles[location] = tile;
 
+func addAmmenity(location:Vector2i,street:Ammenity):
+	currentEmptyTiles.erase(location);
+	currentAmmenities[location] = street;
+func removeAmmenity(location:Vector2i,street:Ammenity):
+	currentAmmenities.erase(location);
+	set_cell(0,location,1,Vector2i(0,0),0);
 func getHighestDesireEmpty() -> Vector2i:
 	var newLocation:Vector2i;
 	var highest = 0;

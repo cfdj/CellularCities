@@ -15,4 +15,4 @@ func update():
 		move(map.getHighestDesireEmpty())
 func move(newLocation:Vector2i):
 	map.set_cell(0,newLocation,1,Vector2i(0,0),streetID)
-	map.removeStreet(location,self);
+	map.removeFlat(location,self);
