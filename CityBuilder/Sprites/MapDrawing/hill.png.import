@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dto7y2bdkf405"
-path="res://.godot/imported/default.png-3c02f64898c54bef7679fb359a2341e9.ctex"
+uid="uid://bn5sqpijb4cr2"
+path="res://.godot/imported/hill.png-1a80f5cc53511093565cc25a98dac23a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/MapDrawing/default.png"
-dest_files=["res://.godot/imported/default.png-3c02f64898c54bef7679fb359a2341e9.ctex"]
+source_file="res://CityBuilder/Sprites/MapDrawing/hill.png"
+dest_files=["res://.godot/imported/hill.png-1a80f5cc53511093565cc25a98dac23a.ctex"]
 
 [params]
 

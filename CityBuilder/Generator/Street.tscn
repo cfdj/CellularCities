@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b86k6fntbup5u"]
 
-[ext_resource type="Script" path="res://Generator/BuildingTypes/Ammenity.gd" id="1_n5lcl"]
+[ext_resource type="Script" path="res://CityBuilder/Generator/BuildingTypes/Ammenity.gd" id="1_n5lcl"]
 [ext_resource type="Texture2D" uid="uid://y3po8f87p8e5" path="res://Buildings.png" id="2_3cu0p"]
 
 [node name="Tile" type="Node2D"]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvfyn42uom1bt"]
+
+[ext_resource type="Script" path="res://LevelManager.gd" id="1_cnotu"]
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="2_dqio8"]
+[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_ntjqv"]
+
+[node name="PlacingPuzzle" type="Node2D"]
+
+[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("map", "listOfBuildings")]
+script = ExtResource("1_cnotu")
+map = NodePath("../TileMap")
+listOfBuildings = [NodePath("../Cinema"), NodePath("../Foundry"), NodePath("../Flats")]
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("2_dqio8")
+format = 2
+layer_0/name = "Buildings"
+layer_0/y_sort_enabled = true
+layer_0/z_index = 1
+layer_1/name = "Ground"
+layer_1/y_sort_enabled = true
+layer_1/tile_data = PackedInt32Array(327682, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 65537, 1, 393219, 65537, 1, 458755, 65537, 1, 65540, 65537, 0, 131076, 1, 0, 196612, 65537, 1, 262148, 65537, 1, 327684, 65537, 1, 393220, 65537, 1, 458756, 65537, 1, 524292, 65537, 1, 589828, 65537, 1, 131077, 131073, 0, 196613, 131073, 0, 262149, 65537, 1, 327685, 65537, 1, 393221, 65537, 1, 458757, 65537, 1, 524293, 65537, 1, 262150, 131073, 0, 327686, 131073, 0, 393222, 65537, 1, 393218, 1, 1, 458754, 1, 2, 524291, 1, 2, 589827, 1, 2, 655364, 1, 2, 720900, 65537, 2, 589829, 131073, 2, 655365, 131073, 2, 458758, 131073, 2, 524294, 131073, 2, 393223, 131073, 1)
+layer_2/name = "Indicator"
+layer_2/y_sort_enabled = true
+layer_2/z_index = 1
+layer_2/tile_data = PackedInt32Array()
+
+[node name="Cinema" parent="." instance=ExtResource("3_ntjqv")]
+id = 3
+
+[node name="Foundry" parent="." instance=ExtResource("3_ntjqv")]
+spriteLocation = Vector2i(1, 1)
+id = 2
+
+[node name="Flats" parent="." instance=ExtResource("3_ntjqv")]
+spriteLocation = Vector2i(2, 2)
+id = 1

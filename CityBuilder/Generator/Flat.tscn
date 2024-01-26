@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://biwqsls11omfo"]
 
-[ext_resource type="Script" path="res://Generator/BuildingTypes/Flats.gd" id="1_p3hwd"]
+[ext_resource type="Script" path="res://CityBuilder/Generator/BuildingTypes/Flats.gd" id="1_p3hwd"]
 [ext_resource type="Texture2D" uid="uid://y3po8f87p8e5" path="res://Buildings.png" id="2_m8uvg"]
 
 [node name="Tile" type="Node2D"]

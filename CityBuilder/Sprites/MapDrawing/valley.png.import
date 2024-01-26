@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkvxmkfpb07me"
-path="res://.godot/imported/valley.png-8924f1a783273b93fe469a4626f1b084.ctex"
+path="res://.godot/imported/valley.png-928b058c0fe94d61cc97fa9432654377.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/MapDrawing/valley.png"
-dest_files=["res://.godot/imported/valley.png-8924f1a783273b93fe469a4626f1b084.ctex"]
+source_file="res://CityBuilder/Sprites/MapDrawing/valley.png"
+dest_files=["res://.godot/imported/valley.png-928b058c0fe94d61cc97fa9432654377.ctex"]
 
 [params]
 

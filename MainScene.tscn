@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://l271j8pp82rd"]
 
 [ext_resource type="TileSet" uid="uid://cjfswth0q6t18" path="res://CityTiles.tres" id="1_v2ljp"]
-[ext_resource type="Script" path="res://map.gd" id="2_nbsg8"]
-[ext_resource type="Script" path="res://CameraControl.gd" id="4_54c3k"]
-[ext_resource type="Script" path="res://UI/TurnButton.gd" id="4_576ek"]
+[ext_resource type="Script" path="res://CityBuilder/map.gd" id="2_nbsg8"]
+[ext_resource type="Script" path="res://CityBuilder/CameraControl.gd" id="4_54c3k"]
+[ext_resource type="Script" path="res://CityBuilder/UI/TurnButton.gd" id="4_576ek"]
 
 [node name="Node2D" type="Node2D"]
 

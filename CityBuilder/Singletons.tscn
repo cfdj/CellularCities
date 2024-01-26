@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://drv17yfeycuv0"]
 
-[ext_resource type="Script" path="res://Singletons.gd" id="1_car82"]
+[ext_resource type="Script" path="res://CityBuilder/Singletons.gd" id="1_car82"]
 
 [node name="Singletons" type="Node"]
 script = ExtResource("1_car82")
