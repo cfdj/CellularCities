@@ -2,9 +2,9 @@ class_name Building extends Node
 
 @export var spriteLocation:Vector2i;
 @export var id:int;
-
+@export var texture:Texture2D
 ##row = id, column = likes or dislikes (symmetric)
-var hatesArray= [
+static var hatesArray= [
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Street
 	[false,false,true,false,false,true,true,false,false,false,false,true], #Flat
 	[false,true,false,false,true,false,false,false,false,false,false,false], #Foundry
@@ -17,7 +17,7 @@ var hatesArray= [
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Hill
 	[false,false,false,false,false,false,false,false,true,false,false,true], #Office
 	[false,true,false,true,true,false,false,false,false,false,true,false],] #Mine
-var likesArray = [
+static var likesArray = [
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Street
 	[false,false,false,true,false,true,true,true,false,true,true,false], #Flat
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Foundry

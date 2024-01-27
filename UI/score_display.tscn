@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bndycms8l1fud"]
+
+[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/UItheme.tres" id="1_pfwla"]
+[ext_resource type="Script" path="res://UI/ScoreDisplay.gd" id="2_28w5n"]
+
+[node name="ScoreDisplay" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_pfwla")
+text = "Score: 00"
+script = ExtResource("2_28w5n")
+BuildingScore = 50
+LikesBonus = 25

@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://ss7t2n6j324l"]
+[gd_scene load_steps=7 format=3 uid="uid://bictvkrgj3yxq"]
 
-[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="2_jfiux"]
-[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_xijdw"]
-[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_7upy3"]
-[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/UItheme.tres" id="4_2l8iq"]
-[ext_resource type="Script" path="res://BuildingList.gd" id="4_6rlsi"]
-[ext_resource type="PackedScene" uid="uid://bndycms8l1fud" path="res://UI/score_display.tscn" id="6_rgl05"]
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_8cb1u"]
+[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_j7lou"]
+[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_ccken"]
+[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/UItheme.tres" id="4_7q1ed"]
+[ext_resource type="Script" path="res://BuildingList.gd" id="5_1glj0"]
+[ext_resource type="PackedScene" uid="uid://bndycms8l1fud" path="res://UI/score_display.tscn" id="6_paaxx"]
 
 [node name="PlacingPuzzle" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("2_jfiux")
+tile_set = ExtResource("1_8cb1u")
 format = 2
 layer_0/name = "Buildings"
 layer_0/y_sort_enabled = true
@@ -32,33 +32,34 @@ layer_3/z_index = 1
 layer_3/navigation_enabled = false
 layer_3/tile_data = PackedInt32Array()
 
-[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "nextlevelButton", "display", "buildingDisplay") instance=ExtResource("2_xijdw")]
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "nextlevelButton", "display", "buildingDisplay") instance=ExtResource("2_j7lou")]
+level = 2
 map = NodePath("..")
-listOfBuildings = [NodePath("../../Foundry")]
+listOfBuildings = [NodePath("../../Cinema"), NodePath("../../Flats")]
 nextlevelButton = NodePath("../../CanvasLayer/NextLevelButton")
 display = NodePath("../../CanvasLayer/ScoreDisplay")
 buildingDisplay = NodePath("../../CanvasLayer/ItemList")
 
-[node name="Cinema" parent="." instance=ExtResource("3_7upy3")]
+[node name="Cinema" parent="." instance=ExtResource("3_ccken")]
 id = 3
 
-[node name="Foundry" parent="." instance=ExtResource("3_7upy3")]
+[node name="Foundry" parent="." instance=ExtResource("3_ccken")]
 spriteLocation = Vector2i(1, 1)
 id = 2
 
-[node name="Flats" parent="." instance=ExtResource("3_7upy3")]
+[node name="Flats" parent="." instance=ExtResource("3_ccken")]
 spriteLocation = Vector2i(2, 2)
 id = 1
 
-[node name="University" parent="." instance=ExtResource("3_7upy3")]
+[node name="University" parent="." instance=ExtResource("3_ccken")]
 spriteLocation = Vector2i(4, 4)
 id = 4
 
-[node name="Station" parent="." instance=ExtResource("3_7upy3")]
+[node name="Station" parent="." instance=ExtResource("3_ccken")]
 spriteLocation = Vector2i(3, 5)
 id = 5
 
-[node name="Mine" parent="." instance=ExtResource("3_7upy3")]
+[node name="Mine" parent="." instance=ExtResource("3_ccken")]
 spriteLocation = Vector2i(4, 3)
 id = 11
 
@@ -79,7 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-theme = ExtResource("4_2l8iq")
+theme = ExtResource("4_7q1ed")
 text = "Next Level"
 
 [node name="ItemList" type="ItemList" parent="CanvasLayer"]
@@ -92,9 +93,9 @@ offset_bottom = 77.0
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("4_2l8iq")
-script = ExtResource("4_6rlsi")
+theme = ExtResource("4_7q1ed")
+script = ExtResource("5_1glj0")
 
-[node name="ScoreDisplay" parent="CanvasLayer" instance=ExtResource("6_rgl05")]
+[node name="ScoreDisplay" parent="CanvasLayer" instance=ExtResource("6_paaxx")]
 
 [connection signal="pressed" from="CanvasLayer/NextLevelButton" to="TileMap/LevelManager" method="nextLevel"]
