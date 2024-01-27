@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvfyn42uom1bt"]
+[gd_scene load_steps=4 format=3 uid="uid://dqu6eddn3ddfu"]
 
-[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_cnrx8"]
-[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="2_dqio8"]
-[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_ntjqv"]
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="2_1jair"]
+[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_l4ah4"]
+[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_jgtvt"]
 
 [node name="PlacingPuzzle" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("2_dqio8")
+tile_set = ExtResource("2_1jair")
 format = 2
 layer_0/name = "Buildings"
 layer_0/y_sort_enabled = true
@@ -22,31 +22,32 @@ layer_2/y_sort_enabled = true
 layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(458755, 262144, 5, 327684, 262144, 5, 393220, 262144, 5, 458756, 262144, 5, 524292, 262144, 5, 589828, 262144, 5, 393221, 262144, 5, 458757, 262144, 5, 524293, 262144, 5, 589826, 262144, 5, 524291, 262144, 5, 589827, 262144, 5, 655363, 262144, 5, 720899, 262144, 5, 655364, 262144, 5, 720900, 262144, 5, 786436, 262144, 5, 851972, 262144, 5, 589829, 262144, 5, 655365, 262144, 5, 720901, 262144, 5, 786437, 262144, 5, 524294, 262144, 5, 589830, 262144, 5, 655366, 262144, 5)
 
-[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "nextlevelButton") instance=ExtResource("2_cnrx8")]
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "nextlevelButton") instance=ExtResource("2_l4ah4")]
+level = 1
 map = NodePath("..")
-listOfBuildings = [NodePath("../../Cinema"), NodePath("../../Foundry"), NodePath("../../Flats"), NodePath("../../University"), NodePath("../../Station"), NodePath("../../Mine")]
+listOfBuildings = [NodePath("../../Flats"), NodePath("../../Flats"), NodePath("../../University"), NodePath("../../Foundry")]
 nextlevelButton = NodePath("../../CanvasLayer/NextLevelButton")
 
-[node name="Cinema" parent="." instance=ExtResource("3_ntjqv")]
+[node name="Cinema" parent="." instance=ExtResource("3_jgtvt")]
 id = 3
 
-[node name="Foundry" parent="." instance=ExtResource("3_ntjqv")]
+[node name="Foundry" parent="." instance=ExtResource("3_jgtvt")]
 spriteLocation = Vector2i(1, 1)
 id = 2
 
-[node name="Flats" parent="." instance=ExtResource("3_ntjqv")]
+[node name="Flats" parent="." instance=ExtResource("3_jgtvt")]
 spriteLocation = Vector2i(2, 2)
 id = 1
 
-[node name="University" parent="." instance=ExtResource("3_ntjqv")]
+[node name="University" parent="." instance=ExtResource("3_jgtvt")]
 spriteLocation = Vector2i(4, 4)
 id = 4
 
-[node name="Station" parent="." instance=ExtResource("3_ntjqv")]
+[node name="Station" parent="." instance=ExtResource("3_jgtvt")]
 spriteLocation = Vector2i(3, 5)
 id = 5
 
-[node name="Mine" parent="." instance=ExtResource("3_ntjqv")]
+[node name="Mine" parent="." instance=ExtResource("3_jgtvt")]
 spriteLocation = Vector2i(4, 3)
 id = 11
 
@@ -63,3 +64,5 @@ grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Next Level"
+
+[connection signal="pressed" from="CanvasLayer/NextLevelButton" to="TileMap/LevelManager" method="nextLevel"]

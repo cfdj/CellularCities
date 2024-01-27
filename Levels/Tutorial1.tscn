@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://ss7t2n6j324l"]
+
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="2_jfiux"]
+[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_xijdw"]
+[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_7upy3"]
+
+[node name="PlacingPuzzle" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("2_jfiux")
+format = 2
+layer_0/name = "Buildings"
+layer_0/y_sort_enabled = true
+layer_0/z_index = 1
+layer_1/name = "Ground"
+layer_1/y_sort_enabled = true
+layer_1/tile_data = PackedInt32Array(458756, 65537, 0, 524292, 1, 0, 589828, 65537, 1, 524293, 131073, 0, 589829, 131073, 0, 655365, 65537, 1, 720901, 131073, 2, 655366, 131073, 1, 589827, 1, 0, 655363, 1, 1, 720899, 1, 2, 655364, 65537, 1, 720900, 65537, 1, 786436, 1, 2, 851972, 65537, 2, 786437, 131073, 2)
+layer_2/name = "Indicator"
+layer_2/y_sort_enabled = true
+layer_2/z_index = 1
+layer_2/tile_data = PackedInt32Array(589828, 262144, 5, 524293, 262144, 5, 589829, 262144, 5, 655365, 262144, 5, 720900, 262144, 5, 655364, 262144, 5, 589827, 262144, 5, 524292, 262144, 5, 458756, 262144, 5)
+
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "nextlevelButton") instance=ExtResource("2_xijdw")]
+map = NodePath("..")
+listOfBuildings = [NodePath("../../Foundry"), NodePath("../../Flats")]
+nextlevelButton = NodePath("../../CanvasLayer/NextLevelButton")
+
+[node name="Cinema" parent="." instance=ExtResource("3_7upy3")]
+id = 3
+
+[node name="Foundry" parent="." instance=ExtResource("3_7upy3")]
+spriteLocation = Vector2i(1, 1)
+id = 2
+
+[node name="Flats" parent="." instance=ExtResource("3_7upy3")]
+spriteLocation = Vector2i(2, 2)
+id = 1
+
+[node name="University" parent="." instance=ExtResource("3_7upy3")]
+spriteLocation = Vector2i(4, 4)
+id = 4
+
+[node name="Station" parent="." instance=ExtResource("3_7upy3")]
+spriteLocation = Vector2i(3, 5)
+id = 5
+
+[node name="Mine" parent="." instance=ExtResource("3_7upy3")]
+spriteLocation = Vector2i(4, 3)
+id = 11
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="NextLevelButton" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 90.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Next Level"
+
+[connection signal="pressed" from="CanvasLayer/NextLevelButton" to="TileMap/LevelManager" method="nextLevel"]
