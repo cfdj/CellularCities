@@ -33,7 +33,6 @@ layer_3/navigation_enabled = false
 layer_3/tile_data = PackedInt32Array()
 
 [node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "nextlevelButton", "display", "buildingDisplay") instance=ExtResource("2_j7lou")]
-level = 2
 map = NodePath("..")
 listOfBuildings = [NodePath("../../Cinema"), NodePath("../../Flats")]
 nextlevelButton = NodePath("../../CanvasLayer/NextLevelButton")
@@ -67,17 +66,16 @@ id = 11
 
 [node name="NextLevelButton" type="Button" parent="CanvasLayer"]
 visible = false
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -45.0
-offset_top = -15.5
+offset_top = -31.0
 offset_right = 45.0
-offset_bottom = 15.5
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme = ExtResource("4_7q1ed")

@@ -64,7 +64,6 @@ id = 11
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="NextLevelButton" type="Button" parent="CanvasLayer"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

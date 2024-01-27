@@ -1,6 +1,6 @@
 extends Node
 
-@export var level:int;
+var level:int;
 @export var map:TileMap;
 @export var listOfBuildings:Array[Building];
 var currentBuilding:Building;
@@ -33,6 +33,9 @@ func _ready():
 		map.erase_cell(2,i);
 	buildingDisplay.setItemList(listOfBuildings);
 	hint();
+	
+	level = levels.find(get_parent().get_parent().scene_file_path);
+
 func _physics_process(delta):
 	if playing:
 		var mousePos = get_viewport().get_mouse_position();
@@ -83,6 +86,12 @@ func undo():
 		var clearLocation = listOfPlaced.pop_back();
 		map.erase_cell(0,clearLocation);
 		buildingDisplay.pushItemList(currentBuilding);
+		var mousePos = get_viewport().get_mouse_position();
+		location = map.to_local(mousePos);
+		location = map.local_to_map(mousePos);
+		map.erase_cell(3,previousLocation);
+		if playRegion.has(location):
+			map.set_cell(3,location,0,currentBuilding.spriteLocation);
 		clearHint();
 		hint();
 func finishLevel():

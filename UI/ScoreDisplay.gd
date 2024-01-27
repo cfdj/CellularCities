@@ -19,3 +19,4 @@ func updateScore(map:TileMap,buildings:Array[Vector2i]):
 			currentScore += numLikes*numLikes*LikesBonus;
 			totalScore += currentScore;
 			text = "Score: " + str(totalScore);
+##			await get_tree().create_timer(0.2).timeout ##Currently produces a bug where streets are counted as it happens during street placing

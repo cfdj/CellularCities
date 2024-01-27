@@ -1,3 +1,16 @@
-[gd_resource type="Theme" format=3 uid="uid://dsfsg1to7ip3v"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dsfsg1to7ip3v"]
+
+[ext_resource type="FontFile" uid="uid://tug14tpn6ba7" path="res://UI/Baskic8.otf" id="1_b5ftw"]
+[ext_resource type="StyleBox" uid="uid://ceifrwtecpale" path="res://UI/buttonDefault.tres" id="2_0j0wp"]
+[ext_resource type="StyleBox" uid="uid://dl01mqnbuihai" path="res://UI/buttonHover.tres" id="2_ht7cb"]
+[ext_resource type="StyleBox" uid="uid://cyd5iq0lu7vcy" path="res://UI/buttonPressed.tres" id="3_5guu3"]
+[ext_resource type="StyleBox" uid="uid://b34ot8fbqjgwe" path="res://UI/ListBackground.tres" id="5_4ac71"]
 
 [resource]
+Button/fonts/font = ExtResource("1_b5ftw")
+Button/styles/focus = ExtResource("2_ht7cb")
+Button/styles/hover = ExtResource("2_ht7cb")
+Button/styles/normal = ExtResource("2_0j0wp")
+Button/styles/pressed = ExtResource("3_5guu3")
+ItemList/styles/panel = ExtResource("5_4ac71")
+Label/fonts/font = ExtResource("1_b5ftw")

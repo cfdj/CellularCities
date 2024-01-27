@@ -8,6 +8,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme = ExtResource("1_pfwla")
 text = "Score: 00"
+vertical_alignment = 2
 script = ExtResource("2_28w5n")
 BuildingScore = 50
 LikesBonus = 25
