@@ -5,4 +5,3 @@
 [node name="LevelManager" type="Node" node_paths=PackedStringArray("listOfBuildings")]
 script = ExtResource("1_q6mxo")
 listOfBuildings = [null, null]
-levels = Array[String](["res://Levels/Tutorial1.tscn", "res://Levels/Tutorial2.tscn", "res://Levels/Tutorial3.tscn", "res://Levels/Tutorial4.tscn", "res://Levels/Train1.tscn", "res://Levels/Train2.tscn", "res://Levels/Train3.tscn"])

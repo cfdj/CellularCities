@@ -21,7 +21,6 @@ var playing = true;
 
 @export var nextlevelButton:Button;
 @export var display:ScoreDisplay;
-@export var levels:Array[String];
 
 @export var buildingDisplay:BuildingList;
 func _ready():
@@ -34,7 +33,7 @@ func _ready():
 	buildingDisplay.setItemList(listOfBuildings);
 	hint();
 	
-	level = levels.find(get_parent().get_parent().scene_file_path);
+	level = Loader.levels.find(get_parent().get_parent().scene_file_path);
 
 func _physics_process(delta):
 	if playing:
@@ -105,9 +104,8 @@ func finishLevel():
 			await get_tree().create_timer(0.2).timeout
 
 func nextLevel():
-	if(level+1 <levels.size()):
-		get_tree().change_scene_to_file(levels[level+1]);
-
+	Loader.loadLevel(level+1);
+	
 func hint():
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i)!= null):

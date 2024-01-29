@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Singletons="*res://CityBuilder/Singletons.gd"
 Menu="*res://UI/menu.tscn"
+Loader="*res://UI/Loader.tscn"
 
 [display]
 
