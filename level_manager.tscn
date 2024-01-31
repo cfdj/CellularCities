@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dme0jr035617t"]
+[gd_scene load_steps=4 format=3 uid="uid://dme0jr035617t"]
 
 [ext_resource type="Script" path="res://LevelManager.gd" id="1_q6mxo"]
 [ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="2_im601"]
+[ext_resource type="SpriteFrames" uid="uid://cqeqvrixn64kg" path="res://BuildAnimations/buildAnimation.tres" id="3_1vbw3"]
 
-[node name="LevelManager" type="Node" node_paths=PackedStringArray("listOfBuildings", "allBuildings")]
+[node name="LevelManager" type="Node" node_paths=PackedStringArray("listOfBuildings", "buildAnimation", "allBuildings")]
 script = ExtResource("1_q6mxo")
 listOfBuildings = [null, null]
+buildAnimation = NodePath("BuildAnimation")
 allBuildings = [NodePath("Street"), NodePath("Flats"), NodePath("Foundry"), NodePath("Cinema"), NodePath("University"), NodePath("Station"), NodePath("Rail"), NodePath("Forest"), NodePath("Gasworks"), NodePath("Hill"), NodePath("Office"), NodePath("Mine")]
 
 [node name="Street" parent="." instance=ExtResource("2_im601")]
@@ -53,3 +55,9 @@ id = 9
 [node name="Mine" parent="." instance=ExtResource("2_im601")]
 spriteLocation = Vector2i(4, 3)
 id = 11
+
+[node name="BuildAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+z_as_relative = false
+y_sort_enabled = true
+sprite_frames = ExtResource("3_1vbw3")

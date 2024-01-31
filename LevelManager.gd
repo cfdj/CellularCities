@@ -15,6 +15,7 @@ var playRegionMarker = Vector2i(4,5);
 var streetLocations = [Vector2i(0,3),Vector2i(1,3),Vector2i(0,4),Vector2i(1,4)]
 var negativeHint = Vector2i(2,0);
 var positiveHint = Vector2i(4,6);
+@export var buildAnimation:AnimatedSprite2D;
 
 var playing = true;
 
@@ -63,18 +64,28 @@ func checkPlace(location):
 	if(valid):
 		place(location);
 func place(location):
-	map.set_cell(0,location,0,currentBuilding.spriteLocation);
-	map.erase_cell(2,location);
+	var placing = currentBuilding;
+	map.erase_cell(3,location);
+	clearHint();
+	##setting a temporary building
+	map.set_cell(0,location,2,placing.spriteLocation);
+	buildAnimation.visible = false;
+	buildAnimation.stop();
+	buildAnimation.frame=0;
+	buildAnimation.position = map.map_to_local(location);
+	buildAnimation.visible= true;
+	buildAnimation.play();
 	listOfPlaced.append(location);
 	current+=1;
 	ui.popBuildingList();
-	clearHint();
 	if(current<listOfBuildings.size()):
 		currentBuilding = listOfBuildings[current];
 		hint();
 	else:
 		finishLevel();
-
+	await buildAnimation.animation_finished;
+	map.set_cell(0,location,0,placing.spriteLocation);
+	buildAnimation.visible = false;
 func undo():
 	if current >0:
 		current -=1;
