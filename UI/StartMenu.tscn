@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://UI/StartMenu.gd" id="1_ofk3n"]
 [ext_resource type="Texture2D" uid="uid://e4y4wev4mso3" path="res://SplashScreen.png" id="2_ugo50"]
-[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/UItheme.tres" id="3_dls7o"]
+[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="3_dls7o"]
 [ext_resource type="Script" path="res://UI/LevelSelect.gd" id="4_spj7m"]
-[ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/backButtonDefault.tres" id="5_8mms2"]
-[ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/backButtonPressed.tres" id="6_d10y3"]
+[ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="5_8mms2"]
+[ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="6_d10y3"]
 
 [node name="StartMenu" type="Control" node_paths=PackedStringArray("startMenu", "levelSelect")]
 layout_mode = 3
@@ -94,6 +94,7 @@ theme = ExtResource("3_dls7o")
 theme_override_styles/normal = ExtResource("5_8mms2")
 theme_override_styles/hover = ExtResource("5_8mms2")
 theme_override_styles/pressed = ExtResource("6_d10y3")
+theme_override_styles/focus = ExtResource("5_8mms2")
 text = "X"
 
 [node name="LevelSelect" type="ItemList" parent="LevelButtons"]
@@ -114,7 +115,7 @@ theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/v_separation = 6
-max_columns = 2
+max_columns = 3
 same_column_width = true
 script = ExtResource("4_spj7m")
 

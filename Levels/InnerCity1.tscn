@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://uo30rpflg8kk"]
+[gd_scene load_steps=4 format=3 uid="uid://4m2y4c3323wn"]
 
-[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_u7ib0"]
-[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_67r2p"]
-[ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="3_16jwv"]
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_bwe8g"]
+[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_1icwf"]
+[ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="3_80a5h"]
 
 [node name="PlacingPuzzle" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("1_u7ib0")
+tile_set = ExtResource("1_bwe8g")
 format = 2
 layer_0/name = "Buildings"
 layer_0/y_sort_enabled = true
 layer_0/z_index = 1
 layer_0/navigation_enabled = false
-layer_0/tile_data = PackedInt32Array(720901, 131072, 5, 786437, 196608, 5, 851972, 0, 6, 655365, 65536, 5)
+layer_0/tile_data = PackedInt32Array(589828, 65536, 2, 655364, 196608, 2, 720899, 65536, 2, 720901, 131072, 2, 786437, 65536, 4, 851972, 65536, 4)
 layer_1/name = "Ground"
 layer_1/y_sort_enabled = true
 layer_1/navigation_enabled = false
@@ -30,12 +30,12 @@ layer_3/z_index = 1
 layer_3/navigation_enabled = false
 layer_3/tile_data = PackedInt32Array()
 
-[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_67r2p")]
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_1icwf")]
 map = NodePath("..")
-listOfBuildings = [NodePath("Flats"), NodePath("Flats"), NodePath("Cinema")]
+listOfBuildings = [NodePath("Cinema"), NodePath("University"), NodePath("Cinema")]
 ui = NodePath("../../UI")
 
-[node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_16jwv")]
+[node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_80a5h")]
 level = NodePath("../TileMap/LevelManager")
 
 [editable path="TileMap/LevelManager"]

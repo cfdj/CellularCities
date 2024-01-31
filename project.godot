@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="CellularCities"
+config/description="A puzzle game about placing buildings."
 run/main_scene="res://UI/StartMenu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"

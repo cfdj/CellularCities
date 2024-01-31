@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bndycms8l1fud"]
+[gd_scene load_steps=6 format=3 uid="uid://bndycms8l1fud"]
 
-[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/UItheme.tres" id="1_pfwla"]
+[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_pfwla"]
 [ext_resource type="Script" path="res://UI/ScoreDisplay.gd" id="2_28w5n"]
+[ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="3_p6iv1"]
+[ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="4_8ruf0"]
+[ext_resource type="Script" path="res://UI/QuitButton.gd" id="5_oclr7"]
 
 [node name="ScoreDisplay" type="Label"]
 offset_right = 40.0
@@ -12,3 +15,20 @@ vertical_alignment = 2
 script = ExtResource("2_28w5n")
 BuildingScore = 50
 LikesBonus = 25
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_right = 480.0
+offset_bottom = 28.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("1_pfwla")
+theme_override_styles/normal = ExtResource("3_p6iv1")
+theme_override_styles/hover = ExtResource("3_p6iv1")
+theme_override_styles/pressed = ExtResource("4_8ruf0")
+theme_override_styles/focus = ExtResource("3_p6iv1")
+text = "X"
+script = ExtResource("5_oclr7")
+
+[connection signal="pressed" from="BackButton" to="BackButton" method="_on_pressed"]

@@ -1,4 +1,4 @@
-extends Node
+class_name LevelManager extends Node
 
 var level:int;
 @export var map:TileMap;
@@ -18,11 +18,8 @@ var positiveHint = Vector2i(4,6);
 
 var playing = true;
 
-
-@export var nextlevelButton:Button;
-@export var display:ScoreDisplay;
-
-@export var buildingDisplay:BuildingList;
+@export var ui:UIManager;
+@export var allBuildings:Array[Building] ##An array of all buildings in ID order
 func _ready():
 	currentBuilding = listOfBuildings[current];
 	
@@ -30,11 +27,11 @@ func _ready():
 	playRegion = map.get_used_cells_by_id(2,0,playRegionMarker)
 	for i in playRegion:
 		map.erase_cell(2,i);
-	buildingDisplay.setItemList(listOfBuildings);
+	ui.setBuildingList(listOfBuildings);
 	hint();
 	
 	level = Loader.levels.find(get_parent().get_parent().scene_file_path);
-
+	ui.setBuildingMenu();
 func _physics_process(delta):
 	if playing:
 		var mousePos = get_viewport().get_mouse_position();
@@ -42,7 +39,7 @@ func _physics_process(delta):
 		location = map.local_to_map(mousePos);
 		if location != previousLocation:
 			map.erase_cell(3,previousLocation);
-			if playRegion.has(location):
+			if playRegion.has(location) && map.get_cell_tile_data(0,location) == null:
 				map.set_cell(3,location,0,currentBuilding.spriteLocation);
 			previousLocation = location;
 		if(Input.is_action_just_pressed("click")):
@@ -70,7 +67,7 @@ func place(location):
 	map.erase_cell(2,location);
 	listOfPlaced.append(location);
 	current+=1;
-	buildingDisplay.popItemList();
+	ui.popBuildingList();
 	clearHint();
 	if(current<listOfBuildings.size()):
 		currentBuilding = listOfBuildings[current];
@@ -84,7 +81,7 @@ func undo():
 		currentBuilding = listOfBuildings[current];
 		var clearLocation = listOfPlaced.pop_back();
 		map.erase_cell(0,clearLocation);
-		buildingDisplay.pushItemList(currentBuilding);
+		ui.pushBuildingList(currentBuilding);
 		var mousePos = get_viewport().get_mouse_position();
 		location = map.to_local(mousePos);
 		location = map.local_to_map(mousePos);
@@ -94,18 +91,15 @@ func undo():
 		clearHint();
 		hint();
 func finishLevel():
-	nextlevelButton.visible = true;
+	ui.showNextlevelButton();
 	playing = false;
-	display.updateScore(map,playRegion);
+	ui.updateScore(map,playRegion);
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i) ==null):
 			var streetLocation =streetLocations[randi() % streetLocations.size()];
 			map.set_cell(0,i,0,streetLocation)
 			await get_tree().create_timer(0.2).timeout
 
-func nextLevel():
-	Loader.loadLevel(level+1);
-	
 func hint():
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i)!= null):

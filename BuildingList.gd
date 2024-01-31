@@ -1,7 +1,7 @@
 class_name BuildingList extends ItemList
 
 var tileWidth = 62;
-var tileHeight = 48
+var tileHeight = 48;
 
 func setItemList(buildings:Array[Building]):
 	var tempBuildings = buildings.duplicate()

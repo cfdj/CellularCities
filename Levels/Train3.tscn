@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvytkftkdg3cc"]
+[gd_scene load_steps=4 format=3 uid="uid://dvytkftkdg3cc"]
 
 [ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_isit8"]
 [ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_no6i6"]
-[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_jl6a0"]
-[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/UItheme.tres" id="4_oybkd"]
-[ext_resource type="Script" path="res://BuildingList.gd" id="5_wryvu"]
-[ext_resource type="PackedScene" uid="uid://bndycms8l1fud" path="res://UI/score_display.tscn" id="6_pxv7p"]
+[ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="3_eja1g"]
 
 [node name="PlacingPuzzle" type="Node2D"]
 
@@ -33,69 +30,12 @@ layer_3/z_index = 1
 layer_3/navigation_enabled = false
 layer_3/tile_data = PackedInt32Array()
 
-[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "nextlevelButton", "display", "buildingDisplay") instance=ExtResource("2_no6i6")]
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_no6i6")]
 map = NodePath("..")
-listOfBuildings = [NodePath("../../Mine"), NodePath("../../Flats"), NodePath("../../Cinema")]
-nextlevelButton = NodePath("../../CanvasLayer/NextLevelButton")
-display = NodePath("../../CanvasLayer/ScoreDisplay")
-buildingDisplay = NodePath("../../CanvasLayer/ItemList")
+listOfBuildings = [NodePath("Mine"), NodePath("Flats"), NodePath("Cinema")]
+ui = NodePath("../../UI")
 
-[node name="Cinema" parent="." instance=ExtResource("3_jl6a0")]
-id = 3
+[node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_eja1g")]
+level = NodePath("../TileMap/LevelManager")
 
-[node name="Foundry" parent="." instance=ExtResource("3_jl6a0")]
-spriteLocation = Vector2i(1, 1)
-id = 2
-
-[node name="Flats" parent="." instance=ExtResource("3_jl6a0")]
-spriteLocation = Vector2i(2, 2)
-id = 1
-
-[node name="University" parent="." instance=ExtResource("3_jl6a0")]
-spriteLocation = Vector2i(4, 4)
-id = 4
-
-[node name="Station" parent="." instance=ExtResource("3_jl6a0")]
-spriteLocation = Vector2i(3, 5)
-id = 5
-
-[node name="Mine" parent="." instance=ExtResource("3_jl6a0")]
-spriteLocation = Vector2i(4, 3)
-id = 11
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="NextLevelButton" type="Button" parent="CanvasLayer"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = -15.5
-offset_right = 45.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("4_oybkd")
-text = "Next Level"
-
-[node name="ItemList" type="ItemList" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -184.0
-offset_right = 62.0
-offset_bottom = 56.0
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme = ExtResource("4_oybkd")
-script = ExtResource("5_wryvu")
-
-[node name="ScoreDisplay" parent="CanvasLayer" instance=ExtResource("6_pxv7p")]
-
-[connection signal="pressed" from="CanvasLayer/NextLevelButton" to="TileMap/LevelManager" method="nextLevel"]
+[editable path="TileMap/LevelManager"]

@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dsfsg1to7ip3v"]
+
+[ext_resource type="FontFile" uid="uid://tug14tpn6ba7" path="res://UI/Theme/Baskic8.otf" id="1_03xpr"]
+[ext_resource type="StyleBox" uid="uid://dl01mqnbuihai" path="res://UI/Theme/buttonHover.tres" id="2_dx1dr"]
+[ext_resource type="StyleBox" uid="uid://ceifrwtecpale" path="res://UI/Theme/buttonDefault.tres" id="3_7e0ul"]
+[ext_resource type="StyleBox" uid="uid://cyd5iq0lu7vcy" path="res://UI/Theme/buttonPressed.tres" id="4_dt2bi"]
+[ext_resource type="StyleBox" uid="uid://5p2ms45016v0" path="res://UI/Theme/separator.tres" id="5_2uk4k"]
+[ext_resource type="StyleBox" uid="uid://cle3cxsrcoc3u" path="res://UI/Theme/scrollBar.tres" id="5_pr2xq"]
+[ext_resource type="StyleBox" uid="uid://b34ot8fbqjgwe" path="res://UI/Theme/ListBackground.tres" id="5_vi1tl"]
+[ext_resource type="StyleBox" uid="uid://b5j5w24yh82rf" path="res://UI/Theme/panel.tres" id="6_fb7q5"]
+[ext_resource type="StyleBox" uid="uid://bffhh3pq4xl35" path="res://UI/Theme/scrollBackground.tres" id="6_x5cr5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efsmo"]
+draw_center = false
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_62jik"]
+color = Color(1, 1, 1, 1)
+vertical = true
+
+[resource]
+Button/fonts/font = ExtResource("1_03xpr")
+Button/styles/focus = ExtResource("2_dx1dr")
+Button/styles/hover = ExtResource("2_dx1dr")
+Button/styles/normal = ExtResource("3_7e0ul")
+Button/styles/pressed = ExtResource("4_dt2bi")
+HScrollBar/styles/grabber = ExtResource("5_pr2xq")
+HScrollBar/styles/grabber_highlight = ExtResource("5_pr2xq")
+HScrollBar/styles/grabber_pressed = ExtResource("5_pr2xq")
+HScrollBar/styles/scroll = ExtResource("6_x5cr5")
+HSeparator/styles/separator = ExtResource("5_2uk4k")
+ItemList/fonts/font = ExtResource("1_03xpr")
+ItemList/styles/focus = ExtResource("3_7e0ul")
+ItemList/styles/hovered = SubResource("StyleBoxFlat_efsmo")
+ItemList/styles/panel = ExtResource("5_vi1tl")
+ItemList/styles/selected = ExtResource("4_dt2bi")
+Label/fonts/font = ExtResource("1_03xpr")
+PanelContainer/styles/panel = ExtResource("6_fb7q5")
+VScrollBar/styles/grabber = ExtResource("5_pr2xq")
+VScrollBar/styles/grabber_highlight = ExtResource("5_pr2xq")
+VScrollBar/styles/grabber_pressed = ExtResource("5_pr2xq")
+VScrollBar/styles/scroll = ExtResource("6_x5cr5")
+VSeparator/styles/separator = SubResource("StyleBoxLine_62jik")

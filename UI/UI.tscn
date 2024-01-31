@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://nkuhehrwbpbk"]
+
+[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_0awcs"]
+[ext_resource type="Script" path="res://UI/UImanager.gd" id="1_0w6w4"]
+[ext_resource type="Script" path="res://BuildingList.gd" id="2_kj2cp"]
+[ext_resource type="PackedScene" uid="uid://bndycms8l1fud" path="res://UI/score_display.tscn" id="3_wj8a3"]
+[ext_resource type="PackedScene" uid="uid://dm3wak0gke5nq" path="res://UI/BuildingMenu/building_menu.tscn" id="4_witi0"]
+
+[node name="UI" type="CanvasLayer" node_paths=PackedStringArray("buildingMenu", "scoreDisplay", "buildingList", "nextLevel")]
+script = ExtResource("1_0w6w4")
+buildingMenu = NodePath("BuildingMenu")
+scoreDisplay = NodePath("ScoreDisplay")
+buildingList = NodePath("ItemList")
+nextLevel = NodePath("NextLevelButton")
+
+[node name="NextLevelButton" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -31.0
+offset_right = 45.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("1_0awcs")
+text = "Next Level"
+
+[node name="ItemList" type="ItemList" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -163.0
+offset_right = 64.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_0awcs")
+script = ExtResource("2_kj2cp")
+
+[node name="ScoreDisplay" parent="." instance=ExtResource("3_wj8a3")]
+
+[node name="Guide" type="Button" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 62.0
+offset_bottom = -5.0
+grow_vertical = 2
+theme = ExtResource("1_0awcs")
+text = "Guide"
+
+[node name="BuildingMenu" parent="." instance=ExtResource("4_witi0")]
+visible = false
+
+[connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="Guide" to="." method="_on_guide_pressed"]
+[connection signal="pressed" from="BuildingMenu/CloseButton" to="." method="_on_guide_close"]
+
+[editable path="BuildingMenu"]

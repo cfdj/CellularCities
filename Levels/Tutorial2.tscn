@@ -1,13 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bw2okfrm2d4ar"]
+[gd_scene load_steps=4 format=3 uid="uid://bw2okfrm2d4ar"]
 
 [ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_a1osx"]
 [ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_warth"]
-[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_pl2gi"]
-[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/UItheme.tres" id="4_inm1u"]
-[ext_resource type="Script" path="res://BuildingList.gd" id="5_tt6on"]
-[ext_resource type="PackedScene" uid="uid://bndycms8l1fud" path="res://UI/score_display.tscn" id="6_gbpxw"]
+[ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="3_o5kj4"]
 
 [node name="PlacingPuzzle" type="Node2D"]
+
+[node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_o5kj4")]
+level = NodePath("../TileMap/LevelManager")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -32,68 +32,9 @@ layer_3/z_index = 1
 layer_3/navigation_enabled = false
 layer_3/tile_data = PackedInt32Array()
 
-[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "nextlevelButton", "display", "buildingDisplay") instance=ExtResource("2_warth")]
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_warth")]
 map = NodePath("..")
-listOfBuildings = [NodePath("../../Foundry"), NodePath("../../Flats")]
-nextlevelButton = NodePath("../../CanvasLayer/NextLevelButton")
-display = NodePath("../../CanvasLayer/ScoreDisplay")
-buildingDisplay = NodePath("../../CanvasLayer/ItemList")
+listOfBuildings = [NodePath("Foundry"), NodePath("Flats")]
+ui = NodePath("../../UI")
 
-[node name="Cinema" parent="." instance=ExtResource("3_pl2gi")]
-id = 3
-
-[node name="Foundry" parent="." instance=ExtResource("3_pl2gi")]
-spriteLocation = Vector2i(1, 1)
-id = 2
-
-[node name="Flats" parent="." instance=ExtResource("3_pl2gi")]
-spriteLocation = Vector2i(2, 2)
-id = 1
-
-[node name="University" parent="." instance=ExtResource("3_pl2gi")]
-spriteLocation = Vector2i(4, 4)
-id = 4
-
-[node name="Station" parent="." instance=ExtResource("3_pl2gi")]
-spriteLocation = Vector2i(3, 5)
-id = 5
-
-[node name="Mine" parent="." instance=ExtResource("3_pl2gi")]
-spriteLocation = Vector2i(4, 3)
-id = 11
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="NextLevelButton" type="Button" parent="CanvasLayer"]
-visible = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -31.0
-offset_right = 45.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme = ExtResource("4_inm1u")
-text = "Next Level"
-
-[node name="ItemList" type="ItemList" parent="CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -163.0
-offset_right = 64.0
-offset_bottom = 77.0
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("4_inm1u")
-script = ExtResource("5_tt6on")
-
-[node name="ScoreDisplay" parent="CanvasLayer" instance=ExtResource("6_gbpxw")]
-
-[connection signal="pressed" from="CanvasLayer/NextLevelButton" to="TileMap/LevelManager" method="nextLevel"]
+[editable path="TileMap/LevelManager"]

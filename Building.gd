@@ -6,11 +6,11 @@ class_name Building extends Node
 ##row = id, column = likes or dislikes (symmetric)
 static var hatesArray= [
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Street
-	[false,false,true,false,false,true,true,false,false,false,false,true], #Flat
+	[false,false,true,false,false,false,true,false,false,false,false,true], #Flat
 	[false,true,false,false,true,false,false,false,false,false,false,false], #Foundry
 	[false,false,false,true,false,false,false,false,false,false,false,true], #Cinema
 	[false,false,true,false,false,false,false,false,false,false,false,true], #University
-	[false,true,false,false,false,false,false,false,false,false,false,false], #Station
+	[false,false,false,false,false,false,false,false,false,false,false,false], #Station
 	[false,true,false,false,false,false,false,false,false,false,false,false], #Rails
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Forest
 	[false,false,false,false,false,false,false,false,false,false,true,false], #Gas works
@@ -19,16 +19,16 @@ static var hatesArray= [
 	[false,true,false,true,true,false,false,false,false,false,true,false],] #Mine
 static var likesArray = [
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Street
-	[false,false,false,true,false,true,true,true,false,true,true,false], #Flat
+	[false,false,false,true,false,true,false,true,false,true,true,false], #Flat
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Foundry
-	[false,true,false,false,true,false,false,false,false,false,false,false], #Cinema
-	[false,false,false,true,false,false,false,false,false,true,false,false], #University
-	[false,true,false,false,false,false,false,false,false,false,false,false], #Station
-	[false,true,false,false,false,false,false,false,false,false,false,false], #Rails
+	[false,true,false,false,true,false,false,false,false,false,true,false], #Cinema
+	[false,false,false,true,false,true,false,false,false,true,false,false], #University
+	[false,true,false,false,true,false,false,false,false,false,false,false], #Station
+	[false,false,false,false,false,false,false,false,false,false,false,false], #Rails
 	[false,true,false,false,false,false,false,false,false,false,false,false], #Forest
 	[false,false,false,false,false,false,false,false,false,false,false,false], #Gas works
 	[false,true,false,false,true,false,false,false,false,false,false,true], #Hill
-	[false,true,false,false,false,false,false,false,false,false,false,false],#Office
+	[false,true,false,true,false,false,false,false,false,false,false,false],#Office
 	[false,false,false,false,false,false,false,false,false,true,false,false],] #Mine
 
 func getlike(checkingId:int) -> bool:
