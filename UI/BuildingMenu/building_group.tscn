@@ -33,6 +33,8 @@ size_flags_vertical = 3
 [node name="Likes Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_tale0")
+theme_override_colors/font_outline_color = Color(0.811765, 0.458824, 0.168627, 1)
+theme_override_constants/outline_size = 4
 text = "Likes:"
 
 [node name="LikesScroll" type="ScrollContainer" parent="VBoxContainer/HBoxContainer"]
@@ -104,6 +106,8 @@ size_flags_vertical = 3
 [node name="Hates Label" type="Label" parent="VBoxContainer/HatesContainer"]
 layout_mode = 2
 theme = ExtResource("1_tale0")
+theme_override_colors/font_outline_color = Color(0.678431, 0.184314, 0.270588, 1)
+theme_override_constants/outline_size = 4
 text = "Hates:"
 
 [node name="HatesScroll" type="ScrollContainer" parent="VBoxContainer/HatesContainer"]

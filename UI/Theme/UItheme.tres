@@ -18,6 +18,7 @@ color = Color(1, 1, 1, 1)
 vertical = true
 
 [resource]
+Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_03xpr")
 Button/styles/focus = ExtResource("2_dx1dr")
 Button/styles/hover = ExtResource("2_dx1dr")
@@ -33,6 +34,7 @@ ItemList/styles/focus = ExtResource("3_7e0ul")
 ItemList/styles/hovered = SubResource("StyleBoxFlat_efsmo")
 ItemList/styles/panel = ExtResource("5_vi1tl")
 ItemList/styles/selected = ExtResource("4_dt2bi")
+Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_03xpr")
 PanelContainer/styles/panel = ExtResource("6_fb7q5")
 VScrollBar/styles/grabber = ExtResource("5_pr2xq")

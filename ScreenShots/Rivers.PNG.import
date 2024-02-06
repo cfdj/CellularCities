@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfnl2jpcnt7kt"
-path="res://.godot/imported/lateLevel.PNG-4073844e0a22761b99debaa6de01e3b4.ctex"
+uid="uid://chpdq1jsxkubm"
+path="res://.godot/imported/Rivers.PNG-e1718ef2cd1ae2798e15b1ab192038b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lateLevel.PNG"
-dest_files=["res://.godot/imported/lateLevel.PNG-4073844e0a22761b99debaa6de01e3b4.ctex"]
+source_file="res://ScreenShots/Rivers.PNG"
+dest_files=["res://.godot/imported/Rivers.PNG-e1718ef2cd1ae2798e15b1ab192038b5.ctex"]
 
 [params]
 

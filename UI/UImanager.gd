@@ -33,3 +33,9 @@ func showNextlevelButton():
 
 func _on_next_level_button_pressed():
 	Loader.nextLevel();
+
+
+
+func _on_undo_pressed():
+	if(level.playing):
+		level.undo();		

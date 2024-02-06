@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsp67uocyf05c"]
+
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_7ildn"]
+[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="2_qjrtd"]
+[ext_resource type="Script" path="res://UI/Restart.gd" id="3_5yyon"]
+
+[node name="Node2D" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_7ildn")
+format = 2
+layer_0/name = "Buildings"
+layer_0/y_sort_enabled = true
+layer_0/z_index = 1
+layer_0/navigation_enabled = false
+layer_0/tile_data = PackedInt32Array(655360, 65536, 4, 589824, 65536, 4, 524289, 65536, 4, 458753, 65536, 4, 393218, 65536, 4, 327682, 65536, 4, 262147, 262144, 3, 786433, 65536, 3, 851969, 65536, 3, 917506, 65536, 3, 983042, 65536, 3, 1048579, 327680, 2, 1114115, 262144, 1, 1048580, 262144, 1, 983044, 65536, 0, 917509, 65536, 0, 851973, 262144, 1, 786438, 262144, 1, 720902, 65536, 0, 655367, 65536, 0, 393219, 196608, 5, 720896, 0, 6, 655361, 0, 6, 589825, 0, 6, 524290, 0, 6, 458754, 0, 6, 327683, 0, 6, 262148, 0, 6, 196611, 65536, 0, 327684, 131072, 2, 393220, 0, 1, 589829, 196608, 1, 720897, 262144, 2, 393221, 65536, 3, 458757, 65536, 3, 524294, 65536, 3, 589830, 327680, 2, 655366, 327680, 2, 720901, 327680, 2, 786437, 327680, 2, 851972, 327680, 2, 917508, 327680, 2, 983043, 327680, 2, 917507, 65536, 3, 851970, 65536, 3, 786434, 65536, 3, 851971, 65536, 1, 655362, 262144, 4)
+layer_1/name = "Ground"
+layer_1/y_sort_enabled = true
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array(786435, 65537, 4, 851971, 65537, 4, 720900, 65537, 4, 786436, 65537, 4, 851972, 65537, 4, 917508, 65537, 4, 983044, 65537, 4, 786437, 65537, 4, 851973, 65537, 4, 917509, 65537, 4, 720899, 65537, 1, 589828, 65537, 1, 655364, 65537, 1, 720901, 65537, 4, 655365, 65537, 4, 786438, 65537, 4, 393220, 65537, 4, 458755, 65537, 4, 524291, 65537, 4, 589826, 65537, 4, 655362, 65537, 4, 720898, 65537, 4, 655363, 65537, 4, 589827, 65537, 1, 524292, 65537, 1, 458756, 65537, 1, 524293, 65537, 1, 589829, 65537, 4, 655366, 65537, 1, 720902, 65537, 4, 327684, 131073, 3, 393221, 131073, 3, 458757, 131073, 3, 524294, 131073, 3, 589830, 131073, 3, 655367, 131073, 3, 983043, 65537, 4, 1048579, 65537, 4, 983042, 65537, 4, 917506, 65537, 4, 851970, 65537, 4, 786434, 65537, 4, 720897, 65537, 4, 786433, 65537, 4, 720896, 65537, 4, 851969, 65537, 4, 917507, 65537, 4, 655361, 65537, 4, 589825, 65537, 4, 524290, 65537, 4, 458754, 65537, 4, 393219, 65537, 4, 327683, 65537, 4, 655360, 1, 3, 589824, 1, 3, 524289, 1, 3, 458753, 1, 3, 393218, 1, 3, 327682, 1, 3, 262147, 1, 3, 196611, 65537, 3, 262148, 131073, 3, 1114115, 65537, 4, 1048580, 65537, 4, 720903, 131073, 4, 786439, 131073, 5, 851974, 131073, 5, 917510, 131073, 5, 983045, 131073, 5, 1048581, 131073, 5, 1114116, 131073, 5, 1245187, 65537, 5, 1179652, 131073, 5, 1179651, 1, 5, 1114114, 1, 5, 1048578, 1, 5, 983041, 1, 5, 917505, 1, 5, 851968, 1, 5, 786432, 1, 5, 786431, 1, 4)
+layer_2/name = "Indicator"
+layer_2/y_sort_enabled = true
+layer_2/z_index = 1
+layer_2/navigation_enabled = false
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Cursor"
+layer_3/y_sort_enabled = true
+layer_3/z_index = 1
+layer_3/navigation_enabled = false
+layer_3/tile_data = PackedInt32Array()
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.5
+offset_top = -21.0
+offset_right = 69.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qjrtd")
+text = "Thanks for playing!"
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qjrtd")
+text = "Return to Title"
+script = ExtResource("3_5yyon")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="CanvasLayer/VBoxContainer/Button" method="_on_pressed"]

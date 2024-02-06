@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://k8yyggquwa4o"]
+
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_rg5vr"]
+[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_atogg"]
+[ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="3_olj8w"]
+
+[node name="PlacingPuzzle" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_rg5vr")
+format = 2
+layer_0/name = "Buildings"
+layer_0/y_sort_enabled = true
+layer_0/z_index = 1
+layer_0/navigation_enabled = false
+layer_0/tile_data = PackedInt32Array(786436, 327680, 2, 720900, 327680, 2, 655365, 327680, 2, 589829, 327680, 2, 524294, 327680, 2, 720901, 65536, 0, 589826, 0, 6, 524291, 0, 6, 458755, 0, 6, 393220, 0, 6, 327684, 0, 6, 851972, 0, 3, 786437, 0, 3, 655366, 0, 3, 589830, 0, 3)
+layer_1/name = "Ground"
+layer_1/y_sort_enabled = true
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array(786435, 1, 1, 851971, 1, 2, 720900, 65537, 1, 786436, 65537, 1, 851972, 65537, 1, 917508, 1, 2, 983044, 65537, 2, 786437, 65537, 1, 851973, 131073, 2, 917509, 131073, 2, 720899, 65537, 1, 589828, 65537, 1, 655364, 65537, 1, 720901, 65537, 1, 655365, 65537, 1, 786438, 131073, 2, 393220, 1, 0, 458755, 1, 0, 524291, 1, 0, 589826, 1, 0, 655362, 1, 1, 720898, 1, 2, 655363, 65537, 1, 589827, 65537, 1, 524292, 65537, 1, 458756, 65537, 1, 524293, 65537, 1, 589829, 65537, 1, 655366, 65537, 1, 720902, 131073, 2, 327684, 65537, 0, 393221, 131073, 0, 458757, 131073, 0, 524294, 131073, 0, 589830, 131073, 0, 655367, 131073, 1)
+layer_2/name = "Indicator"
+layer_2/y_sort_enabled = true
+layer_2/z_index = 1
+layer_2/navigation_enabled = false
+layer_2/tile_data = PackedInt32Array(589828, 262144, 5, 720899, 262144, 5, 655364, 262144, 5, 720900, 262144, 5, 786436, 262144, 5, 851972, 262144, 5, 655365, 262144, 5, 720901, 262144, 5, 786437, 262144, 5, 655363, 262144, 5, 589827, 262144, 5, 524292, 262144, 5, 589826, 262144, 5, 524291, 262144, 5, 458755, 262144, 5, 393220, 262144, 5, 458756, 262144, 5, 327684, 262144, 5, 393221, 262144, 5, 458757, 262144, 5, 524293, 262144, 5, 589829, 262144, 5, 655366, 262144, 5, 589830, 262144, 5, 524294, 262144, 5)
+layer_3/name = "Cursor"
+layer_3/y_sort_enabled = true
+layer_3/z_index = 1
+layer_3/navigation_enabled = false
+layer_3/tile_data = PackedInt32Array()
+
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_atogg")]
+map = NodePath("..")
+listOfBuildings = [NodePath("Flats"), NodePath("Foundry"), NodePath("Flats"), NodePath("Foundry"), NodePath("Flats")]
+ui = NodePath("../../UI")
+
+[node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_olj8w")]
+level = NodePath("../TileMap/LevelManager")
+
+[editable path="TileMap/LevelManager"]
