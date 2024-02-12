@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://8fh7gys74kov"]
+
+[ext_resource type="Script" path="res://Sounds/sound_effects.gd" id="1_re0n8"]
+[ext_resource type="AudioStream" uid="uid://dafybfrkcjhn1" path="res://Sounds/cantPlace.wav" id="2_nbas8"]
+[ext_resource type="AudioStream" uid="uid://eq50av6qifjd" path="res://Sounds/levelComplete.wav" id="3_6ltpo"]
+[ext_resource type="AudioStream" uid="uid://dmknn78atyb6q" path="res://Sounds/backgroundMusic.wav" id="4_gvpbk"]
+
+[node name="SoundEffects" type="AudioStreamPlayer"]
+script = ExtResource("1_re0n8")
+cantPlace = ExtResource("2_nbas8")
+levelComplete = ExtResource("3_6ltpo")
+music = ExtResource("4_gvpbk")

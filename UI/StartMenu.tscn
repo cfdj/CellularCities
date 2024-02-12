@@ -7,7 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="5_8mms2"]
 [ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="6_d10y3"]
 
-[node name="StartMenu" type="Control" node_paths=PackedStringArray("startMenu", "levelSelect")]
+[node name="StartMenu" type="Control" node_paths=PackedStringArray("startMenu", "levelSelect", "startButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_ofk3n")
 startMenu = NodePath("MenuButtons")
 levelSelect = NodePath("LevelButtons")
+startButton = NodePath("MenuButtons/Start")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -53,12 +54,18 @@ alignment = 1
 [node name="Start" type="Button" parent="MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../LevelSelect")
+focus_next = NodePath("../LevelSelect")
 theme = ExtResource("3_dls7o")
 text = "Start Building"
 
 [node name="LevelSelect" type="Button" parent="MenuButtons"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Start")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Start")
 theme = ExtResource("3_dls7o")
 text = "Level Select"
 

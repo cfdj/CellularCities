@@ -18,9 +18,13 @@ var positiveHint = Vector2i(4,6);
 @export var buildAnimation:AnimatedSprite2D;
 
 var playing = true;
+var mouse = true;
 
 @export var ui:UIManager;
 @export var allBuildings:Array[Building] ##An array of all buildings in ID order
+
+@export var audio:AudioManager;
+@export var levelDescription:String
 func _ready():
 	currentBuilding = listOfBuildings[current];
 	
@@ -30,18 +34,35 @@ func _ready():
 		map.erase_cell(2,i);
 	ui.setBuildingList(listOfBuildings);
 	hint();
-	
 	level = Loader.levels.find(get_parent().get_parent().scene_file_path);
 	ui.setBuildingMenu();
+	if(!mouse):
+		location = playRegion[0];
+	describeLevel();
+	describeBuildings();
 func _physics_process(delta):
 	if playing:
-		var mousePos = get_viewport().get_mouse_position();
-		location = map.to_local(mousePos);
-		location = map.local_to_map(mousePos);
+		if mouse:
+			var mousePos = get_viewport().get_mouse_position();
+			location = map.to_local(mousePos);
+			location = map.local_to_map(mousePos);
+		elif !mouse:
+			var vertical = Vector2i(0,1)*Input.get_axis("Down","Up");
+			var horizontal =  Vector2i(1,0)*Input.get_axis("Left","Right");
+			location += horizontal
+			if(!playRegion.has(location)):
+				location -= horizontal;
+			location += vertical
+			if(!playRegion.has(location)):
+				location -= vertical
 		if location != previousLocation:
 			map.erase_cell(3,previousLocation);
-			if playRegion.has(location) && map.get_cell_tile_data(0,location) == null:
-				map.set_cell(3,location,0,currentBuilding.spriteLocation);
+			if playRegion.has(location):
+				if map.get_cell_tile_data(0,location) == null:
+					map.set_cell(3,location,0,currentBuilding.spriteLocation);
+				else:
+					map.set_cell(3,location,0,Vector2i(0,0))
+				describeSquare(location);
 			previousLocation = location;
 		if(Input.is_action_just_pressed("click")):
 			checkPlace(location);
@@ -59,6 +80,7 @@ func checkPlace(location):
 			if(n != null):
 				if currentBuilding.getHates(n.get_custom_data("BuildingID")):
 					valid = false;
+					audio.cantSound();
 	else:
 		valid = false;
 	if(valid):
@@ -76,10 +98,13 @@ func place(location):
 	buildAnimation.visible= true;
 	buildAnimation.play();
 	listOfPlaced.append(location);
+	TTS.placeBuilding(placing,location)
 	current+=1;
 	ui.popBuildingList();
 	if(current<listOfBuildings.size()):
 		currentBuilding = listOfBuildings[current];
+		TTS.addText("Next building is");
+		TTS.readBuilding(currentBuilding);
 		hint();
 	else:
 		finishLevel();
@@ -92,6 +117,7 @@ func undo():
 		currentBuilding = listOfBuildings[current];
 		var clearLocation = listOfPlaced.pop_back();
 		map.erase_cell(0,clearLocation);
+		TTS.undoBuilding(currentBuilding,clearLocation)
 		ui.pushBuildingList(currentBuilding);
 		var mousePos = get_viewport().get_mouse_position();
 		location = map.to_local(mousePos);
@@ -102,6 +128,8 @@ func undo():
 		clearHint();
 		hint();
 func finishLevel():
+	TTS.stop();
+	audio.levelDoneSound();
 	ui.showNextlevelButton();
 	playing = false;
 	ui.updateScore(map,playRegion);
@@ -110,7 +138,7 @@ func finishLevel():
 			var streetLocation =streetLocations[randi() % streetLocations.size()];
 			map.set_cell(0,i,0,streetLocation)
 			await get_tree().create_timer(0.2).timeout
-
+	TTS.addText("Total score: " +str(ui.scoreDisplay.totalScore))
 func hint():
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i)!= null):
@@ -129,3 +157,14 @@ func hint():
 func clearHint():
 	for i in playRegion:
 		map.erase_cell(2,i);
+
+func describeLevel():
+	if (TTS.enabled):
+		TTS.readMap(playRegion,map,self)
+func describeSquare(pos:Vector2i):
+	if(TTS.enabled):
+		TTS.readtile(pos,map,self)
+func describeBuildings():
+	TTS.addText("Buildings to place are:")
+	for b in listOfBuildings:
+		TTS.readBuilding(b);

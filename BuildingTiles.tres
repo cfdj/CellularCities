@@ -246,6 +246,7 @@ texture_region_size = Vector2i(62, 48)
 
 [resource]
 tile_shape = 1
+tile_layout = 5
 tile_size = Vector2i(60, 30)
 custom_data_layer_0/name = "BuildingID"
 custom_data_layer_0/type = 2

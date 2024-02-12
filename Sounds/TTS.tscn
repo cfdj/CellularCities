@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://se67gf5kmrrb"]
+
+[ext_resource type="Script" path="res://TTS.gd" id="1_2xuba"]
+
+[node name="TTSManager" type="Node"]
+script = ExtResource("1_2xuba")
