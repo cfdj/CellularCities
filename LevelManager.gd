@@ -18,7 +18,7 @@ var positiveHint = Vector2i(4,6);
 @export var buildAnimation:AnimatedSprite2D;
 
 var playing = true;
-var mouse = true;
+static var mouse = true;
 
 @export var ui:UIManager;
 @export var allBuildings:Array[Building] ##An array of all buildings in ID order
@@ -47,8 +47,12 @@ func _physics_process(delta):
 			location = map.to_local(mousePos);
 			location = map.local_to_map(mousePos);
 		elif !mouse:
-			var vertical = Vector2i(0,1)*Input.get_axis("Down","Up");
-			var horizontal =  Vector2i(1,0)*Input.get_axis("Left","Right");
+			var vertical = Vector2i(0,0)
+			if(Input.is_action_just_pressed("Up")or Input.is_action_just_pressed("Down")):
+				vertical = Vector2i(Vector2i(0,1)*Input.get_axis("Up","Down"))
+			var horizontal =  Vector2i(0,0)
+			if(Input.is_action_just_pressed("Left")or Input.is_action_just_pressed("Right")):
+				horizontal = Vector2i(Vector2i(1,0)*Input.get_axis("Left","Right"));
 			location += horizontal
 			if(!playRegion.has(location)):
 				location -= horizontal;
@@ -103,6 +107,7 @@ func place(location):
 	ui.popBuildingList();
 	if(current<listOfBuildings.size()):
 		currentBuilding = listOfBuildings[current];
+		
 		TTS.addText("Next building is");
 		TTS.readBuilding(currentBuilding);
 		hint();

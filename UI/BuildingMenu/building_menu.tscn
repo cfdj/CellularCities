@@ -3,8 +3,8 @@
 [ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_tuyao"]
 [ext_resource type="Script" path="res://UI/BuildingMenu/BuildingMenu.gd" id="2_dqidl"]
 [ext_resource type="PackedScene" uid="uid://deeu322blw768" path="res://UI/BuildingMenu/building_group.tscn" id="3_6plak"]
-[ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="3_o36ox"]
 [ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="4_ipmns"]
+[ext_resource type="StyleBox" uid="uid://drndgy3a8ov1b" path="res://UI/Theme/backButtonHover.tres" id="5_dtvgb"]
 
 [node name="BuildingMenu" type="Control" node_paths=PackedStringArray("displays")]
 layout_mode = 3
@@ -82,8 +82,7 @@ offset_bottom = 21.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme = ExtResource("1_tuyao")
-theme_override_styles/normal = ExtResource("3_o36ox")
-theme_override_styles/hover = ExtResource("3_o36ox")
+theme_override_styles/normal = ExtResource("5_dtvgb")
 theme_override_styles/pressed = ExtResource("4_ipmns")
-theme_override_styles/focus = ExtResource("3_o36ox")
+theme_override_styles/focus = ExtResource("5_dtvgb")
 text = "Hide"

@@ -13,3 +13,5 @@ func setDisplays(buildings:Array[Building],allBuildings:Array[Building]):
 	for c in displayingBuildings.size():
 		displays[c].setBuilding(displayingBuildings[c],allBuildings);
 		displays[c].visible = true;
+
+signal displaysSet

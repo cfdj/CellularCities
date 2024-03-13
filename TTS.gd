@@ -11,8 +11,9 @@ var topLeft:Vector2i
 func _ready():
 	DisplayServer.tts_stop();
 func addText(text:String):
-	var v = DisplayServer.tts_get_voices_for_language("en")[voice]
-	DisplayServer.tts_speak(text,v,volume,1.0,speed)
+	if(enabled):
+		var v = DisplayServer.tts_get_voices_for_language("en")[voice]
+		DisplayServer.tts_speak(text,v,volume,1.0,speed)
 
 ##Currently reads empty spaces and neighbours
 ##Levels should probably have an introduction
