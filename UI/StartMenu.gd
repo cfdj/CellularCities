@@ -29,15 +29,13 @@ func _on_level_select_pressed():
 func speakFocus():
 	var current:Button = get_viewport().gui_get_focus_owner()
 	if(current !=null && current.visible):
-		TTS.addText(current.text)
+		TTS.addText(current.text,true)
 
 func _on_settings_closed_button_pressed():
 	TTS.stop()
 	settings.visible = false;
 	startMenu.visible = true;
 	startButton.grab_focus()
-
-
 
 func _on_settings_pressed():
 	TTS.stop()

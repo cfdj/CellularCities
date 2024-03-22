@@ -30,10 +30,11 @@ layer_3/z_index = 1
 layer_3/navigation_enabled = false
 layer_3/tile_data = PackedInt32Array()
 
-[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_l4ah4")]
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui", "allBuildings") instance=ExtResource("2_l4ah4")]
 map = NodePath("..")
-listOfBuildings = [NodePath("Flats"), NodePath("Foundry"), NodePath("Flats")]
+listOfBuildings = [NodePath("Flats"), NodePath("Cinema"), NodePath("Flats")]
 ui = NodePath("../../UI")
+allBuildings = [NodePath("Street"), NodePath("Flats"), NodePath("Foundry"), NodePath("Cinema"), NodePath("University"), NodePath("Station"), NodePath("Rail"), NodePath("Forest"), NodePath("Gasworks"), NodePath("Office"), NodePath("Hill"), NodePath("Mine"), NodePath("River")]
 
 [node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_7f7t1")]
 level = NodePath("../TileMap/LevelManager")

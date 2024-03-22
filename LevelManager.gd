@@ -108,7 +108,7 @@ func place(location):
 	if(current<listOfBuildings.size()):
 		currentBuilding = listOfBuildings[current];
 		
-		TTS.addText("Next building is");
+		TTS.addText("Next building is",false);
 		TTS.readBuilding(currentBuilding);
 		hint();
 	else:
@@ -143,7 +143,7 @@ func finishLevel():
 			var streetLocation =streetLocations[randi() % streetLocations.size()];
 			map.set_cell(0,i,0,streetLocation)
 			await get_tree().create_timer(0.2).timeout
-	TTS.addText("Total score: " +str(ui.scoreDisplay.totalScore))
+	TTS.addText("Total score: " +str(ui.scoreDisplay.totalScore),true)
 func hint():
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i)!= null):
@@ -170,6 +170,6 @@ func describeSquare(pos:Vector2i):
 	if(TTS.enabled):
 		TTS.readtile(pos,map,self)
 func describeBuildings():
-	TTS.addText("Buildings to place are:")
+	TTS.addText("Buildings to place are:",false)
 	for b in listOfBuildings:
 		TTS.readBuilding(b);

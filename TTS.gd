@@ -10,11 +10,14 @@ var xNames = ["A","B","C","D","E","F","G","H"]
 var topLeft:Vector2i
 func _ready():
 	DisplayServer.tts_stop();
-func addText(text:String):
+func addText(text:String,interrupt:bool):
 	if(enabled):
 		var v = DisplayServer.tts_get_voices_for_language("en")[voice]
+		if(interrupt):
+			DisplayServer.tts_stop()
+			print("Stoping")
 		DisplayServer.tts_speak(text,v,volume,1.0,speed)
-
+		print(text)
 ##Currently reads empty spaces and neighbours
 ##Levels should probably have an introduction
 func readMap(playRegion:Array[Vector2i],map:TileMap,level:LevelManager):
@@ -46,10 +49,10 @@ func readtile(pos:Vector2i,map:TileMap,level:LevelManager):
 	var string = xNames[pos.x-topLeft.x] + "," + yNames[pos.y-topLeft.y]
 	if(tile == null):
 		string += " is empty"
-		addText(string);
+		addText(string,false);
 	else:
 		string += " is a " +level.allBuildings[tile.get_custom_data("BuildingID")].name
-		addText(string);
+		addText(string,false);
 
 func readNeighbours(pos:Vector2i,map:TileMap,level:LevelManager):
 	var neighbours = map.get_surrounding_cells(pos);
@@ -59,15 +62,15 @@ func readNeighbours(pos:Vector2i,map:TileMap,level:LevelManager):
 
 func readBuilding(building:Building):
 	var string = str(building.name)
-	addText(string);
+	addText(string,false);
 func placeBuilding(building:Building, pos:Vector2i):
 	var locationString:String = xNames[pos.x-topLeft.x] + "," + yNames[pos.y-topLeft.y]
 	var string:String = building.name + " placed in " + locationString
-	addText(string)
+	addText(string,false)
 func undoBuilding(building:Building, pos:Vector2i):
 	var locationString:String = xNames[pos.x-topLeft.x] + "," + yNames[pos.y-topLeft.y]
 	var string:String = building.name + " removed from " +locationString
-	addText(string)
+	addText(string,false)
 func stop():
 	DisplayServer.tts_stop();
 
@@ -75,12 +78,12 @@ func guide(buildings:Array[Building],level:LevelManager):
 	var alreadyRead:Array[Building] = [];
 	for b in buildings:
 		if(!alreadyRead.has(b)):
-			addText(b.name + " likes")
+			addText(b.name + " likes",false)
 			for t in level.allBuildings.size():
 				print(t)
 				if(b.getlike(t)):
 					readBuilding(level.allBuildings[t])
-			addText("hates")
+			addText("hates",false)
 			for t in b.hatesArray[b.id].size():
 				if(b.getHates(t)):
 					readBuilding(level.allBuildings[t])

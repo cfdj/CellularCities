@@ -20,38 +20,47 @@ func _ready():
 func speakCurrentOption():
 	var current:Control = get_viewport().gui_get_focus_owner()
 	if(current !=null && current.visible):
-		TTS.addText(current.name)
-
+		TTS.addText(current.name,true)
 
 func _on_volume_control_drag_ended(value_changed):
 	var value = volume.value
 	AudioManager.volume = value
-	TTS.addText(str(value))
+	TTS.addText(str(value),true)
 
 func _on_text_to_speech_enable_toggled(toggled_on):
 	TTS.enabled = toggled_on
-	TTS.addText(str(toggled_on))
+	TTS.addText(str(toggled_on),true)
 
 func _on_tts_volume_control_drag_ended(value_changed):
 	var value = TTSVolume.value
 	TTS.volume = value;
-	TTS.addText(str(value))
+	TTS.addText(str(value),true)
 
 func _on_tts_rate_control_drag_ended(value_changed):
 	var value = TTSRate.value
 	TTS.speed = value
-	TTS.addText(str(value))
+	TTS.addText(str(value),true)
 
 func _on_keyboard_toggled(toggled_on):
 	LevelManager.mouse = !toggled_on;
-	TTS.addText(str(toggled_on))
+	TTS.addText(str(toggled_on),true)
 
 func _on_visibility_changed():
-	if(visible):
+	if(visible&& control1.is_visible_in_tree()):
 		control1.grab_focus()
 		speakCurrentOption()
 
-
 func _on_voice_select_value_changed(value):
 	TTS.voice = value;
-	TTS.addText(str(value));
+	TTS.addText(str(value),true);
+
+
+func _on_volume_control_value_changed(value):
+	AudioManager.volume = value;
+	TTS.addText(str(value),true);
+func _on_tts_volume_control_value_changed(value):
+	TTS.volume = value
+	TTS.addText(str(value),true);
+func _on_tts_rate_control_value_changed(value):
+	TTS.speed = value
+	TTS.addText(str(value),true);

@@ -31,7 +31,8 @@ func pushBuildingList(building:Building):
 
 func showNextlevelButton():
 	nextLevel.visible = true;
-
+	nextLevel.grab_focus()
+	TTS.addText("Next level",false)
 func _on_next_level_button_pressed():
 	TTS.stop();
 	Loader.nextLevel();

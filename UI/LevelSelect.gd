@@ -10,11 +10,12 @@ func _ready():
 
 func _on_item_selected(index):
 	if(TTS.enabled):
-		TTS.addText(get_item_text(index))
+		TTS.addText(get_item_text(index),true)
 ##res://Levels/Train1.tscn
 
 
 func _on_item_activated(index):
+	TTS.stop()
 	Loader.loadLevel(index);
 
 
@@ -22,4 +23,4 @@ func _on_visibility_changed():
 	if (visible):
 		grab_focus()
 		select(0)
-		TTS.addText(get_item_text(0))
+		TTS.addText(get_item_text(0),true)

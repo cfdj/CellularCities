@@ -160,7 +160,7 @@ grow_vertical = 0
 theme = ExtResource("3_dls7o")
 theme_override_styles/panel = ExtResource("8_fvjmx")
 script = ExtResource("8_vo3vl")
-control1 = NodePath("VBoxContainer/Text to speech enable")
+control1 = NodePath("VBoxContainer/Volume Control")
 volume = NodePath("VBoxContainer/Volume Control")
 TTSVolume = NodePath("VBoxContainer/TTS Volume Control")
 TTSRate = NodePath("VBoxContainer/TTS Rate Control")
@@ -179,8 +179,8 @@ offset_right = -1.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
-focus_neighbor_bottom = NodePath("../VBoxContainer/Text to speech enable")
-focus_next = NodePath("../VBoxContainer/Text to speech enable")
+focus_neighbor_bottom = NodePath("../VBoxContainer/Volume Control")
+focus_next = NodePath("../VBoxContainer/Volume Control")
 theme = ExtResource("3_dls7o")
 theme_override_styles/normal = ExtResource("5_8mms2")
 theme_override_styles/hover = ExtResource("10_tnmrg")
@@ -199,16 +199,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_dls7o")
 
-[node name="Text to speech enable" type="CheckButton" parent="SettingMenu/VBoxContainer"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../../BackButton")
-focus_neighbor_bottom = NodePath("../Volume Control")
-focus_next = NodePath("../TTS Volume Control")
-focus_previous = NodePath("../Volume Control")
-theme = ExtResource("3_dls7o")
-button_pressed = true
-text = "TTS"
-
 [node name="Sound Volume" type="Label" parent="SettingMenu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_dls7o")
@@ -218,13 +208,23 @@ vertical_alignment = 2
 
 [node name="Volume Control" type="HSlider" parent="SettingMenu/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Text to speech enable")
-focus_neighbor_bottom = NodePath("../TTS Volume Control")
-focus_next = NodePath("../TTS Volume Control")
-focus_previous = NodePath("../Text to speech enable")
+focus_neighbor_top = NodePath("../../BackButton")
+focus_neighbor_bottom = NodePath("../Text to speech enable")
+focus_next = NodePath("../Text to speech enable")
+focus_previous = NodePath("../../BackButton")
 theme = ExtResource("3_dls7o")
 min_value = -80.0
 max_value = 24.0
+
+[node name="Text to speech enable" type="CheckButton" parent="SettingMenu/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Volume Control")
+focus_neighbor_bottom = NodePath("../TTS Volume Control")
+focus_next = NodePath("../TTS Volume Control")
+focus_previous = NodePath("../Volume Control")
+theme = ExtResource("3_dls7o")
+button_pressed = true
+text = "TTS"
 
 [node name="TTS Volume" type="Label" parent="SettingMenu/VBoxContainer"]
 layout_mode = 2
@@ -235,10 +235,10 @@ vertical_alignment = 2
 
 [node name="TTS Volume Control" type="HSlider" parent="SettingMenu/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Volume Control")
+focus_neighbor_top = NodePath("../Text to speech enable")
 focus_neighbor_bottom = NodePath("../TTS Rate Control")
 focus_next = NodePath("../TTS Rate Control")
-focus_previous = NodePath("../Volume Control")
+focus_previous = NodePath("../Text to speech enable")
 theme = ExtResource("3_dls7o")
 value = 50.0
 
@@ -295,11 +295,11 @@ text = "Keyboard"
 [connection signal="visibility_changed" from="SettingMenu" to="SettingMenu" method="_on_visibility_changed"]
 [connection signal="focus_entered" from="SettingMenu/BackButton" to="SettingMenu/BackButton" method="_on_focus_entered"]
 [connection signal="pressed" from="SettingMenu/BackButton" to="." method="_on_settings_closed_button_pressed"]
-[connection signal="focus_entered" from="SettingMenu/VBoxContainer/Text to speech enable" to="SettingMenu" method="speakCurrentOption"]
-[connection signal="toggled" from="SettingMenu/VBoxContainer/Text to speech enable" to="SettingMenu" method="_on_text_to_speech_enable_toggled"]
 [connection signal="drag_ended" from="SettingMenu/VBoxContainer/Volume Control" to="SettingMenu" method="_on_volume_control_drag_ended"]
 [connection signal="focus_entered" from="SettingMenu/VBoxContainer/Volume Control" to="SettingMenu" method="speakCurrentOption"]
 [connection signal="value_changed" from="SettingMenu/VBoxContainer/Volume Control" to="SettingMenu" method="_on_volume_control_value_changed"]
+[connection signal="focus_entered" from="SettingMenu/VBoxContainer/Text to speech enable" to="SettingMenu" method="speakCurrentOption"]
+[connection signal="toggled" from="SettingMenu/VBoxContainer/Text to speech enable" to="SettingMenu" method="_on_text_to_speech_enable_toggled"]
 [connection signal="drag_ended" from="SettingMenu/VBoxContainer/TTS Volume Control" to="SettingMenu" method="_on_tts_volume_control_drag_ended"]
 [connection signal="focus_entered" from="SettingMenu/VBoxContainer/TTS Volume Control" to="SettingMenu" method="speakCurrentOption"]
 [connection signal="value_changed" from="SettingMenu/VBoxContainer/TTS Volume Control" to="SettingMenu" method="_on_tts_volume_control_value_changed"]
