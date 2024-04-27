@@ -1,12 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://8fh7gys74kov"]
+[gd_scene load_steps=17 format=3 uid="uid://8fh7gys74kov"]
 
 [ext_resource type="Script" path="res://Sounds/sound_effects.gd" id="1_re0n8"]
 [ext_resource type="AudioStream" uid="uid://dafybfrkcjhn1" path="res://Sounds/cantPlace.wav" id="2_nbas8"]
 [ext_resource type="AudioStream" uid="uid://eq50av6qifjd" path="res://Sounds/levelComplete.wav" id="3_6ltpo"]
 [ext_resource type="AudioStream" uid="uid://dmknn78atyb6q" path="res://Sounds/backgroundMusic.wav" id="4_gvpbk"]
+[ext_resource type="AudioStream" uid="uid://bt8nyk1sppv5h" path="res://Sounds/BuildingSFX/street.wav" id="5_q2xs1"]
+[ext_resource type="AudioStream" uid="uid://bd0ro6004hram" path="res://Sounds/BuildingSFX/flat.wav" id="6_fjwba"]
+[ext_resource type="AudioStream" uid="uid://bjvl6oub4benp" path="res://Sounds/BuildingSFX/foundry.wav" id="7_u4cmb"]
+[ext_resource type="AudioStream" uid="uid://dtq726fr65hwb" path="res://Sounds/BuildingSFX/cinema.wav" id="8_gbkyt"]
+[ext_resource type="AudioStream" uid="uid://vracjbiwv1j2" path="res://Sounds/BuildingSFX/university.wav" id="9_3gead"]
+[ext_resource type="AudioStream" uid="uid://c4flv51famoc3" path="res://Sounds/BuildingSFX/station.wav" id="10_fdy3i"]
+[ext_resource type="AudioStream" uid="uid://dgprsw4lj6tbj" path="res://Sounds/BuildingSFX/rail.wav" id="11_flimw"]
+[ext_resource type="AudioStream" uid="uid://c44kggbmprvan" path="res://Sounds/BuildingSFX/forest.wav" id="12_rt0i8"]
+[ext_resource type="AudioStream" uid="uid://dynaesu2ccw57" path="res://Sounds/BuildingSFX/gasworks.wav" id="13_uoisv"]
+[ext_resource type="AudioStream" uid="uid://bp6ybj453hm31" path="res://Sounds/BuildingSFX/office.wav" id="14_yxox1"]
+[ext_resource type="AudioStream" uid="uid://cmrg85tvotwlb" path="res://Sounds/BuildingSFX/mine.wav" id="15_nmwtp"]
+[ext_resource type="AudioStream" uid="uid://cnxh62gjtepe2" path="res://Sounds/BuildingSFX/river.wav" id="16_claj4"]
 
 [node name="SoundEffects" type="AudioStreamPlayer"]
 script = ExtResource("1_re0n8")
 cantPlace = ExtResource("2_nbas8")
 levelComplete = ExtResource("3_6ltpo")
 music = ExtResource("4_gvpbk")
+buildingSoundEffects = Array[AudioStream]([ExtResource("5_q2xs1"), ExtResource("6_fjwba"), ExtResource("7_u4cmb"), ExtResource("8_gbkyt"), ExtResource("9_3gead"), ExtResource("10_fdy3i"), ExtResource("11_flimw"), ExtResource("12_rt0i8"), ExtResource("13_uoisv"), ExtResource("12_rt0i8"), ExtResource("14_yxox1"), ExtResource("15_nmwtp"), ExtResource("16_claj4")])

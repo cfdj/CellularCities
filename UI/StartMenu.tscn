@@ -145,7 +145,7 @@ max_columns = 3
 same_column_width = true
 script = ExtResource("4_spj7m")
 
-[node name="SettingMenu" type="Panel" parent="." node_paths=PackedStringArray("control1", "volume", "TTSVolume", "TTSRate", "Voice", "keyboardToggle", "TTSToggle")]
+[node name="SettingMenu" type="Panel" parent="." node_paths=PackedStringArray("control1", "volume", "TTSVolume", "TTSRate", "keyboardToggle", "TTSToggle", "TTSVoiceSelector")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -164,9 +164,9 @@ control1 = NodePath("VBoxContainer/Text to speech enable")
 volume = NodePath("VBoxContainer/Volume Control")
 TTSVolume = NodePath("VBoxContainer/TTS Volume Control")
 TTSRate = NodePath("VBoxContainer/TTS Rate Control")
-Voice = NodePath("VBoxContainer/Voice Select")
 keyboardToggle = NodePath("VBoxContainer/Keyboard")
 TTSToggle = NodePath("VBoxContainer/Text to speech enable")
+TTSVoiceSelector = NodePath("VBoxContainer/Voice Selector")
 
 [node name="BackButton" type="Button" parent="SettingMenu"]
 layout_mode = 1
@@ -252,8 +252,8 @@ vertical_alignment = 2
 [node name="TTS Rate Control" type="HSlider" parent="SettingMenu/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../TTS Volume Control")
-focus_neighbor_bottom = NodePath("../Voice Select")
-focus_next = NodePath("../Voice Select")
+focus_neighbor_bottom = NodePath("../Voice Selector")
+focus_next = NodePath("../Voice Selector")
 focus_previous = NodePath("../TTS Volume Control")
 theme = ExtResource("3_dls7o")
 min_value = 0.1
@@ -261,21 +261,19 @@ max_value = 10.0
 step = 0.1
 value = 1.0
 
-[node name="Voice Select" type="SpinBox" parent="SettingMenu/VBoxContainer"]
+[node name="Voice Selector" type="OptionButton" parent="SettingMenu/VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../TTS Rate Control")
 focus_neighbor_bottom = NodePath("../Keyboard")
 focus_next = NodePath("../Keyboard")
 focus_previous = NodePath("../TTS Rate Control")
-focus_mode = 2
-prefix = "Voice:"
 
 [node name="Keyboard" type="CheckButton" parent="SettingMenu/VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../Voice Select")
+focus_neighbor_top = NodePath("../Voice Selector")
 focus_neighbor_bottom = NodePath("../../BackButton")
 focus_next = NodePath("../../BackButton")
-focus_previous = NodePath("../Voice Select")
+focus_previous = NodePath("../Voice Selector")
 theme = ExtResource("3_dls7o")
 text = "Keyboard"
 
@@ -306,7 +304,8 @@ text = "Keyboard"
 [connection signal="drag_ended" from="SettingMenu/VBoxContainer/TTS Rate Control" to="SettingMenu" method="_on_tts_rate_control_drag_ended"]
 [connection signal="focus_entered" from="SettingMenu/VBoxContainer/TTS Rate Control" to="SettingMenu" method="speakCurrentOption"]
 [connection signal="value_changed" from="SettingMenu/VBoxContainer/TTS Rate Control" to="SettingMenu" method="_on_tts_rate_control_value_changed"]
-[connection signal="focus_entered" from="SettingMenu/VBoxContainer/Voice Select" to="SettingMenu" method="speakCurrentOption"]
-[connection signal="value_changed" from="SettingMenu/VBoxContainer/Voice Select" to="SettingMenu" method="_on_voice_select_value_changed"]
+[connection signal="focus_entered" from="SettingMenu/VBoxContainer/Voice Selector" to="SettingMenu" method="_on_voice_selector_focus_entered"]
+[connection signal="item_focused" from="SettingMenu/VBoxContainer/Voice Selector" to="SettingMenu" method="_on_voice_selector_item_focused"]
+[connection signal="item_selected" from="SettingMenu/VBoxContainer/Voice Selector" to="SettingMenu" method="_on_voice_selector_item_selected"]
 [connection signal="focus_entered" from="SettingMenu/VBoxContainer/Keyboard" to="SettingMenu" method="speakCurrentOption"]
 [connection signal="toggled" from="SettingMenu/VBoxContainer/Keyboard" to="SettingMenu" method="_on_keyboard_toggled"]

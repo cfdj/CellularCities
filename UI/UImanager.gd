@@ -9,6 +9,7 @@ func setBuildingMenu():
 	buildingMenu.setDisplays(level.listOfBuildings,level.allBuildings);
 
 func _on_guide_pressed():
+	TTS.stop()
 	level.playing = false;
 	buildingMenu.visible = true;
 	TTS.guide(level.listOfBuildings,level)
@@ -38,13 +39,12 @@ func _on_next_level_button_pressed():
 	Loader.nextLevel();
 
 
-
 func _on_undo_pressed():
 	if(level.playing):
 		level.undo();		
 
 func _input(event):
-	if(event.is_action("Guide")):
+	if(event.is_action_pressed("Guide")):
 		if(buildingMenu.visible):
 			_on_guide_close()
 		else:

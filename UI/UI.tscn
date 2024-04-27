@@ -76,6 +76,6 @@ visible = false
 [connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="Undo" to="." method="_on_undo_pressed"]
 [connection signal="pressed" from="Guide" to="." method="_on_guide_pressed"]
-[connection signal="pressed" from="BuildingMenu/CloseButton" to="." method="_on_guide_close"]
+[connection signal="pressed" from="BuildingMenu/PanelContainer/CloseButton" to="." method="_on_guide_close"]
 
 [editable path="BuildingMenu"]

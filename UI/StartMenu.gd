@@ -8,7 +8,7 @@ func _ready():
 	pass;
 
 func startGame():
-	TTS.stop()
+	##TTS.stop()
 	Loader.loadLevel(0);
 
 func quit():

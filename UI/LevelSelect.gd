@@ -15,7 +15,6 @@ func _on_item_selected(index):
 
 
 func _on_item_activated(index):
-	TTS.stop()
 	Loader.loadLevel(index);
 
 

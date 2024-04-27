@@ -3,6 +3,7 @@ class_name Building extends Node
 @export var spriteLocation:Vector2i;
 @export var id:int;
 @export var texture:Texture2D
+
 ##row = id, column = likes or dislikes (symmetric)
 static var hatesArray= [
 	[false,false,false,false,false,false,false,false,false,false,false,false,false], #Street

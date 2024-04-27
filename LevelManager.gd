@@ -18,7 +18,7 @@ var positiveHint = Vector2i(4,6);
 @export var buildAnimation:AnimatedSprite2D;
 
 var playing = true;
-static var mouse = true;
+static var mouse = false;
 
 @export var ui:UIManager;
 @export var allBuildings:Array[Building] ##An array of all buildings in ID order
@@ -40,6 +40,7 @@ func _ready():
 		location = playRegion[0];
 	describeLevel();
 	describeBuildings();
+
 func _physics_process(delta):
 	if playing:
 		if mouse:
@@ -73,12 +74,12 @@ func _physics_process(delta):
 		if(Input.is_action_just_pressed("undo")):
 			undo();
 
-func checkPlace(location):
+func checkPlace(currentLocation):
 	var valid = true;
-	if !playRegion.has(location):
+	if !playRegion.has(currentLocation):
 		valid = false
-	if(map.get_cell_tile_data(0,location) == null):
-		var neighbours = map.get_surrounding_cells(location);
+	if(map.get_cell_tile_data(0,currentLocation) == null):
+		var neighbours = map.get_surrounding_cells(currentLocation);
 		for i in neighbours:
 			var n = map.get_cell_tile_data(0,i);
 			if(n != null):
@@ -89,20 +90,21 @@ func checkPlace(location):
 		valid = false;
 	if(valid):
 		place(location);
-func place(location):
+func place(currentLocation):
 	var placing = currentBuilding;
-	map.erase_cell(3,location);
+	map.erase_cell(3,currentLocation);
 	clearHint();
 	##setting a temporary building
-	map.set_cell(0,location,2,placing.spriteLocation);
+	map.set_cell(0,currentLocation,2,placing.spriteLocation);
 	buildAnimation.visible = false;
 	buildAnimation.stop();
 	buildAnimation.frame=0;
-	buildAnimation.position = map.map_to_local(location);
+	buildAnimation.position = map.map_to_local(currentLocation);
 	buildAnimation.visible= true;
 	buildAnimation.play();
-	listOfPlaced.append(location);
-	TTS.placeBuilding(placing,location)
+	audio.buildingSound(placing.id)
+	listOfPlaced.append(currentLocation);
+	TTS.placeBuilding(placing,currentLocation)
 	current+=1;
 	ui.popBuildingList();
 	if(current<listOfBuildings.size()):
@@ -114,7 +116,7 @@ func place(location):
 	else:
 		finishLevel();
 	await buildAnimation.animation_finished;
-	map.set_cell(0,location,0,placing.spriteLocation);
+	map.set_cell(0,currentLocation,0,placing.spriteLocation);
 	buildAnimation.visible = false;
 func undo():
 	if current >0:
@@ -165,6 +167,7 @@ func clearHint():
 
 func describeLevel():
 	if (TTS.enabled):
+		##await get_tree().process_frame
 		TTS.readMap(playRegion,map,self)
 func describeSquare(pos:Vector2i):
 	if(TTS.enabled):
@@ -173,3 +176,8 @@ func describeBuildings():
 	TTS.addText("Buildings to place are:",false)
 	for b in listOfBuildings:
 		TTS.readBuilding(b);
+
+func _input(event):
+	if(event.is_action_pressed("Read")):
+		TTS.stop();
+		describeLevel();
