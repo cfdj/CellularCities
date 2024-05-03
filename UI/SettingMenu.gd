@@ -10,7 +10,6 @@ extends Panel
 
 @export var TTSVoiceSelector:OptionButton;
 func _ready():
-	control1.grab_focus()
 	volume.set_value_no_signal(SoundEffects.getVolume());
 	TTSVolume.set_value_no_signal(TTS.volumeGet());
 	TTSRate.set_value_no_signal(TTS.speedGet());
@@ -20,10 +19,11 @@ func _ready():
 		Saver.save("Mouse",mouse)
 	keyboardToggle.set_pressed_no_signal(!mouse)
 	TTSToggle.set_pressed_no_signal(TTS.enabledGet())
-	
+	print("Setting voices")
 	var voices = DisplayServer.tts_get_voices_for_language("en")
 	for v in range(voices.size()):
 		TTSVoiceSelector.add_item("Voice " + str(v))
+	control1.grab_focus()
 func speakCurrentOption():
 	var current:Control = get_viewport().gui_get_focus_owner()
 	if(current !=null && current.visible):

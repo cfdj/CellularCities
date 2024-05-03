@@ -131,10 +131,11 @@ func undo():
 		map.erase_cell(0,clearLocation);
 		TTS.undoBuilding(currentBuilding,clearLocation)
 		ui.pushBuildingList(currentBuilding);
-		var mousePos = get_viewport().get_mouse_position();
-		location = map.to_local(mousePos);
-		location = map.local_to_map(mousePos);
-		map.erase_cell(3,previousLocation);
+		if(mouse):
+			var mousePos = get_viewport().get_mouse_position();
+			location = map.to_local(mousePos);
+			location = map.local_to_map(mousePos);
+			map.erase_cell(3,previousLocation);
 		if playRegion.has(location):
 			map.set_cell(3,location,0,currentBuilding.spriteLocation);
 		clearHint();

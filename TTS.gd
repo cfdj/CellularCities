@@ -2,7 +2,7 @@ class_name TTSManager extends Node
 
 var enabled:bool = true;
 var voice:int = 0;
-var vString = DisplayServer.tts_get_voices_for_language("en")[voice]
+var vString = null;
 var volume:int = 50;
 var speed:float = 1;
 
@@ -10,13 +10,14 @@ var yNames = ["1","2","3","4","5","6","7","8"]
 var xNames = ["A","B","C","D","E","F","G","H"]
 var topLeft:Vector2i
 func _ready():
-	pass;
+	vString = DisplayServer.tts_get_voices_for_language("en")[0]
 	##DisplayServer.tts_stop();
 func addText(text:String,interrupt:bool):
 	if(enabled):
 		if(interrupt):
 			stop();
-			print("Interrupting")
+		if(vString == null):
+			vString = DisplayServer.tts_get_voices_for_language("en")[voice]
 		DisplayServer.tts_speak(text,vString,volume,1.0,speed)
 		print(text)
 ##Currently reads empty spaces and neighbours
