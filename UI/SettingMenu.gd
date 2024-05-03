@@ -71,7 +71,7 @@ func _on_tts_rate_control_value_changed(value):
 
 func _on_voice_selector_item_selected(index):
 	TTS.voice = index;
-	TTS.setVoice(DisplayServer.tts_get_voices_for_language("en")[index]);
+	TTS.voiceSet(DisplayServer.tts_get_voices_for_language("en")[index]);
 	var string ="Voice " + str(index) + "selected"
 	TTS.addText(string,true);
 
