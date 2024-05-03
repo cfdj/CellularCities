@@ -23,7 +23,6 @@ static var mouse = false;
 @export var ui:UIManager;
 @export var allBuildings:Array[Building] ##An array of all buildings in ID order
 
-@export var audio:AudioManager;
 @export var levelDescription:String
 func _ready():
 	currentBuilding = listOfBuildings[current];
@@ -57,9 +56,13 @@ func _physics_process(delta):
 			location += horizontal
 			if(!playRegion.has(location)):
 				location -= horizontal;
+				var string = "City limit"
+				TTS.addText(string,true)
 			location += vertical
 			if(!playRegion.has(location)):
 				location -= vertical
+				var string = "City limit"
+				TTS.addText(string,true)
 		if location != previousLocation:
 			map.erase_cell(3,previousLocation);
 			if playRegion.has(location):
@@ -85,7 +88,7 @@ func checkPlace(currentLocation):
 			if(n != null):
 				if currentBuilding.getHates(n.get_custom_data("BuildingID")):
 					valid = false;
-					audio.cantSound();
+					SoundEffects.cantSound();
 	else:
 		valid = false;
 	if(valid):
@@ -102,7 +105,7 @@ func place(currentLocation):
 	buildAnimation.position = map.map_to_local(currentLocation);
 	buildAnimation.visible= true;
 	buildAnimation.play();
-	audio.buildingSound(placing.id)
+	SoundEffects.buildingSound(placing.id)
 	listOfPlaced.append(currentLocation);
 	TTS.placeBuilding(placing,currentLocation)
 	current+=1;
@@ -136,7 +139,7 @@ func undo():
 		hint();
 func finishLevel():
 	TTS.stop();
-	audio.levelDoneSound();
+	SoundEffects.levelDoneSound();
 	ui.showNextlevelButton();
 	playing = false;
 	ui.updateScore(map,playRegion);

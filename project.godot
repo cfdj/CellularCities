@@ -27,6 +27,8 @@ Singletons="*res://CityBuilder/Singletons.gd"
 Menu="*res://UI/menu.tscn"
 Loader="*res://UI/Loader.tscn"
 TTS="*res://Sounds/TTS.tscn"
+Saver="*res://SaveSystem/saver.tscn"
+SoundEffects="*res://Sounds/sound_effects.tscn"
 
 [display]
 

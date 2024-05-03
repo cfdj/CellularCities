@@ -74,7 +74,6 @@ func readTile2(pos:Vector2i,map:TileMap,level:LevelManager):
 		string += " is a " +level.allBuildings[tile.get_custom_data("BuildingID")].name
 	return string;
 
-
 func readNeighbours(pos:Vector2i,map:TileMap,level:LevelManager):
 	var neighbours = map.get_surrounding_cells(pos);
 	for n in neighbours:
@@ -116,3 +115,46 @@ func guide(buildings:Array[Building],level:LevelManager):
 				if(b.getHates(t)):
 					readBuilding(level.allBuildings[t])
 		alreadyRead.append(b)
+
+func enabledGet():
+	var value = Saver.getSettingValue("TTSEnabled")
+	if(value == null):
+		enabledSet(enabled)
+	else:
+		enabled = value
+	return enabled;
+func enabledSet(value):
+	Saver.save("TTSEnabled",value)
+	enabled = value
+func voiceGet():
+	var value = Saver.getSettingValue("TTSvString")
+	if(value == null):
+		voiceSet(vString)
+	else:
+		vString = value
+	return vString;
+func voiceSet(value):
+	Saver.save("TTSvString",value)
+	vString = value
+
+func volumeGet():
+	var value = Saver.getSettingValue("TTSVolume")
+	if(value == null):
+		volumeSet(volume)
+	else:
+		volume = value
+	return volume;
+func volumeSet(value):
+	Saver.save("TTSVolume",value)
+	volume = value
+
+func speedGet():
+	var value = Saver.getSettingValue("TTSSpeed")
+	if(value == null):
+		speedSet(speed)
+	else:
+		speed = value
+	return speed;
+func speedSet(value):
+	Saver.save("TTSSpeed",value)
+	speed = value

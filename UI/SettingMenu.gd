@@ -11,11 +11,15 @@ extends Panel
 @export var TTSVoiceSelector:OptionButton;
 func _ready():
 	control1.grab_focus()
-	volume.set_value_no_signal(AudioManager.volume);
-	TTSVolume.set_value_no_signal(TTS.volume);
-	TTSRate.set_value_no_signal(TTS.speed);
-	keyboardToggle.set_pressed_no_signal(!LevelManager.mouse)
-	TTSToggle.set_pressed_no_signal(TTS.enabled)
+	volume.set_value_no_signal(SoundEffects.getVolume());
+	TTSVolume.set_value_no_signal(TTS.volumeGet());
+	TTSRate.set_value_no_signal(TTS.speedGet());
+	var mouse = Saver.getSettingValue("Mouse")
+	if(mouse == null):
+		mouse = LevelManager.mouse
+		Saver.save("Mouse",mouse)
+	keyboardToggle.set_pressed_no_signal(!mouse)
+	TTSToggle.set_pressed_no_signal(TTS.enabledGet())
 	
 	var voices = DisplayServer.tts_get_voices_for_language("en")
 	for v in range(voices.size()):
@@ -27,21 +31,21 @@ func speakCurrentOption():
 
 func _on_volume_control_drag_ended(value_changed):
 	var value = volume.value
-	AudioManager.volume = value
+	SoundEffects.setVolume(value)
 	TTS.addText(str(value),true)
 
 func _on_text_to_speech_enable_toggled(toggled_on):
-	TTS.enabled = toggled_on
+	TTS.enabledSet(toggled_on)
 	TTS.addText(str(toggled_on),true)
 
 func _on_tts_volume_control_drag_ended(value_changed):
 	var value = TTSVolume.value
-	TTS.volume = value;
+	TTS.volumeSet(value);
 	TTS.addText(str(value),true)
 
 func _on_tts_rate_control_drag_ended(value_changed):
 	var value = TTSRate.value
-	TTS.speed = value
+	TTS.speedSet(value)
 	TTS.addText(str(value),true)
 
 func _on_keyboard_toggled(toggled_on):
@@ -55,19 +59,19 @@ func _on_visibility_changed():
 
 
 func _on_volume_control_value_changed(value):
-	AudioManager.volume = value;
+	SoundEffects.setValue(value);
 	TTS.addText(str(value),true);
 func _on_tts_volume_control_value_changed(value):
-	TTS.volume = value
+	TTS.volumeSet(value)
 	TTS.addText(str(value),true);
 func _on_tts_rate_control_value_changed(value):
-	TTS.speed = value
+	TTS.speedSet(value)
 	TTS.addText(str(value),true);
 
 
 func _on_voice_selector_item_selected(index):
 	TTS.voice = index;
-	TTS.vString = DisplayServer.tts_get_voices_for_language("en")[index];
+	TTS.setVoice(DisplayServer.tts_get_voices_for_language("en")[index]);
 	var string ="Voice " + str(index) + "selected"
 	TTS.addText(string,true);
 
