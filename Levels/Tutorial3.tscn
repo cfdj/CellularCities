@@ -33,6 +33,7 @@ layer_3/tile_data = PackedInt32Array()
 map = NodePath("..")
 listOfBuildings = [NodePath("Cinema"), NodePath("Flats")]
 ui = NodePath("../../UI")
+levelDescription = "Some buildings like being placed next to eachother: Cinemas like having flats next to them."
 
 [node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_rxjxv")]
 level = NodePath("../TileMap/LevelManager")

@@ -36,5 +36,6 @@ layer_3/tile_data = PackedInt32Array()
 map = NodePath("..")
 listOfBuildings = [NodePath("Foundry"), NodePath("Flats")]
 ui = NodePath("../../UI")
+levelDescription = "Some buildings don't like to be placed next to other buildings, you can't have a steel foundry right next to a block of flats"
 
 [editable path="TileMap/LevelManager"]

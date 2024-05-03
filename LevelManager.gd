@@ -37,6 +37,8 @@ func _ready():
 	ui.setBuildingMenu();
 	if(!mouse):
 		location = playRegion[0];
+	if(levelDescription.length() >0):
+		TTS.addText(levelDescription,false);
 	describeLevel();
 	describeBuildings();
 

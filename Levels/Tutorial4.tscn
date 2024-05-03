@@ -33,6 +33,7 @@ layer_3/tile_data = PackedInt32Array()
 map = NodePath("..")
 listOfBuildings = [NodePath("Flats"), NodePath("Foundry"), NodePath("Flats"), NodePath("Foundry")]
 ui = NodePath("../../UI")
+levelDescription = "Building likes and dislikes can be viewed at any time in the Guide"
 
 [node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_ef1rh")]
 level = NodePath("../TileMap/LevelManager")
