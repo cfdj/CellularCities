@@ -26,6 +26,10 @@ theme = ExtResource("1_tale0")
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_tale0")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -95,10 +99,6 @@ theme = ExtResource("1_tale0")
 layout_mode = 2
 theme = ExtResource("1_tale0")
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_tale0")
-
 [node name="HatesContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -165,5 +165,9 @@ layout_mode = 2
 theme = ExtResource("1_tale0")
 
 [node name="Hates12" type="TextureRect" parent="VBoxContainer/HatesContainer/HatesScroll/Hates"]
+layout_mode = 2
+theme = ExtResource("1_tale0")
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_tale0")

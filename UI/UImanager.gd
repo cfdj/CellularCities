@@ -5,6 +5,9 @@ class_name UIManager extends CanvasLayer
 @export var scoreDisplay:ScoreDisplay;
 @export var buildingList:BuildingList;
 @export var nextLevel:Button;
+
+@export var settingMenu:SettingMenu;
+var settingsOpen = false;
 func setBuildingMenu():
 	buildingMenu.setDisplays(level.listOfBuildings,level.allBuildings);
 
@@ -49,3 +52,34 @@ func _input(event):
 			_on_guide_close()
 		else:
 			_on_guide_pressed()
+	if(event.is_action_pressed("Quit")):
+		if(settingsOpen):
+			closeMenu();
+		else:
+			openMenu();
+
+
+func _on_quit_button_pressed():
+	Menu.quit();
+
+func openMenu():
+	TTS.stop()
+	settingMenu.visible = true;
+	settingsOpen = true;
+	level.playing = false;
+	settingMenu._on_visibility_changed()
+	
+func closeMenu():
+	TTS.stop()
+	settingMenu.visible = false;
+	settingsOpen = false;
+	level.playing = true;
+
+
+func _on_menu_button_pressed():
+	openMenu();
+	
+
+
+func _on_MenuClose_button_pressed():
+	closeMenu();

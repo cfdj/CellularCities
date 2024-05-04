@@ -39,8 +39,13 @@ window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 window/per_pixel_transparency/allowed=true
 
+[dotnet]
+
+project/assembly_name="CellularCity"
+
 [gui]
 
+theme/custom="res://UI/Theme/UItheme.tres"
 theme/default_font_antialiasing=0
 theme/default_font_hinting=2
 theme/default_font_subpixel_positioning=0

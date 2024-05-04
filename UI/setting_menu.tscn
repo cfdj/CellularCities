@@ -1,0 +1,159 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3c143nxhgp12"]
+
+[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_x8rk1"]
+[ext_resource type="StyleBox" uid="uid://b5j5w24yh82rf" path="res://UI/Theme/panel.tres" id="2_denkf"]
+[ext_resource type="Script" path="res://UI/SettingMenu.gd" id="3_uhlcx"]
+[ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="4_ooa7t"]
+[ext_resource type="StyleBox" uid="uid://drndgy3a8ov1b" path="res://UI/Theme/backButtonHover.tres" id="5_ywbtw"]
+[ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="6_0nt83"]
+[ext_resource type="Script" path="res://UI/BackButton.gd" id="7_72vym"]
+
+[node name="SettingMenu" type="Panel" node_paths=PackedStringArray("control1", "volume", "TTSVolume", "TTSRate", "keyboardToggle", "TTSToggle", "TTSVoiceSelector")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -215.0
+offset_right = 65.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_x8rk1")
+theme_override_styles/panel = ExtResource("2_denkf")
+script = ExtResource("3_uhlcx")
+control1 = NodePath("VBoxContainer/Text to speech enable")
+volume = NodePath("VBoxContainer/Volume Control")
+TTSVolume = NodePath("VBoxContainer/TTS Volume Control")
+TTSRate = NodePath("VBoxContainer/TTS Rate Control")
+keyboardToggle = NodePath("VBoxContainer/Keyboard")
+TTSToggle = NodePath("VBoxContainer/Text to speech enable")
+TTSVoiceSelector = NodePath("VBoxContainer/Voice Selector")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -21.0
+offset_top = -28.0
+offset_right = -1.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+focus_neighbor_bottom = NodePath("../VBoxContainer/Text to speech enable")
+focus_next = NodePath("../VBoxContainer/Text to speech enable")
+theme = ExtResource("1_x8rk1")
+theme_override_styles/normal = ExtResource("4_ooa7t")
+theme_override_styles/hover = ExtResource("5_ywbtw")
+theme_override_styles/pressed = ExtResource("6_0nt83")
+theme_override_styles/focus = ExtResource("5_ywbtw")
+text = "X"
+script = ExtResource("7_72vym")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_x8rk1")
+
+[node name="Text to speech enable" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../BackButton")
+focus_neighbor_bottom = NodePath("../Volume Control")
+focus_next = NodePath("../TTS Volume Control")
+focus_previous = NodePath("../Volume Control")
+theme = ExtResource("1_x8rk1")
+button_pressed = true
+text = "TTS"
+
+[node name="Sound Volume" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_x8rk1")
+text = "Sound Volume"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Volume Control" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Text to speech enable")
+focus_neighbor_bottom = NodePath("../TTS Volume Control")
+focus_next = NodePath("../TTS Volume Control")
+focus_previous = NodePath("../Text to speech enable")
+theme = ExtResource("1_x8rk1")
+min_value = -80.0
+max_value = 24.0
+
+[node name="TTS Volume" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_x8rk1")
+text = "TTS Volume"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TTS Volume Control" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Volume Control")
+focus_neighbor_bottom = NodePath("../TTS Rate Control")
+focus_next = NodePath("../TTS Rate Control")
+focus_previous = NodePath("../Volume Control")
+theme = ExtResource("1_x8rk1")
+value = 50.0
+
+[node name="TTS Rate" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_x8rk1")
+text = "TTS Rate"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TTS Rate Control" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../TTS Volume Control")
+focus_neighbor_bottom = NodePath("../Voice Selector")
+focus_next = NodePath("../Voice Selector")
+focus_previous = NodePath("../TTS Volume Control")
+theme = ExtResource("1_x8rk1")
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="Voice Selector" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../TTS Rate Control")
+focus_neighbor_bottom = NodePath("../Keyboard")
+focus_next = NodePath("../Keyboard")
+focus_previous = NodePath("../TTS Rate Control")
+
+[node name="Keyboard" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Voice Selector")
+focus_neighbor_bottom = NodePath("../../BackButton")
+focus_next = NodePath("../../BackButton")
+focus_previous = NodePath("../Voice Selector")
+theme = ExtResource("1_x8rk1")
+text = "Keyboard"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="focus_entered" from="BackButton" to="BackButton" method="_on_focus_entered"]
+[connection signal="focus_entered" from="VBoxContainer/Text to speech enable" to="." method="speakCurrentOption"]
+[connection signal="toggled" from="VBoxContainer/Text to speech enable" to="." method="_on_text_to_speech_enable_toggled"]
+[connection signal="drag_ended" from="VBoxContainer/Volume Control" to="." method="_on_volume_control_drag_ended"]
+[connection signal="focus_entered" from="VBoxContainer/Volume Control" to="." method="speakCurrentOption"]
+[connection signal="value_changed" from="VBoxContainer/Volume Control" to="." method="_on_volume_control_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/TTS Volume Control" to="." method="_on_tts_volume_control_drag_ended"]
+[connection signal="focus_entered" from="VBoxContainer/TTS Volume Control" to="." method="speakCurrentOption"]
+[connection signal="value_changed" from="VBoxContainer/TTS Volume Control" to="." method="_on_tts_volume_control_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/TTS Rate Control" to="." method="_on_tts_rate_control_drag_ended"]
+[connection signal="focus_entered" from="VBoxContainer/TTS Rate Control" to="." method="speakCurrentOption"]
+[connection signal="value_changed" from="VBoxContainer/TTS Rate Control" to="." method="_on_tts_rate_control_value_changed"]
+[connection signal="focus_entered" from="VBoxContainer/Voice Selector" to="." method="_on_voice_selector_focus_entered"]
+[connection signal="item_focused" from="VBoxContainer/Voice Selector" to="." method="_on_voice_selector_item_focused"]
+[connection signal="item_selected" from="VBoxContainer/Voice Selector" to="." method="_on_voice_selector_item_selected"]
+[connection signal="focus_entered" from="VBoxContainer/Keyboard" to="." method="speakCurrentOption"]
+[connection signal="toggled" from="VBoxContainer/Keyboard" to="." method="_on_keyboard_toggled"]

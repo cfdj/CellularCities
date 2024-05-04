@@ -1,4 +1,4 @@
-extends Panel
+class_name SettingMenu extends Panel
 
 @export var control1:Control;
 
@@ -23,7 +23,8 @@ func _ready():
 	var voices = DisplayServer.tts_get_voices_for_language("en")
 	for v in range(voices.size()):
 		TTSVoiceSelector.add_item("Voice " + str(v))
-	control1.grab_focus()
+	if(visible):
+		control1.grab_focus()
 func speakCurrentOption():
 	var current:Control = get_viewport().gui_get_focus_owner()
 	if(current !=null && current.visible):

@@ -74,7 +74,7 @@ func _physics_process(delta):
 					map.set_cell(3,location,0,Vector2i(0,0))
 				describeSquare(location);
 			previousLocation = location;
-		if(Input.is_action_just_pressed("click")):
+		if(Input.is_action_just_pressed("click")&&playRegion.has(location)):
 			checkPlace(location);
 		if(Input.is_action_just_pressed("undo")):
 			undo();
