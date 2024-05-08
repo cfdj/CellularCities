@@ -34,7 +34,7 @@ SoundEffects="*res://Sounds/sound_effects.tscn"
 
 window/size/viewport_width=480
 window/size/viewport_height=320
-window/size/mode=2
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 window/per_pixel_transparency/allowed=true
@@ -42,6 +42,10 @@ window/per_pixel_transparency/allowed=true
 [dotnet]
 
 project/assembly_name="CellularCity"
+
+[editor]
+
+movie_writer/movie_file="D:/Users/Callum/Videos/CellularCityTrailer.avi"
 
 [gui]
 
