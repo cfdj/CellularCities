@@ -13,6 +13,7 @@ var listOfPlaced:Array[Vector2i];
 var playRegion:Array[Vector2i];
 var playRegionMarker = Vector2i(4,5);
 var streetLocations = [Vector2i(0,3),Vector2i(1,3),Vector2i(0,4),Vector2i(1,4)]
+var forestLocations = [Vector2i(5,0),Vector2i(4,1),Vector2i(5,1)]
 var negativeHint = Vector2i(2,0);
 var positiveHint = Vector2i(4,6);
 @export var buildAnimation:AnimatedSprite2D;
@@ -23,6 +24,7 @@ static var mouse = false;
 @export var ui:UIManager;
 @export var allBuildings:Array[Building] ##An array of all buildings in ID order
 
+@export var forestLevel:bool
 @export var levelDescription:String
 func _ready():
 	currentBuilding = listOfBuildings[current];
@@ -37,6 +39,11 @@ func _ready():
 	ui.setBuildingMenu();
 	if(!mouse):
 		location = playRegion[0];
+		previousLocation = playRegion[0];
+		if map.get_cell_tile_data(0,location) == null:
+			map.set_cell(3,location,0,currentBuilding.spriteLocation);
+		else:
+			map.set_cell(3,location,0,Vector2i(0,0))
 	if(levelDescription.length() >0):
 		TTS.addText(levelDescription,false);
 	describeLevel();
@@ -90,11 +97,12 @@ func checkPlace(currentLocation):
 			if(n != null):
 				if currentBuilding.getHates(n.get_custom_data("BuildingID")):
 					valid = false;
-					SoundEffects.cantSound();
 	else:
 		valid = false;
 	if(valid):
 		place(location);
+	else:
+		SoundEffects.cantSound();
 func place(currentLocation):
 	var placing = currentBuilding;
 	map.erase_cell(3,currentLocation);
@@ -148,8 +156,12 @@ func finishLevel():
 	ui.updateScore(map,playRegion);
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i) ==null):
-			var streetLocation =streetLocations[randi() % streetLocations.size()];
-			map.set_cell(0,i,0,streetLocation)
+			var fillLocation
+			if(forestLevel):
+				fillLocation = forestLocations[randi()%forestLocations.size()]
+			else:
+				fillLocation =streetLocations[randi() % streetLocations.size()];
+			map.set_cell(0,i,0,fillLocation)
 			await get_tree().create_timer(0.2).timeout
 	TTS.addText("Total score: " +str(ui.scoreDisplay.totalScore),true)
 func hint():
@@ -177,7 +189,8 @@ func describeLevel():
 		TTS.readMap(playRegion,map,self)
 func describeSquare(pos:Vector2i):
 	if(TTS.enabled):
-		TTS.readtile(pos,map,self)
+		var string = TTS.readTile2(pos,map,self)
+		TTS.addText(string,true)
 func describeBuildings():
 	TTS.addText("Buildings to place are:",false)
 	for b in listOfBuildings:

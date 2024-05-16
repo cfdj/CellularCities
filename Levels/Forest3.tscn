@@ -35,6 +35,8 @@ layer_3/tile_data = PackedInt32Array()
 map = NodePath("..")
 listOfBuildings = [NodePath("Forest"), NodePath("Forest"), NodePath("Forest")]
 ui = NodePath("../../UI")
+forestLevel = true
+levelDescription = null
 
 [node name="BuildAnimation" parent="TileMap/LevelManager" index="13"]
 sprite_frames = ExtResource("3_my8wb")

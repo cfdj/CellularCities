@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="CellularCity"
+config/name="Cellular City"
 config/description="A puzzle game about placing buildings."
 run/main_scene="res://UI/LoadScreen.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/bg_color=Color(0.156863, 0.207843, 0.25098, 1)
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 config/windows_native_icon="res://icon.ico"
 
@@ -42,6 +45,10 @@ window/per_pixel_transparency/allowed=true
 [dotnet]
 
 project/assembly_name="CellularCity"
+
+[editor]
+
+movie_writer/movie_file="D:/Users/Callum/Videos/CellularCityTrailer.avi"
 
 [gui]
 
