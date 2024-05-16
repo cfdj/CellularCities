@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://nb33gphoolpi"]
+
+[ext_resource type="Texture2D" uid="uid://cv6a4l67prjpq" path="res://BuildAnimations/TreeAnimation.png" id="1_tkbv4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dul1p"]
+atlas = ExtResource("1_tkbv4")
+region = Rect2(0, 0, 62, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y731j"]
+atlas = ExtResource("1_tkbv4")
+region = Rect2(62, 0, 62, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dul1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y731j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

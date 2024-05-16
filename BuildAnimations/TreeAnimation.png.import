@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chfgoq18xlq2y"
-path="res://.godot/imported/BuildAnimation.png-7c3af83d1b6b95023e0b356e4dd8c551.ctex"
+uid="uid://cv6a4l67prjpq"
+path="res://.godot/imported/TreeAnimation.png-8e3907e937a27f9f1029b43c249ed155.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BuildAnimation.png"
-dest_files=["res://.godot/imported/BuildAnimation.png-7c3af83d1b6b95023e0b356e4dd8c551.ctex"]
+source_file="res://BuildAnimations/TreeAnimation.png"
+dest_files=["res://.godot/imported/TreeAnimation.png-8e3907e937a27f9f1029b43c249ed155.ctex"]
 
 [params]
 
