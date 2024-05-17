@@ -1,0 +1,19 @@
+{
+	"name": "Building_Descriptions",
+	"descriptions":
+	{	
+		"Street":"Rows of terraced housing. Ubiquitous across working class communities in the UK",
+		"Flats":"Brutalist streets in the sky. Always controversial with neighbours near and far",
+		"Foundry":"Dark towers of steel and heat. Still belch with flame as mechanical muscle works where humans once toiled.",
+		"Cinema":"Here for the show? Entertaining since 1910 although the old cinemas a corner shop now.",
+		"University":"From strange buildings shaped like Kettles to sweeping panes of glass. Universities are always keen to lead the way.",
+		"Station":"Under the arched roof, where will you go today? Too many places to choose.",
+		"Rail":"Tracks stretch to the horizon. Much reduced from their heyday.",
+		"Forest":"A young woodland of  oak ash and sycamore. They say there are 7 trees per person in Sheffield." ,
+		"Gasworks":"The gentle rise and fall with demand. Not too many of these cylinders around anymore.",
+		"Office":"A striking and geometric building hides mundane cubicles within.",
+		"Hill":"Coated in a dense forest and quite steep in places.",
+		"Mine":"The lift wheel lowers workers and raises the earth's wealth.",
+		"River":"Constrained by industry and always threatening to burst its banks.",
+	}
+}

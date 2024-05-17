@@ -36,7 +36,6 @@ map = NodePath("..")
 listOfBuildings = [NodePath("Forest")]
 ui = NodePath("../../UI")
 forestLevel = true
-levelDescription = ""
 
 [node name="BuildAnimation" parent="TileMap/LevelManager" index="13"]
 sprite_frames = ExtResource("3_7ikm0")

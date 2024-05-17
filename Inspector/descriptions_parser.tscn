@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://7p8vcpgevvjj"]
+
+[ext_resource type="Script" path="res://Inspector/DescriptionsParser.gd" id="1_4nxpb"]
+
+[node name="DescriptionsParser" type="Node"]
+script = ExtResource("1_4nxpb")
+descriptionPath = "res://Inspector/Descriptions.json"

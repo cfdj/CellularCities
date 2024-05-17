@@ -196,7 +196,22 @@ func describeBuildings():
 	for b in listOfBuildings:
 		TTS.readBuilding(b);
 
+##Prompts reading the current builidng under the cursor or 
+##the building to be placed if the cursor is over an currently empty space
+func inspect():
+	var tile = map.get_cell_tile_data(0,location);
+	if(playRegion.has(location)&& tile != null):
+		var buildingName = allBuildings[tile.get_custom_data("BuildingID")].name;
+		var string = "A "+ buildingName + DescriptionsParser.getDescription(buildingName);
+		TTS.addText(string,true);
+	else:
+		var string = currentBuilding.name
+		string = "To place a "+ string + DescriptionsParser.getDescription(string);
+		TTS.addText(string,true);
+
 func _input(event):
 	if(event.is_action_pressed("Read")):
 		TTS.stop();
 		describeLevel();
+	if(event.is_action_pressed("Inspect")):
+		inspect();

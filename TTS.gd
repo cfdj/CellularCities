@@ -98,6 +98,10 @@ func undoBuilding(building:Building, pos:Vector2i):
 		var locationString:String = xNames[pos.x-topLeft.x] + "," + yNames[pos.y-topLeft.y]
 		var string:String = building.name + " removed from " +locationString
 		addText(string,true)
+func inspectBuilding(building:Building):
+	var string = building.name;
+	string+= DescriptionsParser.getDescription(string);
+	addText(string,true)
 func stop():
 	print("Stopping")
 	DisplayServer.tts_stop();
