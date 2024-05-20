@@ -9,6 +9,10 @@ class_name SettingMenu extends Panel
 @export var TTSToggle:CheckButton;
 
 @export var TTSVoiceSelector:OptionButton;
+
+@export_category("Sub menus")
+@export var SettingsContainer:Control;
+@export var KeyBindingsContainer:Control;
 func _ready():
 	volume.set_value_no_signal(SoundEffects.getVolume());
 	TTSVolume.set_value_no_signal(TTS.volumeGet());
@@ -60,7 +64,7 @@ func _on_visibility_changed():
 
 
 func _on_volume_control_value_changed(value):
-	SoundEffects.setValue(value);
+	SoundEffects.setVolume(value);
 	TTS.addText(str(value),true);
 func _on_tts_volume_control_value_changed(value):
 	TTS.volumeSet(value)
@@ -85,3 +89,25 @@ func _on_voice_selector_item_focused(index):
 func _on_voice_selector_focus_entered():
 	var string = "Voice selector"
 	TTS.addText(string,true);
+
+func _on_key_bindings_button_pressed():
+	var string = "Opening key bindings menu"
+	TTS.addText(string,true)
+	KeyBindingsContainer.visible = true;
+	SettingsContainer.visible = false;	
+	set_size(Vector2(256,216),true)
+	set_position(Vector2(115,105))
+	set_anchors_preset(Control.PRESET_CENTER_BOTTOM,false)
+	
+func _on_key_bindings_button_focus_entered():
+	var string = "Key bindings menu"
+	TTS.addText(string,true)
+
+
+func _on_settings_button_pressed():
+	var string = "Opening settings"
+	SettingsContainer.visible = true;
+	KeyBindingsContainer.visible = false;
+	set_size(Vector2(128,216),true)
+	set_position(Vector2(179,105))
+	control1.grab_focus()

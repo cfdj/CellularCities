@@ -7,7 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="5_8mms2"]
 [ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="6_d10y3"]
 [ext_resource type="Script" path="res://UI/BackButton.gd" id="7_i2x6j"]
-[ext_resource type="PackedScene" uid="uid://d3c143nxhgp12" path="res://UI/setting_menu.tscn" id="9_igjbn"]
+[ext_resource type="PackedScene" uid="uid://d3c143nxhgp12" path="res://UI/Options/setting_menu.tscn" id="9_igjbn"]
 [ext_resource type="StyleBox" uid="uid://drndgy3a8ov1b" path="res://UI/Theme/backButtonHover.tres" id="10_tnmrg"]
 
 [node name="StartMenu" type="Control" node_paths=PackedStringArray("startMenu", "levelSelect", "settings", "startButton")]

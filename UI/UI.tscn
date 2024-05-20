@@ -8,7 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="6_seiak"]
 [ext_resource type="StyleBox" uid="uid://drndgy3a8ov1b" path="res://UI/Theme/backButtonHover.tres" id="6_xqbjd"]
 [ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="7_gvpbq"]
-[ext_resource type="PackedScene" uid="uid://d3c143nxhgp12" path="res://UI/setting_menu.tscn" id="8_mvc1r"]
+[ext_resource type="PackedScene" uid="uid://d3c143nxhgp12" path="res://UI/Options/setting_menu.tscn" id="8_mvc1r"]
 
 [node name="UI" type="CanvasLayer" node_paths=PackedStringArray("buildingMenu", "scoreDisplay", "buildingList", "nextLevel", "settingMenu")]
 script = ExtResource("1_0w6w4")
@@ -74,31 +74,22 @@ text = "Guide"
 
 [node name="SettingMenu" parent="." instance=ExtResource("8_mvc1r")]
 visible = false
+offset_top = -239.0
 
 [node name="BackButton" parent="SettingMenu" index="0"]
-focus_neighbor_top = NodePath("../QuitButton")
-focus_previous = NodePath("../QuitButton")
+focus_neighbor_top = NodePath("../VBoxContainer/QuitButton")
+focus_previous = NodePath("../VBoxContainer/QuitButton")
 
-[node name="Keyboard" parent="SettingMenu/VBoxContainer" index="8"]
-focus_neighbor_bottom = NodePath("../../QuitButton")
-focus_next = NodePath("../../QuitButton")
+[node name="KeyBindings Button" parent="SettingMenu/SettingsContainer" index="9"]
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
 
-[node name="QuitButton" type="Button" parent="SettingMenu"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -66.5
-offset_top = -20.0
-offset_right = 66.5
-grow_horizontal = 2
-grow_vertical = 0
-focus_neighbor_top = NodePath("../VBoxContainer/Keyboard")
-focus_neighbor_bottom = NodePath("../BackButton")
-focus_next = NodePath("../BackButton")
-focus_previous = NodePath("../VBoxContainer/Keyboard")
+[node name="QuitButton" type="Button" parent="SettingMenu/SettingsContainer" index="10"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../KeyBindings Button")
+focus_neighbor_bottom = NodePath("../../BackButton")
+focus_next = NodePath("../../BackButton")
+focus_previous = NodePath("../KeyBindings Button")
 theme = ExtResource("1_0awcs")
 theme_override_styles/normal = ExtResource("6_seiak")
 theme_override_styles/hover = ExtResource("6_xqbjd")
@@ -122,7 +113,7 @@ text = "Menu"
 [connection signal="pressed" from="Undo" to="." method="_on_undo_pressed"]
 [connection signal="pressed" from="Guide" to="." method="_on_guide_pressed"]
 [connection signal="pressed" from="SettingMenu/BackButton" to="." method="_on_MenuClose_button_pressed"]
-[connection signal="pressed" from="SettingMenu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SettingMenu/SettingsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="BuildingMenu/PanelContainer/CloseButton" to="." method="_on_guide_close"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
 

@@ -17,7 +17,7 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.156863, 0.207843, 0.25098, 1)
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
 
 [audio]
@@ -26,7 +26,6 @@ general/text_to_speech=true
 
 [autoload]
 
-Singletons="*res://CityBuilder/Singletons.gd"
 Menu="*res://UI/menu.tscn"
 Loader="*res://UI/Loader.tscn"
 TTS="*res://Sounds/TTS.tscn"

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bom17i5x3lms4"]
+
+[ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_1ks76"]
+[ext_resource type="Script" path="res://UI/Options/KeyButton.gd" id="1_1p2tn"]
+[ext_resource type="StyleBox" uid="uid://tk8we501umvu" path="res://UI/Theme/toggleButtonPressed.tres" id="2_rbnk5"]
+
+[node name="KeyButton" type="Button"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_1ks76")
+theme_override_styles/pressed = ExtResource("2_rbnk5")
+toggle_mode = true
+text = "Key: Any Key"
+alignment = 0
+script = ExtResource("1_1p2tn")
+
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="." to="." method="listenForNewAction"]
