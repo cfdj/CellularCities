@@ -95,8 +95,8 @@ func _on_key_bindings_button_pressed():
 	TTS.addText(string,true)
 	KeyBindingsContainer.visible = true;
 	SettingsContainer.visible = false;	
-	set_size(Vector2(256,216),true)
-	set_position(Vector2(115,105))
+	set_size(Vector2(256+160,216),true)
+	set_position(Vector2(115-94,105))
 	set_anchors_preset(Control.PRESET_CENTER_BOTTOM,false)
 	
 func _on_key_bindings_button_focus_entered():

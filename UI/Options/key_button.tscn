@@ -15,11 +15,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_1ks76")
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_styles/pressed = ExtResource("2_rbnk5")
 toggle_mode = true
+action_mode = 0
 text = "Key: Any Key"
 alignment = 0
 script = ExtResource("1_1p2tn")
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
-[connection signal="pressed" from="." to="." method="listenForNewAction"]

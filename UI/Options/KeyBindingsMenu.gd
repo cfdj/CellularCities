@@ -6,6 +6,7 @@ enum inputMethod {keyboard,controller}
 var selectedMethod:inputMethod = inputMethod.keyboard;
 
 @export var Buttons:Array[KeyButton];
+@export var pressedStyle:StyleBoxFlat
 var actions:Array[StringName];
 
 @export var inputTypeSelect:OptionButton
@@ -29,6 +30,7 @@ func setKeyBoardButtons():
 				newButton.setAction(i,event);
 				Buttons.append(newButton);
 				add_child(newButton)
+				newButton.setupSignals(pressedStyle)
 
 func setControllerButtons():
 	for i in Buttons: ##Clearing the array of any already placed buttons
@@ -41,14 +43,16 @@ func setControllerButtons():
 				newButton.setAction(i,event);
 				Buttons.append(newButton);
 				add_child(newButton);
-
+				newButton.setupSignals(pressedStyle)
 
 func _on_key_type_selection_item_selected(index):
 	TTS.addText(inputTypeSelect.get_item_text(index),true)
 	if(index == 0):
 		setKeyBoardButtons();
+		selectedMethod = inputMethod.keyboard;
 	if(index == 1):
 		setControllerButtons();
+		selectedMethod = inputMethod.controller;
 
 
 func _on_key_type_selection_focus_entered():
@@ -72,3 +76,12 @@ func _on_reset_pressed():
 	var string = "Reseting to defaults"
 	TTS.addText(string,true)
 	InputMap.load_from_project_settings()
+	if(selectedMethod == inputMethod.keyboard):
+		setKeyBoardButtons()
+	elif(selectedMethod == inputMethod.controller):
+		setControllerButtons()
+
+
+func _on_key_type_selection_item_focused(index):
+	var string = inputTypeSelect.get_item_text(index)
+	TTS.addText(string,true)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3c143nxhgp12"]
+[gd_scene load_steps=10 format=3 uid="uid://d3c143nxhgp12"]
 
 [ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_x8rk1"]
 [ext_resource type="StyleBox" uid="uid://b5j5w24yh82rf" path="res://UI/Theme/panel.tres" id="2_denkf"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="6_0nt83"]
 [ext_resource type="Script" path="res://UI/BackButton.gd" id="7_72vym"]
 [ext_resource type="Script" path="res://UI/Options/KeyBindingsMenu.gd" id="8_ev0pg"]
+[ext_resource type="StyleBox" uid="uid://tk8we501umvu" path="res://UI/Theme/toggleButtonPressed.tres" id="9_xdfl1"]
 
 [node name="SettingMenu" type="Panel" node_paths=PackedStringArray("control1", "volume", "TTSVolume", "TTSRate", "keyboardToggle", "TTSToggle", "TTSVoiceSelector", "SettingsContainer", "KeyBindingsContainer")]
 anchors_preset = 7
@@ -174,8 +175,9 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("1_x8rk1")
 script = ExtResource("8_ev0pg")
+pressedStyle = ExtResource("9_xdfl1")
 inputTypeSelect = NodePath("../KeyTypeSelection")
-includedButtons = Array[StringName]([&"click", &"undo", &"Read", &"Inspect", &"Guide", &"Quit", &"Up", &"Down", &"Left", &"Right", &"ui_accept", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down"])
+includedButtons = Array[StringName]([&"Place", &"undo", &"Read", &"Inspect", &"Guide", &"Quit", &"Up", &"Down", &"Left", &"Right", &"ui_accept", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down"])
 
 [node name="Reset" type="Button" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -210,6 +212,7 @@ text = "Settings"
 [connection signal="focus_entered" from="SettingsContainer/KeyBindings Button" to="." method="_on_key_bindings_button_focus_entered"]
 [connection signal="pressed" from="SettingsContainer/KeyBindings Button" to="." method="_on_key_bindings_button_pressed"]
 [connection signal="focus_entered" from="ScrollContainer/VBoxContainer/KeyTypeSelection" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_key_type_selection_focus_entered"]
+[connection signal="item_focused" from="ScrollContainer/VBoxContainer/KeyTypeSelection" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_key_type_selection_item_focused"]
 [connection signal="item_selected" from="ScrollContainer/VBoxContainer/KeyTypeSelection" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_key_type_selection_item_selected"]
 [connection signal="visibility_changed" from="ScrollContainer/VBoxContainer/KeyBindingsContainer" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_visibility_changed"]
 [connection signal="focus_entered" from="ScrollContainer/VBoxContainer/Reset" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_reset_focus_entered"]

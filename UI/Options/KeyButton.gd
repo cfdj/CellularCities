@@ -6,7 +6,8 @@ var labelString:String
 
 var listening:bool = false;
 
-	
+#var pressedStyle = "res://UI/Theme/toggleButtonPressed.tres"
+
 func setAction(newAction:StringName,newInput:InputEvent):
 	action = newAction;
 	input = newInput;
@@ -17,6 +18,9 @@ func setAction(newAction:StringName,newInput:InputEvent):
 			buttonId= input.as_text()
 	elif input is InputEventJoypadButton:
 		buttonId = input.as_text()
+		buttonId = buttonId.replace("Joypad Button", "") 
+		buttonId = buttonId.replace("(","")
+		buttonId = buttonId.replace(")","")
 	elif input is InputEventJoypadMotion:
 		buttonId = input.as_text()
 	elif input is InputEventMouseButton:
@@ -44,6 +48,8 @@ func setAction(newAction:StringName,newInput:InputEvent):
 	text = labelString;
 
 func listenForNewAction():
+	var string = "Rebinding " +action
+	TTS.addText(string,true)
 	await get_tree().process_frame ##Making it wait until the initial input which pressed the button has passed
 	listening = true;
 	
@@ -54,7 +60,7 @@ func _input(event):
 	##It probably needs moved to the scene root, maybe an autoload
 		if(!event.is_action_pressed("Quit")):
 			if(event.is_action_type()):
-				print("Changing Input")
+				print("Input rebound")
 				InputMap.action_erase_event(action,input);
 				InputMap.action_add_event(action,event);
 				set_pressed_no_signal(false);
@@ -63,8 +69,29 @@ func _input(event):
 		else:
 			set_pressed_no_signal(false);
 			listening = false;
+			var string = "Rebind cancelled"
+			TTS.addText(string,true)
 
 
 func _on_focus_exited():
 	listening = false; ##Making it so that if focus changes it stops trying to change event
 	set_pressed_no_signal(false);
+
+
+func _on_focus_entered():
+	var string = labelString;
+	TTS.addText(labelString,true);
+
+func setupSignals(pressedStyle:StyleBoxFlat):
+	toggle_mode = true
+	focus_entered.connect(_on_focus_entered)
+	focus_exited.connect(_on_focus_exited)
+	pressed.connect(listenForNewAction)
+	#var styleBox:StyleBoxFlat = load("res://UI/Theme/toggleButtonPressed.tres")
+	add_theme_color_override("font_pressed_color",Color.BLACK)
+	add_theme_stylebox_override("pressed",pressedStyle)
+
+func _exit_tree():
+	focus_entered.disconnect(_on_focus_entered)
+	focus_exited.disconnect(_on_focus_exited)
+	pressed.disconnect(listenForNewAction)
