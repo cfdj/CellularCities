@@ -1,0 +1,113 @@
+[gd_resource type="Resource" script_class="KeyBindings" load_steps=5 format=3 uid="uid://f32p8dvrjajx"]
+
+[ext_resource type="Script" path="res://KeyBindings.gd" id="1_qm44j"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_l1qcn"]
+device = -1
+physical_keycode = 32
+unicode = 32
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_qd3ve"]
+device = -1
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_gvc77"]
+button_mask = 1
+position = Vector2(264.667, 157.333)
+global_position = Vector2(1034, 501)
+button_index = 1
+pressed = true
+double_click = true
+
+[resource]
+script = ExtResource("1_qm44j")
+actionTracker = {
+"Down": false,
+"Guide": false,
+"Inspect": false,
+"Left": false,
+"Place": true,
+"Quit": false,
+"Read": false,
+"Right": false,
+"Up": false,
+"ui_accept": false,
+"ui_cancel": false,
+"ui_copy": false,
+"ui_cut": false,
+"ui_down": false,
+"ui_end": false,
+"ui_filedialog_refresh": false,
+"ui_filedialog_show_hidden": false,
+"ui_filedialog_up_one_level": false,
+"ui_focus_next": false,
+"ui_focus_prev": false,
+"ui_graph_delete": false,
+"ui_graph_duplicate": false,
+"ui_home": false,
+"ui_left": false,
+"ui_menu": false,
+"ui_page_down": false,
+"ui_page_up": false,
+"ui_paste": false,
+"ui_redo": false,
+"ui_right": false,
+"ui_select": false,
+"ui_swap_input_direction": false,
+"ui_text_add_selection_for_next_occurrence": false,
+"ui_text_backspace": false,
+"ui_text_backspace_all_to_left": false,
+"ui_text_backspace_all_to_left.macos": false,
+"ui_text_backspace_word": false,
+"ui_text_backspace_word.macos": false,
+"ui_text_caret_add_above": false,
+"ui_text_caret_add_above.macos": false,
+"ui_text_caret_add_below": false,
+"ui_text_caret_add_below.macos": false,
+"ui_text_caret_document_end": false,
+"ui_text_caret_document_end.macos": false,
+"ui_text_caret_document_start": false,
+"ui_text_caret_document_start.macos": false,
+"ui_text_caret_down": false,
+"ui_text_caret_left": false,
+"ui_text_caret_line_end": false,
+"ui_text_caret_line_end.macos": false,
+"ui_text_caret_line_start": false,
+"ui_text_caret_line_start.macos": false,
+"ui_text_caret_page_down": false,
+"ui_text_caret_page_up": false,
+"ui_text_caret_right": false,
+"ui_text_caret_up": false,
+"ui_text_caret_word_left": false,
+"ui_text_caret_word_left.macos": false,
+"ui_text_caret_word_right": false,
+"ui_text_caret_word_right.macos": false,
+"ui_text_clear_carets_and_selection": false,
+"ui_text_completion_accept": false,
+"ui_text_completion_query": false,
+"ui_text_completion_replace": false,
+"ui_text_dedent": false,
+"ui_text_delete": false,
+"ui_text_delete_all_to_right": false,
+"ui_text_delete_all_to_right.macos": false,
+"ui_text_delete_word": false,
+"ui_text_delete_word.macos": false,
+"ui_text_indent": false,
+"ui_text_newline": false,
+"ui_text_newline_above": false,
+"ui_text_newline_blank": false,
+"ui_text_scroll_down": false,
+"ui_text_scroll_down.macos": false,
+"ui_text_scroll_up": false,
+"ui_text_scroll_up.macos": false,
+"ui_text_select_all": false,
+"ui_text_select_word_under_caret": false,
+"ui_text_select_word_under_caret.macos": false,
+"ui_text_submit": false,
+"ui_text_toggle_insert_mode": false,
+"ui_undo": false,
+"ui_up": false,
+"undo": false
+}
+eventActionMaps = {
+"Place": Array[InputEvent]([SubResource("InputEventKey_l1qcn"), SubResource("InputEventJoypadButton_qd3ve"), SubResource("InputEventMouseButton_gvc77")])
+}

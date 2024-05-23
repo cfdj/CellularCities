@@ -19,7 +19,7 @@ func addText(text:String,interrupt:bool):
 		if(vString == null):
 			vString = DisplayServer.tts_get_voices_for_language("en")[voice]
 		DisplayServer.tts_speak(text,vString,volume,1.0,speed)
-		print(text)
+		#print(text)
 ##Currently reads empty spaces and neighbours
 ##Levels should probably have an introduction
 func readMap(playRegion:Array[Vector2i],map:TileMap,level:LevelManager):
@@ -100,10 +100,10 @@ func undoBuilding(building:Building, pos:Vector2i):
 		addText(string,true)
 func inspectBuilding(building:Building):
 	var string = building.name;
-	string+= DescriptionsParser.getDescription(string);
+	string+=" "+ DescriptionsParser.getDescription(string);
 	addText(string,true)
 func stop():
-	print("Stopping")
+	#print("Stopping")
 	DisplayServer.tts_stop();
 
 func guide(buildings:Array[Building],level:LevelManager):

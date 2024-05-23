@@ -66,6 +66,8 @@ func _input(event):
 				set_pressed_no_signal(false);
 				setAction(action,event);
 				listening = false;
+				Saver.markRebind(action)
+				Saver.saveKeyBinds()
 		else:
 			set_pressed_no_signal(false);
 			listening = false;
@@ -79,17 +81,17 @@ func _on_focus_exited():
 
 
 func _on_focus_entered():
-	var string = labelString;
-	TTS.addText(labelString,true);
+	var string = labelString +" " +str(get_index()+1) +" of " + str(get_parent().get_child_count());
+	TTS.addText(string,true);
 
-func setupSignals(pressedStyle:StyleBoxFlat):
+func setupSignals():
 	toggle_mode = true
 	focus_entered.connect(_on_focus_entered)
 	focus_exited.connect(_on_focus_exited)
 	pressed.connect(listenForNewAction)
 	#var styleBox:StyleBoxFlat = load("res://UI/Theme/toggleButtonPressed.tres")
 	add_theme_color_override("font_pressed_color",Color.BLACK)
-	add_theme_stylebox_override("pressed",pressedStyle)
+
 
 func _exit_tree():
 	focus_entered.disconnect(_on_focus_entered)

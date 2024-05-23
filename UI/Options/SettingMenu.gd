@@ -1,4 +1,4 @@
-class_name SettingMenu extends Panel
+class_name SettingMenu extends PanelContainer
 
 @export var control1:Control;
 
@@ -26,13 +26,14 @@ func _ready():
 	print("Setting voices")
 	var voices = DisplayServer.tts_get_voices_for_language("en")
 	for v in range(voices.size()):
-		TTSVoiceSelector.add_item("Voice " + str(v))
+		TTSVoiceSelector.add_item("Voice " + str(v+1))
 	if(visible):
 		control1.grab_focus()
 func speakCurrentOption():
 	var current:Control = get_viewport().gui_get_focus_owner()
 	if(current !=null && current.visible):
-		TTS.addText(current.name,true)
+		var string = current.name + " " + getPositionString(current)
+		TTS.addText(string,true)
 
 func _on_volume_control_drag_ended(value_changed):
 	var value = volume.value
@@ -58,7 +59,7 @@ func _on_keyboard_toggled(toggled_on):
 	TTS.addText(str(toggled_on),true)
 
 func _on_visibility_changed():
-	if(visible&& control1.is_visible_in_tree()):
+	if(visible):
 		control1.grab_focus()
 		speakCurrentOption()
 
@@ -77,37 +78,44 @@ func _on_tts_rate_control_value_changed(value):
 func _on_voice_selector_item_selected(index):
 	TTS.voice = index;
 	TTS.voiceSet(DisplayServer.tts_get_voices_for_language("en")[index]);
-	var string ="Voice " + str(index) + "selected"
+	var string ="Voice " + str(index+1) + " selected"
 	TTS.addText(string,true);
 
 
 func _on_voice_selector_item_focused(index):
-	var string ="Voice " + str(index)
+	var string ="Voice " + str(index+1) + " of " +str(TTSVoiceSelector.item_count)
 	TTS.addText(string,true)
-
-
-func _on_voice_selector_focus_entered():
-	var string = "Voice selector"
-	TTS.addText(string,true);
 
 func _on_key_bindings_button_pressed():
 	var string = "Opening key bindings menu"
 	TTS.addText(string,true)
-	KeyBindingsContainer.visible = true;
 	SettingsContainer.visible = false;	
-	set_size(Vector2(256+160,216),true)
-	set_position(Vector2(115-94,105))
-	set_anchors_preset(Control.PRESET_CENTER_BOTTOM,false)
+	KeyBindingsContainer.visible = true;
 	
-func _on_key_bindings_button_focus_entered():
-	var string = "Key bindings menu"
-	TTS.addText(string,true)
-
+	#set_size(Vector2(256+160,216),true)
+	#set_position(Vector2(115-94,105))
+	#set_anchors_preset(Control.PRESET_CENTER_BOTTOM,false)
 
 func _on_settings_button_pressed():
 	var string = "Opening settings"
 	SettingsContainer.visible = true;
 	KeyBindingsContainer.visible = false;
-	set_size(Vector2(128,216),true)
-	set_position(Vector2(179,105))
 	control1.grab_focus()
+	speakCurrentOption()
+	#set_size(Vector2(128,216),true)
+	#set_position(Vector2(179,105))
+	#control1.grab_focus()
+
+func getPositionString(current:Control) ->String:
+	var SettingsChildren = SettingsContainer.get_children()
+	var focusables:Array[Control]
+	for f in SettingsChildren:
+		if((f as Control).focus_mode != FOCUS_NONE):
+			focusables.append(f);
+	var string = str(focusables.find(current)+1) + " of " + str(focusables.size())
+	return string
+
+
+func _on_voice_selector_pressed():
+	var string ="Voice " + str(TTSVoiceSelector.selected+1) + " of " +str(TTSVoiceSelector.item_count)
+	TTS.addText(string,true)

@@ -40,7 +40,6 @@ texture = ExtResource("2_ugo50")
 stretch_mode = 2
 
 [node name="MenuButtons" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -88,6 +87,9 @@ text = "Settings"
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_dls7o")
+theme_override_styles/normal = ExtResource("5_8mms2")
+theme_override_styles/hover = ExtResource("10_tnmrg")
+theme_override_styles/pressed = ExtResource("6_d10y3")
 text = "Quit"
 
 [node name="LevelButtons" type="Panel" parent="."]
@@ -145,6 +147,7 @@ same_column_width = true
 script = ExtResource("4_spj7m")
 
 [node name="SettingMenu" parent="." instance=ExtResource("9_igjbn")]
+visible = false
 layout_mode = 1
 offset_left = -67.5
 offset_right = 67.5
@@ -162,6 +165,6 @@ offset_right = 67.5
 [connection signal="item_activated" from="LevelButtons/LevelSelect" to="LevelButtons/LevelSelect" method="_on_item_activated"]
 [connection signal="item_selected" from="LevelButtons/LevelSelect" to="LevelButtons/LevelSelect" method="_on_item_selected"]
 [connection signal="visibility_changed" from="LevelButtons/LevelSelect" to="LevelButtons/LevelSelect" method="_on_visibility_changed"]
-[connection signal="pressed" from="SettingMenu/BackButton" to="." method="_on_settings_closed_button_pressed"]
+[connection signal="pressed" from="SettingMenu/VSplitContainer/BackButton" to="." method="_on_settings_closed_button_pressed"]
 
 [editable path="SettingMenu"]

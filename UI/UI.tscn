@@ -48,6 +48,7 @@ theme = ExtResource("1_0awcs")
 script = ExtResource("2_kj2cp")
 
 [node name="ScoreDisplay" parent="." instance=ExtResource("3_wj8a3")]
+offset_right = 68.0
 
 [node name="Undo" type="Button" parent="."]
 offset_left = 64.0
@@ -72,33 +73,26 @@ grow_vertical = 2
 theme = ExtResource("1_0awcs")
 text = "Guide"
 
+[node name="BuildingMenu" parent="." instance=ExtResource("4_witi0")]
+visible = false
+
 [node name="SettingMenu" parent="." instance=ExtResource("8_mvc1r")]
 visible = false
-offset_top = -239.0
 
-[node name="BackButton" parent="SettingMenu" index="0"]
-focus_neighbor_top = NodePath("../VBoxContainer/QuitButton")
-focus_previous = NodePath("../VBoxContainer/QuitButton")
-
-[node name="KeyBindings Button" parent="SettingMenu/SettingsContainer" index="9"]
+[node name="KeyBindings Button" parent="SettingMenu/VSplitContainer/SettingsContainer" index="9"]
 focus_neighbor_bottom = NodePath("../QuitButton")
 focus_next = NodePath("../QuitButton")
 
-[node name="QuitButton" type="Button" parent="SettingMenu/SettingsContainer" index="10"]
+[node name="QuitButton" type="Button" parent="SettingMenu/VSplitContainer/SettingsContainer" index="10"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../KeyBindings Button")
 focus_neighbor_bottom = NodePath("../../BackButton")
 focus_next = NodePath("../../BackButton")
-focus_previous = NodePath("../KeyBindings Button")
 theme = ExtResource("1_0awcs")
 theme_override_styles/normal = ExtResource("6_seiak")
 theme_override_styles/hover = ExtResource("6_xqbjd")
 theme_override_styles/pressed = ExtResource("7_gvpbq")
 theme_override_styles/focus = ExtResource("6_xqbjd")
 text = "Quit"
-
-[node name="BuildingMenu" parent="." instance=ExtResource("4_witi0")]
-visible = false
 
 [node name="MenuButton" type="Button" parent="."]
 anchors_preset = 1
@@ -112,10 +106,10 @@ text = "Menu"
 [connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="Undo" to="." method="_on_undo_pressed"]
 [connection signal="pressed" from="Guide" to="." method="_on_guide_pressed"]
-[connection signal="pressed" from="SettingMenu/BackButton" to="." method="_on_MenuClose_button_pressed"]
-[connection signal="pressed" from="SettingMenu/SettingsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="BuildingMenu/PanelContainer/CloseButton" to="." method="_on_guide_close"]
+[connection signal="pressed" from="SettingMenu/VSplitContainer/BackButton" to="." method="_on_MenuClose_button_pressed"]
+[connection signal="pressed" from="SettingMenu/VSplitContainer/SettingsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
 
-[editable path="SettingMenu"]
 [editable path="BuildingMenu"]
+[editable path="SettingMenu"]

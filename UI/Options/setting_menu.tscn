@@ -1,55 +1,44 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3c143nxhgp12"]
+[gd_scene load_steps=8 format=3 uid="uid://d3c143nxhgp12"]
 
 [ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_x8rk1"]
-[ext_resource type="StyleBox" uid="uid://b5j5w24yh82rf" path="res://UI/Theme/panel.tres" id="2_denkf"]
 [ext_resource type="Script" path="res://UI/Options/SettingMenu.gd" id="3_uhlcx"]
 [ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="4_ooa7t"]
 [ext_resource type="StyleBox" uid="uid://drndgy3a8ov1b" path="res://UI/Theme/backButtonHover.tres" id="5_ywbtw"]
 [ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="6_0nt83"]
 [ext_resource type="Script" path="res://UI/BackButton.gd" id="7_72vym"]
 [ext_resource type="Script" path="res://UI/Options/KeyBindingsMenu.gd" id="8_ev0pg"]
-[ext_resource type="StyleBox" uid="uid://tk8we501umvu" path="res://UI/Theme/toggleButtonPressed.tres" id="9_xdfl1"]
 
-[node name="SettingMenu" type="Panel" node_paths=PackedStringArray("control1", "volume", "TTSVolume", "TTSRate", "keyboardToggle", "TTSToggle", "TTSVoiceSelector", "SettingsContainer", "KeyBindingsContainer")]
+[node name="SettingMenu" type="PanelContainer" node_paths=PackedStringArray("control1", "volume", "TTSVolume", "TTSRate", "keyboardToggle", "TTSToggle", "TTSVoiceSelector", "SettingsContainer", "KeyBindingsContainer")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -61.0
-offset_top = -215.0
-offset_right = 67.0
-offset_bottom = 1.0
+offset_left = -59.5
+offset_top = -220.0
+offset_right = 59.5
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("1_x8rk1")
-theme_override_styles/panel = ExtResource("2_denkf")
 script = ExtResource("3_uhlcx")
-control1 = NodePath("SettingsContainer/Text to speech enable")
-volume = NodePath("SettingsContainer/Volume Control")
-TTSVolume = NodePath("SettingsContainer/TTS Volume Control")
-TTSRate = NodePath("SettingsContainer/TTS Rate Control")
-keyboardToggle = NodePath("SettingsContainer/Keyboard")
-TTSToggle = NodePath("SettingsContainer/Text to speech enable")
-TTSVoiceSelector = NodePath("SettingsContainer/Voice Selector")
-SettingsContainer = NodePath("SettingsContainer")
-KeyBindingsContainer = NodePath("ScrollContainer")
+control1 = NodePath("VSplitContainer/SettingsContainer/Text to speech enable")
+volume = NodePath("VSplitContainer/SettingsContainer/Volume Control")
+TTSVolume = NodePath("VSplitContainer/SettingsContainer/TTS Volume Control")
+TTSRate = NodePath("VSplitContainer/SettingsContainer/TTS Rate Control")
+keyboardToggle = NodePath("VSplitContainer/SettingsContainer/Keyboard")
+TTSToggle = NodePath("VSplitContainer/SettingsContainer/Text to speech enable")
+TTSVoiceSelector = NodePath("VSplitContainer/SettingsContainer/Voice Selector")
+SettingsContainer = NodePath("VSplitContainer/SettingsContainer")
+KeyBindingsContainer = NodePath("VSplitContainer/ScrollContainer")
 
-[node name="BackButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -20.0
-offset_top = -29.0
-offset_bottom = -1.0
-grow_horizontal = 0
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="BackButton" type="Button" parent="VSplitContainer"]
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-focus_neighbor_bottom = NodePath("../SettingsContainer/Text to speech enable")
-focus_next = NodePath("../SettingsContainer/Text to speech enable")
 theme = ExtResource("1_x8rk1")
 theme_override_styles/normal = ExtResource("4_ooa7t")
 theme_override_styles/hover = ExtResource("5_ywbtw")
@@ -58,16 +47,11 @@ theme_override_styles/focus = ExtResource("5_ywbtw")
 text = "X"
 script = ExtResource("7_72vym")
 
-[node name="SettingsContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SettingsContainer" type="VBoxContainer" parent="VSplitContainer"]
+layout_mode = 2
 theme = ExtResource("1_x8rk1")
 
-[node name="Text to speech enable" type="CheckButton" parent="SettingsContainer"]
+[node name="Text to speech enable" type="CheckButton" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../BackButton")
 focus_neighbor_bottom = NodePath("../Volume Control")
@@ -77,14 +61,14 @@ theme = ExtResource("1_x8rk1")
 button_pressed = true
 text = "TTS"
 
-[node name="Sound Volume" type="Label" parent="SettingsContainer"]
+[node name="Sound Volume" type="Label" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 theme = ExtResource("1_x8rk1")
 text = "Sound Volume"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="Volume Control" type="HSlider" parent="SettingsContainer"]
+[node name="Volume Control" type="HSlider" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Text to speech enable")
 focus_neighbor_bottom = NodePath("../TTS Volume Control")
@@ -94,14 +78,14 @@ theme = ExtResource("1_x8rk1")
 min_value = -80.0
 max_value = 24.0
 
-[node name="TTS Volume" type="Label" parent="SettingsContainer"]
+[node name="TTS Volume" type="Label" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 theme = ExtResource("1_x8rk1")
 text = "TTS Volume"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="TTS Volume Control" type="HSlider" parent="SettingsContainer"]
+[node name="TTS Volume Control" type="HSlider" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Volume Control")
 focus_neighbor_bottom = NodePath("../TTS Rate Control")
@@ -110,14 +94,14 @@ focus_previous = NodePath("../Volume Control")
 theme = ExtResource("1_x8rk1")
 value = 50.0
 
-[node name="TTS Rate" type="Label" parent="SettingsContainer"]
+[node name="TTS Rate" type="Label" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 theme = ExtResource("1_x8rk1")
 text = "TTS Rate"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="TTS Rate Control" type="HSlider" parent="SettingsContainer"]
+[node name="TTS Rate Control" type="HSlider" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../TTS Volume Control")
 focus_neighbor_bottom = NodePath("../Voice Selector")
@@ -129,14 +113,14 @@ max_value = 10.0
 step = 0.1
 value = 1.0
 
-[node name="Voice Selector" type="OptionButton" parent="SettingsContainer"]
+[node name="Voice Selector" type="OptionButton" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../TTS Rate Control")
 focus_neighbor_bottom = NodePath("../Keyboard")
 focus_next = NodePath("../Keyboard")
 focus_previous = NodePath("../TTS Rate Control")
 
-[node name="Keyboard" type="CheckButton" parent="SettingsContainer"]
+[node name="Keyboard" type="CheckButton" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Voice Selector")
 focus_neighbor_bottom = NodePath("../KeyBindings Button")
@@ -145,7 +129,7 @@ focus_previous = NodePath("../Voice Selector")
 theme = ExtResource("1_x8rk1")
 text = "Keyboard"
 
-[node name="KeyBindings Button" type="Button" parent="SettingsContainer"]
+[node name="KeyBindings Button" type="Button" parent="VSplitContainer/SettingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Keyboard")
 focus_neighbor_bottom = NodePath("../../BackButton")
@@ -153,69 +137,71 @@ focus_next = NodePath("../../BackButton")
 focus_previous = NodePath("../Keyboard")
 text = "Key Bindings"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="VSplitContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_vertical = 3
 follow_focus = true
+horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="KeyBindingsContainer" type="VBoxContainer" parent="VSplitContainer/ScrollContainer" node_paths=PackedStringArray("inputTypeSelect", "settingsButton")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="KeyTypeSelection" type="OptionButton" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="KeyBindingsContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer" node_paths=PackedStringArray("inputTypeSelect")]
-layout_mode = 2
 theme = ExtResource("1_x8rk1")
 script = ExtResource("8_ev0pg")
-pressedStyle = ExtResource("9_xdfl1")
-inputTypeSelect = NodePath("../KeyTypeSelection")
+inputTypeSelect = NodePath("KeyTypeSelection")
+settingsButton = NodePath("Settings Button")
 includedButtons = Array[StringName]([&"Place", &"undo", &"Read", &"Inspect", &"Guide", &"Quit", &"Up", &"Down", &"Left", &"Right", &"ui_accept", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down"])
 
-[node name="Reset" type="Button" parent="ScrollContainer/VBoxContainer"]
+[node name="KeyTypeSelection" type="OptionButton" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../BackButton")
-focus_next = NodePath("../../../BackButton")
+focus_neighbor_bottom = NodePath("../Reset")
+
+[node name="Reset" type="Button" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../KeyTypeSelection")
+theme = ExtResource("1_x8rk1")
+theme_override_styles/normal = ExtResource("4_ooa7t")
+theme_override_styles/hover = ExtResource("5_ywbtw")
+theme_override_styles/pressed = ExtResource("6_0nt83")
 text = "Reset to Defaults"
 
-[node name="Settings Button" type="Button" parent="ScrollContainer/VBoxContainer"]
+[node name="Settings Button" type="Button" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../../../BackButton")
-focus_next = NodePath("../../../BackButton")
+focus_neighbor_bottom = NodePath("../../../BackButton")
+focus_previous = NodePath("../../../BackButton")
 text = "Settings"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="focus_entered" from="BackButton" to="BackButton" method="_on_focus_entered"]
-[connection signal="focus_entered" from="SettingsContainer/Text to speech enable" to="." method="speakCurrentOption"]
-[connection signal="toggled" from="SettingsContainer/Text to speech enable" to="." method="_on_text_to_speech_enable_toggled"]
-[connection signal="drag_ended" from="SettingsContainer/Volume Control" to="." method="_on_volume_control_drag_ended"]
-[connection signal="focus_entered" from="SettingsContainer/Volume Control" to="." method="speakCurrentOption"]
-[connection signal="value_changed" from="SettingsContainer/Volume Control" to="." method="_on_volume_control_value_changed"]
-[connection signal="drag_ended" from="SettingsContainer/TTS Volume Control" to="." method="_on_tts_volume_control_drag_ended"]
-[connection signal="focus_entered" from="SettingsContainer/TTS Volume Control" to="." method="speakCurrentOption"]
-[connection signal="value_changed" from="SettingsContainer/TTS Volume Control" to="." method="_on_tts_volume_control_value_changed"]
-[connection signal="drag_ended" from="SettingsContainer/TTS Rate Control" to="." method="_on_tts_rate_control_drag_ended"]
-[connection signal="focus_entered" from="SettingsContainer/TTS Rate Control" to="." method="speakCurrentOption"]
-[connection signal="value_changed" from="SettingsContainer/TTS Rate Control" to="." method="_on_tts_rate_control_value_changed"]
-[connection signal="focus_entered" from="SettingsContainer/Voice Selector" to="." method="_on_voice_selector_focus_entered"]
-[connection signal="item_focused" from="SettingsContainer/Voice Selector" to="." method="_on_voice_selector_item_focused"]
-[connection signal="item_selected" from="SettingsContainer/Voice Selector" to="." method="_on_voice_selector_item_selected"]
-[connection signal="focus_entered" from="SettingsContainer/Keyboard" to="." method="speakCurrentOption"]
-[connection signal="toggled" from="SettingsContainer/Keyboard" to="." method="_on_keyboard_toggled"]
-[connection signal="focus_entered" from="SettingsContainer/KeyBindings Button" to="." method="_on_key_bindings_button_focus_entered"]
-[connection signal="pressed" from="SettingsContainer/KeyBindings Button" to="." method="_on_key_bindings_button_pressed"]
-[connection signal="focus_entered" from="ScrollContainer/VBoxContainer/KeyTypeSelection" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_key_type_selection_focus_entered"]
-[connection signal="item_focused" from="ScrollContainer/VBoxContainer/KeyTypeSelection" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_key_type_selection_item_focused"]
-[connection signal="item_selected" from="ScrollContainer/VBoxContainer/KeyTypeSelection" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_key_type_selection_item_selected"]
-[connection signal="visibility_changed" from="ScrollContainer/VBoxContainer/KeyBindingsContainer" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_visibility_changed"]
-[connection signal="focus_entered" from="ScrollContainer/VBoxContainer/Reset" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_reset_focus_entered"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/Reset" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_reset_pressed"]
-[connection signal="focus_entered" from="ScrollContainer/VBoxContainer/Settings Button" to="ScrollContainer/VBoxContainer/KeyBindingsContainer" method="_on_settings_button_focus_entered"]
-[connection signal="pressed" from="ScrollContainer/VBoxContainer/Settings Button" to="." method="_on_settings_button_pressed"]
+[connection signal="focus_entered" from="VSplitContainer/BackButton" to="VSplitContainer/BackButton" method="_on_focus_entered"]
+[connection signal="visibility_changed" from="VSplitContainer/SettingsContainer" to="." method="_on_visibility_changed"]
+[connection signal="focus_entered" from="VSplitContainer/SettingsContainer/Text to speech enable" to="." method="speakCurrentOption"]
+[connection signal="toggled" from="VSplitContainer/SettingsContainer/Text to speech enable" to="." method="_on_text_to_speech_enable_toggled"]
+[connection signal="drag_ended" from="VSplitContainer/SettingsContainer/Volume Control" to="." method="_on_volume_control_drag_ended"]
+[connection signal="focus_entered" from="VSplitContainer/SettingsContainer/Volume Control" to="." method="speakCurrentOption"]
+[connection signal="value_changed" from="VSplitContainer/SettingsContainer/Volume Control" to="." method="_on_volume_control_value_changed"]
+[connection signal="drag_ended" from="VSplitContainer/SettingsContainer/TTS Volume Control" to="." method="_on_tts_volume_control_drag_ended"]
+[connection signal="focus_entered" from="VSplitContainer/SettingsContainer/TTS Volume Control" to="." method="speakCurrentOption"]
+[connection signal="value_changed" from="VSplitContainer/SettingsContainer/TTS Volume Control" to="." method="_on_tts_volume_control_value_changed"]
+[connection signal="drag_ended" from="VSplitContainer/SettingsContainer/TTS Rate Control" to="." method="_on_tts_rate_control_drag_ended"]
+[connection signal="focus_entered" from="VSplitContainer/SettingsContainer/TTS Rate Control" to="." method="speakCurrentOption"]
+[connection signal="value_changed" from="VSplitContainer/SettingsContainer/TTS Rate Control" to="." method="_on_tts_rate_control_value_changed"]
+[connection signal="focus_entered" from="VSplitContainer/SettingsContainer/Voice Selector" to="." method="speakCurrentOption"]
+[connection signal="item_focused" from="VSplitContainer/SettingsContainer/Voice Selector" to="." method="_on_voice_selector_item_focused"]
+[connection signal="item_selected" from="VSplitContainer/SettingsContainer/Voice Selector" to="." method="_on_voice_selector_item_selected"]
+[connection signal="pressed" from="VSplitContainer/SettingsContainer/Voice Selector" to="." method="_on_voice_selector_pressed"]
+[connection signal="focus_entered" from="VSplitContainer/SettingsContainer/Keyboard" to="." method="speakCurrentOption"]
+[connection signal="toggled" from="VSplitContainer/SettingsContainer/Keyboard" to="." method="_on_keyboard_toggled"]
+[connection signal="focus_entered" from="VSplitContainer/SettingsContainer/KeyBindings Button" to="." method="speakCurrentOption"]
+[connection signal="pressed" from="VSplitContainer/SettingsContainer/KeyBindings Button" to="." method="_on_key_bindings_button_pressed"]
+[connection signal="visibility_changed" from="VSplitContainer/ScrollContainer" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="VSplitContainer/ScrollContainer/KeyBindingsContainer" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_visibility_changed"]
+[connection signal="focus_entered" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/KeyTypeSelection" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_key_type_selection_focus_entered"]
+[connection signal="item_focused" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/KeyTypeSelection" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_key_type_selection_item_focused"]
+[connection signal="item_selected" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/KeyTypeSelection" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_key_type_selection_item_selected"]
+[connection signal="focus_entered" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/Reset" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_reset_focus_entered"]
+[connection signal="pressed" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/Reset" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_reset_pressed"]
+[connection signal="focus_entered" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/Settings Button" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_settings_button_focus_entered"]
+[connection signal="pressed" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/Settings Button" to="." method="_on_settings_button_pressed"]

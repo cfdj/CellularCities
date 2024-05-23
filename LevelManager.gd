@@ -44,6 +44,7 @@ func _ready():
 			map.set_cell(3,location,0,currentBuilding.spriteLocation);
 		else:
 			map.set_cell(3,location,0,Vector2i(0,0))
+	TTS.stop()
 	if(levelDescription.length() >0):
 		TTS.addText(levelDescription,false);
 	describeLevel();

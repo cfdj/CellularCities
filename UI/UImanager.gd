@@ -66,15 +66,15 @@ func openMenu():
 	TTS.stop()
 	settingMenu.visible = true;
 	settingsOpen = true;
+	buildingMenu.visible = false;
 	level.playing = false;
-	settingMenu._on_visibility_changed()
+##	settingMenu._on_visibility_changed()
 	
 func closeMenu():
-	TTS.stop()
 	settingMenu.visible = false;
 	settingsOpen = false;
 	level.playing = true;
-
+	TTS.stop()
 
 func _on_menu_button_pressed():
 	openMenu();

@@ -10,7 +10,8 @@ func _ready():
 
 func _on_item_selected(index):
 	if(TTS.enabled):
-		TTS.addText(get_item_text(index),true)
+		var string = get_item_text(index) + " " + str(index+1) +" of " + str(item_count)
+		TTS.addText(string,true)
 ##res://Levels/Train1.tscn
 
 
@@ -22,4 +23,5 @@ func _on_visibility_changed():
 	if (visible):
 		grab_focus()
 		select(0)
-		TTS.addText(get_item_text(0),true)
+		var string =get_item_text(0) + " " + str(1) +" of " + str(item_count)
+		TTS.addText(string,true)
