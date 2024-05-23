@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=12 format=3 uid="uid://dsfsg1to7ip3v"]
 
-[ext_resource type="FontFile" uid="uid://tug14tpn6ba7" path="res://UI/Theme/Baskic8.otf" id="1_03xpr"]
+[ext_resource type="FontVariation" uid="uid://c0562vah56csx" path="res://UI/Theme/FontBaselineAdjusted.tres" id="1_pfoi0"]
 [ext_resource type="StyleBox" uid="uid://dl01mqnbuihai" path="res://UI/Theme/buttonHover.tres" id="2_dx1dr"]
 [ext_resource type="StyleBox" uid="uid://ceifrwtecpale" path="res://UI/Theme/buttonDefault.tres" id="3_7e0ul"]
 [ext_resource type="StyleBox" uid="uid://cyd5iq0lu7vcy" path="res://UI/Theme/buttonPressed.tres" id="4_dt2bi"]
@@ -19,7 +19,7 @@ vertical = true
 
 [resource]
 Button/font_sizes/font_size = 16
-Button/fonts/font = ExtResource("1_03xpr")
+Button/fonts/font = ExtResource("1_pfoi0")
 Button/styles/focus = ExtResource("2_dx1dr")
 Button/styles/hover = ExtResource("2_dx1dr")
 Button/styles/normal = ExtResource("3_7e0ul")
@@ -29,13 +29,13 @@ HScrollBar/styles/grabber_highlight = ExtResource("5_pr2xq")
 HScrollBar/styles/grabber_pressed = ExtResource("5_pr2xq")
 HScrollBar/styles/scroll = ExtResource("6_x5cr5")
 HSeparator/styles/separator = ExtResource("5_2uk4k")
-ItemList/fonts/font = ExtResource("1_03xpr")
+ItemList/fonts/font = ExtResource("1_pfoi0")
 ItemList/styles/focus = ExtResource("3_7e0ul")
 ItemList/styles/hovered = SubResource("StyleBoxFlat_efsmo")
 ItemList/styles/panel = ExtResource("5_vi1tl")
 ItemList/styles/selected = ExtResource("4_dt2bi")
 Label/font_sizes/font_size = 16
-Label/fonts/font = ExtResource("1_03xpr")
+Label/fonts/font = ExtResource("1_pfoi0")
 PanelContainer/styles/panel = ExtResource("6_fb7q5")
 VScrollBar/styles/grabber = ExtResource("5_pr2xq")
 VScrollBar/styles/grabber_highlight = ExtResource("5_pr2xq")

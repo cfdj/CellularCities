@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://c0562vah56csx"]
+
+[ext_resource type="FontFile" uid="uid://tug14tpn6ba7" path="res://UI/Theme/Baskic8.otf" id="1_jsovh"]
+
+[resource]
+base_font = ExtResource("1_jsovh")
+spacing_glyph = 1
+spacing_top = 4
+spacing_bottom = -2
