@@ -9,28 +9,30 @@ var speed:float = 1;
 var yNames = ["1","2","3","4","5","6","7","8"]
 var xNames = ["A","B","C","D","E","F","G","H"]
 var topLeft:Vector2i
+var id = 0;
 func _ready():
 	vString = DisplayServer.tts_get_voices_for_language("en")[0]
 	##DisplayServer.tts_stop();
 func addText(text:String,interrupt:bool):
 	if(enabled):
-		if(interrupt):
-			stop();
+		id+=1;
+		#if(interrupt):
+		#	stop();
 		if(vString == null):
 			vString = DisplayServer.tts_get_voices_for_language("en")[voice]
-		DisplayServer.tts_speak(text,vString,volume,1.0,speed)
-		#print(text)
-##Currently reads empty spaces and neighbours
+		DisplayServer.tts_speak(text,vString,volume,1.0,speed,id,interrupt)
+
+##Currently reads empty spaces and neighbours, followed by buildings to place
 ##Levels should probably have an introduction
-func readMap(playRegion:Array[Vector2i],map:TileMap,level:LevelManager):
-	addText("Describing City",false)
+func readMap(playRegion:Array[Vector2i],map:TileMap,level:LevelManager,buildings:Array[Building],description:String):
 	var bottomRight:Vector2i
 	var xMin = 9999;
 	var yMin = 9999;
 	var xMax = 0;
 	var yMax = 0;
-	##For alternative method
-	var speechString = ""
+	if(description.length()>0):
+		description += " "
+	var speechString =description+ "Describing City: "
 	for v in playRegion:
 		if(v.x<xMin or v.y<yMin):
 			xMin = v.x;
@@ -52,6 +54,10 @@ func readMap(playRegion:Array[Vector2i],map:TileMap,level:LevelManager):
 			##Alternative Method, reads much faster
 			if(playRegion.has(tempVector)):
 				speechString += readTile2(tempVector,map,level) + " "
+	speechString += " Buildings to place are:"
+	for b in buildings:
+		var string = " "+ str(b.name)+","
+		speechString+=string;
 	addText(speechString,false)
 
 func readtile(pos:Vector2i,map:TileMap,level:LevelManager):

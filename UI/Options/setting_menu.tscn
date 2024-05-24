@@ -152,7 +152,7 @@ theme = ExtResource("1_x8rk1")
 script = ExtResource("8_ev0pg")
 inputTypeSelect = NodePath("KeyTypeSelection")
 settingsButton = NodePath("Settings Button")
-includedButtons = Array[StringName]([&"Place", &"undo", &"Read", &"Inspect", &"Guide", &"Quit", &"Up", &"Down", &"Left", &"Right", &"ui_accept", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down"])
+includedButtons = Array[StringName]([&"Place", &"undo", &"Read", &"Inspect", &"Guide", &"Buildings", &"Quit", &"Up", &"Down", &"Left", &"Right", &"ui_accept", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down"])
 
 [node name="KeyTypeSelection" type="OptionButton" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer"]
 layout_mode = 2
@@ -175,7 +175,6 @@ focus_neighbor_bottom = NodePath("../../../BackButton")
 focus_previous = NodePath("../../../BackButton")
 text = "Settings"
 
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="focus_entered" from="VSplitContainer/BackButton" to="VSplitContainer/BackButton" method="_on_focus_entered"]
 [connection signal="visibility_changed" from="VSplitContainer/SettingsContainer" to="." method="_on_visibility_changed"]
 [connection signal="focus_entered" from="VSplitContainer/SettingsContainer/Text to speech enable" to="." method="speakCurrentOption"]

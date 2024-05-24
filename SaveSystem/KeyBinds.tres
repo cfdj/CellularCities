@@ -10,10 +10,10 @@ unicode = 32
 [sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_1cpsx"]
 device = -1
 
-[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_kay48"]
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_a62pk"]
 button_mask = 1
-position = Vector2(465.333, 146.667)
-global_position = Vector2(1636, 469)
+position = Vector2(243.667, 201)
+global_position = Vector2(971, 632)
 button_index = 1
 pressed = true
 
@@ -108,5 +108,5 @@ actionTracker = {
 "undo": false
 }
 eventActionMaps = {
-"Place": Array[InputEvent]([SubResource("InputEventKey_wto5u"), SubResource("InputEventJoypadButton_1cpsx"), SubResource("InputEventMouseButton_kay48")])
+"Place": Array[InputEvent]([SubResource("InputEventKey_wto5u"), SubResource("InputEventJoypadButton_1cpsx"), SubResource("InputEventMouseButton_a62pk")])
 }

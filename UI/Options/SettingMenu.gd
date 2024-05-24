@@ -27,8 +27,7 @@ func _ready():
 	var voices = DisplayServer.tts_get_voices_for_language("en")
 	for v in range(voices.size()):
 		TTSVoiceSelector.add_item("Voice " + str(v+1))
-	if(visible):
-		control1.grab_focus()
+
 func speakCurrentOption():
 	var current:Control = get_viewport().gui_get_focus_owner()
 	if(current !=null && current.visible):
@@ -61,7 +60,7 @@ func _on_keyboard_toggled(toggled_on):
 func _on_visibility_changed():
 	if(visible):
 		control1.grab_focus()
-		speakCurrentOption()
+		#speakCurrentOption()
 
 
 func _on_volume_control_value_changed(value):
@@ -101,7 +100,7 @@ func _on_settings_button_pressed():
 	SettingsContainer.visible = true;
 	KeyBindingsContainer.visible = false;
 	control1.grab_focus()
-	speakCurrentOption()
+
 	#set_size(Vector2(128,216),true)
 	#set_position(Vector2(179,105))
 	#control1.grab_focus()

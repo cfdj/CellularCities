@@ -54,5 +54,5 @@ func getPositionString(current:Control) ->String:
 	for f in MenuChildren:
 		if((f as Control).focus_mode != FOCUS_NONE):
 			focusables.append(f);
-	var string = str(focusables.find(current)+1) + " of " + str(focusables.size())
+	var string = " " +str(focusables.find(current)+1) + " of " + str(focusables.size())
 	return string

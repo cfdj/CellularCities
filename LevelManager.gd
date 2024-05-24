@@ -45,10 +45,8 @@ func _ready():
 		else:
 			map.set_cell(3,location,0,Vector2i(0,0))
 	TTS.stop()
-	if(levelDescription.length() >0):
-		TTS.addText(levelDescription,false);
-	describeLevel();
-	describeBuildings();
+
+	describeLevel(true);
 
 func _physics_process(delta):
 	if playing:
@@ -82,10 +80,6 @@ func _physics_process(delta):
 					map.set_cell(3,location,0,Vector2i(0,0))
 				describeSquare(location);
 			previousLocation = location;
-		if(Input.is_action_just_pressed("Place")&&playRegion.has(location)):
-			checkPlace(location);
-		if(Input.is_action_just_pressed("undo")):
-			undo();
 
 func checkPlace(currentLocation):
 	var valid = true;
@@ -150,10 +144,11 @@ func undo():
 		clearHint();
 		hint();
 func finishLevel():
+	playing = false;
 	TTS.stop();
 	SoundEffects.levelDoneSound();
+	await get_tree().create_timer(0.2).timeout
 	ui.showNextlevelButton();
-	playing = false;
 	ui.updateScore(map,playRegion);
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i) ==null):
@@ -184,10 +179,13 @@ func clearHint():
 	for i in playRegion:
 		map.erase_cell(2,i);
 
-func describeLevel():
+func describeLevel(startOfLevel:bool):
 	if (TTS.enabled):
 		##await get_tree().process_frame
-		TTS.readMap(playRegion,map,self)
+		if(startOfLevel):
+			TTS.readMap(playRegion,map,self,listOfBuildings,levelDescription)
+		else:
+			TTS.readMap(playRegion,map,self,listOfBuildings,"")
 func describeSquare(pos:Vector2i):
 	if(TTS.enabled):
 		var string = TTS.readTile2(pos,map,self)
@@ -213,6 +211,17 @@ func inspect():
 func _input(event):
 	if(event.is_action_pressed("Read")):
 		TTS.stop();
-		describeLevel();
+		describeLevel(false);
 	if(event.is_action_pressed("Inspect")):
 		inspect();
+	if(event.is_action_pressed("Buildings")):
+		describeBuildings()
+	if(playing):
+		if(event.is_action_pressed("Place")&&playRegion.has(location)):
+			if(mouse && (event is InputEventMouse)):
+				checkPlace(location);
+			else:
+				if(event is InputEventKey or event is InputEventJoypadButton):
+					checkPlace(location)
+		if(event.is_action_pressed("undo")):
+			undo();

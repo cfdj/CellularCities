@@ -79,7 +79,6 @@ func _on_settings_button_focus_entered():
 
 func _on_visibility_changed():
 	if(visible):
-		print("keybinds menu visible")
 		inputTypeSelect.grab_focus()
 
 
