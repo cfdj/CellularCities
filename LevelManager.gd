@@ -28,8 +28,6 @@ static var mouse = false;
 @export var levelDescription:String
 func _ready():
 	currentBuilding = listOfBuildings[current];
-	
-	
 	playRegion = map.get_used_cells_by_id(2,0,playRegionMarker)
 	for i in playRegion:
 		map.erase_cell(2,i);
@@ -57,10 +55,20 @@ func _physics_process(delta):
 		elif !mouse:
 			var vertical = Vector2i(0,0)
 			if(Input.is_action_just_pressed("Up")or Input.is_action_just_pressed("Down")):
-				vertical = Vector2i(Vector2i(0,1)*Input.get_axis("Up","Down"))
+				var value = Input.get_axis("Up","Down")
+				if(value<0):
+					value = -1;
+				else:
+					value = 1;
+				vertical = Vector2i(Vector2i(0,1)*value)
 			var horizontal =  Vector2i(0,0)
 			if(Input.is_action_just_pressed("Left")or Input.is_action_just_pressed("Right")):
-				horizontal = Vector2i(Vector2i(1,0)*Input.get_axis("Left","Right"));
+				var value = Input.get_axis("Left","Right")
+				if(value<0):
+					value = -1;
+				else:
+					value = 1;
+				horizontal = Vector2i(Vector2i(1,0)*value);
 			location += horizontal
 			if(!playRegion.has(location)):
 				location -= horizontal;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3c143nxhgp12"]
+[gd_scene load_steps=9 format=3 uid="uid://d3c143nxhgp12"]
 
 [ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_x8rk1"]
 [ext_resource type="Script" path="res://UI/Options/SettingMenu.gd" id="3_uhlcx"]
@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://drndgy3a8ov1b" path="res://UI/Theme/backButtonHover.tres" id="5_ywbtw"]
 [ext_resource type="StyleBox" uid="uid://h8hodjnduqvs" path="res://UI/Theme/backButtonPressed.tres" id="6_0nt83"]
 [ext_resource type="Script" path="res://UI/BackButton.gd" id="7_72vym"]
+[ext_resource type="Script" path="res://UI/Options/SensitivitySlider.gd" id="8_3vsk5"]
 [ext_resource type="Script" path="res://UI/Options/KeyBindingsMenu.gd" id="8_ev0pg"]
 
 [node name="SettingMenu" type="PanelContainer" node_paths=PackedStringArray("control1", "volume", "TTSVolume", "TTSRate", "keyboardToggle", "TTSToggle", "TTSVoiceSelector", "SettingsContainer", "KeyBindingsContainer")]
@@ -144,7 +145,7 @@ size_flags_vertical = 3
 follow_focus = true
 horizontal_scroll_mode = 0
 
-[node name="KeyBindingsContainer" type="VBoxContainer" parent="VSplitContainer/ScrollContainer" node_paths=PackedStringArray("inputTypeSelect", "settingsButton")]
+[node name="KeyBindingsContainer" type="VBoxContainer" parent="VSplitContainer/ScrollContainer" node_paths=PackedStringArray("inputTypeSelect", "settingsButton", "ControllerSensitivity", "scrollContainer")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -152,22 +153,48 @@ theme = ExtResource("1_x8rk1")
 script = ExtResource("8_ev0pg")
 inputTypeSelect = NodePath("KeyTypeSelection")
 settingsButton = NodePath("Settings Button")
+ControllerSensitivity = NodePath("SplitContainer")
 includedButtons = Array[StringName]([&"Place", &"undo", &"Read", &"Inspect", &"Guide", &"Buildings", &"Quit", &"Up", &"Down", &"Left", &"Right", &"ui_accept", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down"])
+scrollContainer = NodePath("..")
 
 [node name="KeyTypeSelection" type="OptionButton" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../../../BackButton")
 focus_neighbor_bottom = NodePath("../Reset")
+focus_next = NodePath("../Reset")
 
 [node name="Reset" type="Button" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../KeyTypeSelection")
+focus_neighbor_bottom = NodePath("../SplitContainer/ControllerSensitivity")
+focus_next = NodePath("../SplitContainer/ControllerSensitivity")
 theme = ExtResource("1_x8rk1")
 theme_override_styles/normal = ExtResource("4_ooa7t")
 theme_override_styles/hover = ExtResource("5_ywbtw")
 theme_override_styles/pressed = ExtResource("6_0nt83")
 theme_override_styles/focus = ExtResource("5_ywbtw")
 text = "Reset to Defaults"
+
+[node name="SplitContainer" type="SplitContainer" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer" node_paths=PackedStringArray("sensitivitySlider")]
+visible = false
+layout_mode = 2
+dragger_visibility = 2
+vertical = true
+script = ExtResource("8_3vsk5")
+sensitivitySlider = NodePath("ControllerSensitivity")
+
+[node name="SensitivtyLabel" type="Label" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer"]
+layout_mode = 2
+text = "Controller Sensitivity"
+
+[node name="ControllerSensitivity" type="HSlider" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Reset")
+focus_previous = NodePath("../../Reset")
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.5
 
 [node name="Settings Button" type="Button" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer"]
 layout_mode = 2
@@ -203,5 +230,9 @@ text = "Settings"
 [connection signal="item_selected" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/KeyTypeSelection" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_key_type_selection_item_selected"]
 [connection signal="focus_entered" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/Reset" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_reset_focus_entered"]
 [connection signal="pressed" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/Reset" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_reset_pressed"]
+[connection signal="focus_entered" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer/ControllerSensitivity" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_controller_sensitivity_focus_entered"]
+[connection signal="focus_exited" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer/ControllerSensitivity" to="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer" method="_on_controller_sensitivity_focus_exited"]
+[connection signal="value_changed" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer/ControllerSensitivity" to="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer" method="_on_controller_sensitivity_value_changed"]
+[connection signal="visibility_changed" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer/ControllerSensitivity" to="VSplitContainer/ScrollContainer/KeyBindingsContainer/SplitContainer" method="_on_controller_sensitivity_visibility_changed"]
 [connection signal="focus_entered" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/Settings Button" to="VSplitContainer/ScrollContainer/KeyBindingsContainer" method="_on_settings_button_focus_entered"]
 [connection signal="pressed" from="VSplitContainer/ScrollContainer/KeyBindingsContainer/Settings Button" to="." method="_on_settings_button_pressed"]
