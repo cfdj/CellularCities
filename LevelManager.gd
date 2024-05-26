@@ -26,7 +26,12 @@ static var mouse = false;
 
 @export var forestLevel:bool
 @export var levelDescription:String
+
+##For camera Zoom
+var camera:CameraZoom
+
 func _ready():
+	camera = get_node("%Camera2D")
 	currentBuilding = listOfBuildings[current];
 	playRegion = map.get_used_cells_by_id(2,0,playRegionMarker)
 	for i in playRegion:
@@ -88,6 +93,7 @@ func _physics_process(delta):
 					map.set_cell(3,location,0,Vector2i(0,0))
 				describeSquare(location);
 			previousLocation = location;
+			camera.move(map.to_global(map.map_to_local(location)))
 
 func checkPlace(currentLocation):
 	var valid = true;

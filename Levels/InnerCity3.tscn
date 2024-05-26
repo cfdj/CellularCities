@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddegkp4dxf1ye"]
+[gd_scene load_steps=5 format=3 uid="uid://ddegkp4dxf1ye"]
 
 [ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_ccbu3"]
 [ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="1_cj1c8"]
 [ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_2kd6v"]
+[ext_resource type="PackedScene" uid="uid://doxk5o2fk6tkc" path="res://Zoom/zoomCamera.tscn" id="4_6tfhp"]
 
 [node name="PlacingPuzzle" type="Node2D"]
 
@@ -17,15 +18,16 @@ layer_0/name = "Buildings"
 layer_0/y_sort_enabled = true
 layer_0/z_index = 1
 layer_0/navigation_enabled = false
+layer_0/tile_data = PackedInt32Array(-65530, 65536, 3, 6, 65536, 4, 65542, 65536, 4, 131078, 65536, 4, 196614, 65536, 3, -65529, 65536, 3, 196615, 65536, 3, -65528, 65536, 3, 65544, 0, 1, 196616, 65536, 3, -65527, 65536, 3, 196617, 65536, 3, -65526, 65536, 3, 10, 65536, 4, 65546, 65536, 4, 131082, 65536, 4, 196618, 65536, 3)
 layer_1/name = "Ground"
 layer_1/y_sort_enabled = true
 layer_1/navigation_enabled = false
-layer_1/tile_data = PackedInt32Array(8, 65537, 0, 65544, 1, 0, 131080, 1, 0, 196616, 1, 0, 262152, 1, 0, 327688, 1, 1, 9, 131073, 0, 65545, 65537, 1, 131081, 65537, 1, 196617, 65537, 1, 262153, 65537, 1, 327689, 1, 2, 10, 131073, 0, 65546, 65537, 1, 131082, 65537, 1, 196618, 65537, 1, 262154, 65537, 1, 327690, 1, 2, 11, 131073, 0, 65547, 65537, 1, 131083, 65537, 1, 196619, 65537, 1, 262155, 65537, 1, 327691, 1, 2, 12, 131073, 0, 65548, 65537, 1, 131084, 65537, 1, 196620, 65537, 1, 262156, 65537, 1, 327692, 1, 2, 13, 131073, 1, 65549, 131073, 2, 131085, 131073, 2, 196621, 131073, 2, 262157, 131073, 2, 327693, 65537, 2)
+layer_1/tile_data = PackedInt32Array(8, 65537, 1, 65544, 65537, 1, 131080, 65537, 1, 196616, 65537, 1, 262152, 1, 2, 9, 65537, 1, 65545, 65537, 1, 131081, 65537, 1, 196617, 65537, 1, 262153, 1, 2, 10, 65537, 1, 65546, 65537, 1, 131082, 65537, 1, 196618, 65537, 1, 262154, 1, 2, 11, 131073, 2, 65547, 131073, 2, 131083, 131073, 2, 196619, 131073, 2, 262155, 65537, 2, -65530, 65537, 0, 6, 1, 0, 65542, 1, 0, 131078, 1, 0, 196614, 1, 0, 262150, 1, 1, -65529, 131073, 0, 7, 65537, 1, 65543, 65537, 1, 131079, 65537, 1, 196615, 65537, 1, 262151, 1, 2, -65528, 131073, 0, -65527, 131073, 0, -65526, 131073, 0, -65525, 131073, 1)
 layer_2/name = "Indicator"
 layer_2/y_sort_enabled = true
 layer_2/z_index = 1
 layer_2/navigation_enabled = false
-layer_2/tile_data = PackedInt32Array(8, 65536, 3, 65544, 65536, 4, 131080, 65536, 4, 196616, 65536, 4, 262152, 65536, 3, 9, 65536, 3, 65545, 262144, 5, 131081, 262144, 5, 196617, 262144, 5, 262153, 65536, 3, 10, 65536, 3, 65546, 262144, 5, 131082, 0, 1, 196618, 262144, 5, 262154, 65536, 3, 11, 65536, 3, 65547, 262144, 5, 131083, 262144, 5, 196619, 262144, 5, 262155, 65536, 3, 12, 65536, 3, 65548, 65536, 4, 131084, 65536, 4, 196620, 65536, 4, 262156, 65536, 3)
+layer_2/tile_data = PackedInt32Array(-65530, 262144, 5, 6, 262144, 5, 65542, 262144, 5, 131078, 262144, 5, 196614, 262144, 5, -65529, 262144, 5, 7, 262144, 5, 65543, 262144, 5, 131079, 262144, 5, 196615, 262144, 5, -65528, 262144, 5, 8, 262144, 5, 65544, 262144, 5, 131080, 262144, 5, 196616, 262144, 5, -65527, 262144, 5, 9, 262144, 5, 65545, 262144, 5, 131081, 262144, 5, 196617, 262144, 5, -65526, 262144, 5, 10, 262144, 5, 65546, 262144, 5, 131082, 262144, 5, 196618, 262144, 5)
 layer_3/name = "Cursor"
 layer_3/y_sort_enabled = true
 layer_3/z_index = 1
@@ -36,5 +38,8 @@ layer_3/tile_data = PackedInt32Array()
 map = NodePath("..")
 listOfBuildings = [NodePath("Flats"), NodePath("Office"), NodePath("Flats"), NodePath("Flats"), NodePath("Cinema"), NodePath("Flats"), NodePath("Cinema"), NodePath("Flats")]
 ui = NodePath("../../UI")
+
+[node name="Camera2D" parent="." instance=ExtResource("4_6tfhp")]
+unique_name_in_owner = true
 
 [editable path="TileMap/LevelManager"]

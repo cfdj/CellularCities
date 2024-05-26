@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6ywjoriqr6se"]
+[gd_scene load_steps=5 format=3 uid="uid://c6ywjoriqr6se"]
 
 [ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_h07ln"]
 [ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_gq2l5"]
 [ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="3_swe8q"]
+[ext_resource type="PackedScene" uid="uid://doxk5o2fk6tkc" path="res://Zoom/zoomCamera.tscn" id="4_lol5n"]
 
 [node name="PlacingPuzzle" type="Node2D"]
 
@@ -14,16 +15,16 @@ layer_0/name = "Buildings"
 layer_0/y_sort_enabled = true
 layer_0/z_index = 1
 layer_0/navigation_enabled = false
-layer_0/tile_data = PackedInt32Array(131081, 65536, 0, 131083, 196608, 5, 65545, 262144, 3, 65546, 65536, 5, 65547, 131072, 5, 196619, 0, 6)
+layer_0/tile_data = PackedInt32Array(131082, 196608, 5, 65544, 262144, 3, 131080, 65536, 0, 65545, 65536, 5, 65546, 131072, 5, 196618, 0, 6)
 layer_1/name = "Ground"
 layer_1/y_sort_enabled = true
 layer_1/navigation_enabled = false
-layer_1/tile_data = PackedInt32Array(65545, 65537, 0, 131081, 65537, 1, 196617, 1, 0, 65546, 131073, 0, 131082, 65537, 1, 196618, 65537, 1, 65547, 131073, 0, 131083, 65537, 1, 196619, 65537, 1, 262156, 65537, 2, 196620, 131073, 2, 131084, 131073, 2, 262155, 1, 2, 262154, 1, 2, 262153, 1, 1, 65548, 131073, 1)
+layer_1/tile_data = PackedInt32Array(65545, 131073, 0, 131081, 65537, 1, 196617, 65537, 1, 262153, 1, 2, 65546, 131073, 0, 131082, 65537, 1, 196618, 65537, 1, 262154, 1, 2, 65547, 131073, 1, 131083, 131073, 2, 196619, 131073, 2, 262155, 65537, 2, 65544, 65537, 0, 131080, 65537, 1, 196616, 1, 0, 262152, 1, 1)
 layer_2/name = "Indicator"
 layer_2/y_sort_enabled = true
 layer_2/z_index = 1
 layer_2/navigation_enabled = false
-layer_2/tile_data = PackedInt32Array(196619, 262144, 5, 196618, 262144, 5, 196617, 262144, 5, 65545, 262144, 5, 65546, 262144, 5, 65547, 262144, 5, 131083, 262144, 5, 131082, 262144, 5, 131081, 262144, 5)
+layer_2/tile_data = PackedInt32Array(65545, 262144, 5, 131081, 262144, 5, 196617, 262144, 5, 65546, 262144, 5, 131082, 262144, 5, 196618, 262144, 5, 65544, 262144, 5, 131080, 262144, 5, 196616, 262144, 5)
 layer_3/name = "Cursor"
 layer_3/y_sort_enabled = true
 layer_3/z_index = 1
@@ -37,5 +38,8 @@ ui = NodePath("../../UI")
 
 [node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_swe8q")]
 level = NodePath("../TileMap/LevelManager")
+
+[node name="Camera2D" parent="." instance=ExtResource("4_lol5n")]
+unique_name_in_owner = true
 
 [editable path="TileMap/LevelManager"]

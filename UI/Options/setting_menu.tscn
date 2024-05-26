@@ -37,9 +37,9 @@ layout_mode = 2
 dragger_visibility = 2
 
 [node name="BackButton" type="Button" parent="VSplitContainer"]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 0
 theme = ExtResource("1_x8rk1")
 theme_override_styles/normal = ExtResource("4_ooa7t")
 theme_override_styles/hover = ExtResource("5_ywbtw")
@@ -59,7 +59,6 @@ focus_neighbor_bottom = NodePath("../Volume Control")
 focus_next = NodePath("../TTS Volume Control")
 focus_previous = NodePath("../Volume Control")
 theme = ExtResource("1_x8rk1")
-button_pressed = true
 text = "TTS"
 
 [node name="Sound Volume" type="Label" parent="VSplitContainer/SettingsContainer"]
