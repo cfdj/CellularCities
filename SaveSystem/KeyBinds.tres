@@ -1,34 +1,22 @@
-[gd_resource type="Resource" script_class="KeyBindings" load_steps=5 format=3 uid="uid://biyfr8w1qd58i"]
+[gd_resource type="Resource" script_class="KeyBindings" load_steps=2 format=3 uid="uid://biyfr8w1qd58i"]
 
 [ext_resource type="Script" path="res://KeyBindings.gd" id="1_qm44j"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_wto5u"]
-device = -1
-physical_keycode = 32
-unicode = 32
-
-[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_1cpsx"]
-device = -1
-
-[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_a62pk"]
-button_mask = 1
-position = Vector2(243.667, 201)
-global_position = Vector2(971, 632)
-button_index = 1
-pressed = true
 
 [resource]
 script = ExtResource("1_qm44j")
 actionTracker = {
+"Buildings": false,
 "Down": false,
 "Guide": false,
 "Inspect": false,
 "Left": false,
-"Place": true,
+"Place": false,
 "Quit": false,
 "Read": false,
 "Right": false,
 "Up": false,
+"ZoomIn": false,
+"ZoomOut": false,
 "ui_accept": false,
 "ui_cancel": false,
 "ui_copy": false,
@@ -107,6 +95,4 @@ actionTracker = {
 "ui_up": false,
 "undo": false
 }
-eventActionMaps = {
-"Place": Array[InputEvent]([SubResource("InputEventKey_wto5u"), SubResource("InputEventJoypadButton_1cpsx"), SubResource("InputEventMouseButton_a62pk")])
-}
+eventActionMaps = {}

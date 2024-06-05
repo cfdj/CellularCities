@@ -24,7 +24,7 @@ func setAction(newAction:StringName,newInput:InputEvent):
 	elif input is InputEventJoypadMotion:
 		buttonId = input.as_text()
 	elif input is InputEventMouseButton:
-		var mask = input.button_mask
+		var mask = input.button_index
 		match mask:
 			1:
 				buttonId = "Left Mouse"

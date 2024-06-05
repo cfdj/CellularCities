@@ -153,7 +153,7 @@ script = ExtResource("8_ev0pg")
 inputTypeSelect = NodePath("KeyTypeSelection")
 settingsButton = NodePath("Settings Button")
 ControllerSensitivity = NodePath("SplitContainer")
-includedButtons = Array[StringName]([&"Place", &"undo", &"Read", &"Inspect", &"Guide", &"Buildings", &"Quit", &"Up", &"Down", &"Left", &"Right", &"ui_accept", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down"])
+includedButtons = Array[StringName]([&"Place", &"undo", &"Read", &"Inspect", &"Guide", &"Buildings", &"Quit", &"Up", &"Down", &"Left", &"Right", &"ZoomIn", &"ZoomOut", &"ui_accept", &"ui_cancel", &"ui_focus_next", &"ui_focus_prev", &"ui_left", &"ui_right", &"ui_up", &"ui_down"])
 scrollContainer = NodePath("..")
 
 [node name="KeyTypeSelection" type="OptionButton" parent="VSplitContainer/ScrollContainer/KeyBindingsContainer"]

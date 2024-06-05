@@ -21,6 +21,7 @@ func _ready():
 	if(mouse == null):
 		mouse = LevelManager.mouse
 		Saver.save("Mouse",mouse)
+	LevelManager.mouse = mouse;
 	keyboardToggle.set_pressed_no_signal(!mouse)
 	TTSToggle.set_pressed_no_signal(TTS.enabledGet())
 	print("Setting voices")

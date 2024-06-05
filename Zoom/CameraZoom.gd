@@ -6,12 +6,14 @@ var currentCenter:Vector2=Vector2(240,160)
 
 var zoomLevels:Array[Vector2] = [Vector2(1,1),Vector2(2,2),Vector2(4,4)]
 var currentLevel = 0;
+var level:LevelManager
 
 func _input(event):
-	if(event.is_action_pressed("ZoomIn")):
-		zoomIn()
-	elif (event.is_action_pressed("ZoomOut")):
-		zoomOut()
+	if(level.playing):
+		if(event.is_action_pressed("ZoomIn")):
+			zoomIn()
+		elif (event.is_action_pressed("ZoomOut")):
+			zoomOut()
 
 func zoomIn():
 	currentLevel+=1;

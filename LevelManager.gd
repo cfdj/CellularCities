@@ -32,6 +32,7 @@ var camera:CameraZoom
 
 func _ready():
 	camera = get_node("%Camera2D")
+	camera.level = self
 	currentBuilding = listOfBuildings[current];
 	playRegion = map.get_used_cells_by_id(2,0,playRegionMarker)
 	for i in playRegion:
@@ -92,8 +93,8 @@ func _physics_process(delta):
 				else:
 					map.set_cell(3,location,0,Vector2i(0,0))
 				describeSquare(location);
+				camera.move(map.to_global(map.map_to_local(location)))
 			previousLocation = location;
-			camera.move(map.to_global(map.map_to_local(location)))
 
 func checkPlace(currentLocation):
 	var valid = true;
@@ -158,6 +159,8 @@ func undo():
 		clearHint();
 		hint();
 func finishLevel():
+	camera.zoomOut();
+	camera.zoomOut();
 	playing = false;
 	TTS.stop();
 	SoundEffects.levelDoneSound();
@@ -232,8 +235,12 @@ func _input(event):
 		describeBuildings()
 	if(playing):
 		if(event.is_action_pressed("Place")&&playRegion.has(location)):
-			if(mouse && (event is InputEventMouse)):
-				checkPlace(location);
+			if(event is InputEventMouse):
+				var mousePos = get_viewport().get_mouse_position();
+				var tempLocation = map.to_local(mousePos);
+				tempLocation = map.local_to_map(mousePos);
+				if(playRegion.has(tempLocation)):
+					checkPlace(location);
 			else:
 				if(event is InputEventKey or event is InputEventJoypadButton):
 					checkPlace(location)

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_cnrx8"]
 [ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="2_dqio8"]
-[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://Building.tscn" id="3_ntjqv"]
+[ext_resource type="PackedScene" uid="uid://4455mml58hw2" path="res://BuildingTypes/Building.tscn" id="3_ntjqv"]
 [ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="4_w35l1"]
 
 [node name="PlacingPuzzle" type="Node2D"]

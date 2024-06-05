@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://4455mml58hw2"]
 
-[ext_resource type="Script" path="res://Building.gd" id="1_ho44y"]
+[ext_resource type="Script" path="res://BuildingTypes/Building.gd" id="1_ho44y"]
 [ext_resource type="Texture2D" uid="uid://y3po8f87p8e5" path="res://Buildings.png" id="2_uwiy3"]
 
 [node name="Building" type="Node2D"]
