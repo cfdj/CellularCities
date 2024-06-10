@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c1ytwyysk4sk8"]
+
+[ext_resource type="Shader" path="res://BuildAnimations/Shaders/buildingLoad.gdshader" id="1_gdtb2"]
+
+[resource]
+shader = ExtResource("1_gdtb2")
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 16.0

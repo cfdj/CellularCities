@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://biatk7c5qbtsk"]
+[gd_scene load_steps=9 format=3 uid="uid://biatk7c5qbtsk"]
 
 [ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_1ulmj"]
+[ext_resource type="Script" path="res://BuildAnimations/Shaders/TileMapVFX.gd" id="2_1muna"]
 [ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_caa40"]
 [ext_resource type="SpriteFrames" uid="uid://nb33gphoolpi" path="res://BuildAnimations/treeAnimation.tres" id="3_7ikm0"]
+[ext_resource type="Material" uid="uid://bgdldorgbogrn" path="res://BuildAnimations/Shaders/tileLoadMaterial.tres" id="3_u8p58"]
+[ext_resource type="Material" uid="uid://c1ytwyysk4sk8" path="res://BuildAnimations/Shaders/buildingLoadMaterial.tres" id="4_6ohv7"]
 [ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="4_7g6mg"]
 [ext_resource type="PackedScene" uid="uid://doxk5o2fk6tkc" path="res://Zoom/zoomCamera.tscn" id="5_uakwq"]
 
@@ -31,6 +34,9 @@ layer_3/y_sort_enabled = true
 layer_3/z_index = 1
 layer_3/navigation_enabled = false
 layer_3/tile_data = PackedInt32Array()
+script = ExtResource("2_1muna")
+tileLoadShader = ExtResource("3_u8p58")
+buildingLoadShader = ExtResource("4_6ohv7")
 
 [node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_caa40")]
 map = NodePath("..")

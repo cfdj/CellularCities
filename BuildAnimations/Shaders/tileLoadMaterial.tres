@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bgdldorgbogrn"]
+
+[ext_resource type="Shader" path="res://BuildAnimations/Shaders/tileLoad.gdshader" id="1_81kpw"]
+
+[resource]
+shader = ExtResource("1_81kpw")
+shader_parameter/progress = 0.0
+shader_parameter/meltiness = 16.0
