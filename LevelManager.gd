@@ -31,6 +31,7 @@ static var mouse = false;
 var camera:CameraZoom
 
 func _ready():
+	
 	camera = get_node("%Camera2D")
 	camera.level = self
 	currentBuilding = listOfBuildings[current];
@@ -59,6 +60,9 @@ func _physics_process(delta):
 			location = map.to_local(mousePos);
 			location = map.local_to_map(mousePos);
 		elif !mouse:
+			##For when mouse is switched off
+			if(!playRegion.has(location)):
+				location = playRegion[0];
 			var vertical = Vector2i(0,0)
 			if(Input.is_action_just_pressed("Up")or Input.is_action_just_pressed("Down")):
 				var value = Input.get_axis("Up","Down")

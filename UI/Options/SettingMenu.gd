@@ -9,7 +9,7 @@ class_name SettingMenu extends PanelContainer
 @export var TTSToggle:CheckButton;
 
 @export var TTSVoiceSelector:OptionButton;
-
+var mouse;
 @export_category("Sub menus")
 @export var SettingsContainer:Control;
 @export var KeyBindingsContainer:Control;
@@ -17,7 +17,7 @@ func _ready():
 	volume.set_value_no_signal(SoundEffects.getVolume());
 	TTSVolume.set_value_no_signal(TTS.volumeGet());
 	TTSRate.set_value_no_signal(TTS.speedGet());
-	var mouse = Saver.getSettingValue("Mouse")
+	mouse = Saver.getSettingValue("Mouse")
 	if(mouse == null):
 		mouse = LevelManager.mouse
 		Saver.save("Mouse",mouse)
@@ -57,6 +57,7 @@ func _on_tts_rate_control_drag_ended(value_changed):
 func _on_keyboard_toggled(toggled_on):
 	LevelManager.mouse = !toggled_on;
 	TTS.addText(str(toggled_on),true)
+	Saver.save("Mouse",!toggled_on);
 
 func _on_visibility_changed():
 	if(visible):

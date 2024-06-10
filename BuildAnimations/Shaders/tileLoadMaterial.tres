@@ -4,5 +4,5 @@
 
 [resource]
 shader = ExtResource("1_81kpw")
-shader_parameter/progress = 0.0
+shader_parameter/progress = 1.0
 shader_parameter/meltiness = 16.0
