@@ -36,6 +36,7 @@ func pushBuildingList(building:Building):
 func showNextlevelButton():
 	nextLevel.visible = true;
 	nextLevel.grab_focus()
+	scoreDisplay.levelEnd()
 	TTS.addText("Next level",false)
 func _on_next_level_button_pressed():
 	TTS.stop();

@@ -1,14 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bndycms8l1fud"]
+[gd_scene load_steps=4 format=3 uid="uid://bndycms8l1fud"]
 
 [ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_pfwla"]
 [ext_resource type="Script" path="res://UI/ScoreDisplay.gd" id="2_28w5n"]
+[ext_resource type="PackedScene" uid="uid://l1qjswkdpy8u" path="res://BuildAnimations/likeAnimationSprite.tscn" id="3_lqmbm"]
 
 [node name="ScoreDisplay" type="Label"]
-offset_right = 40.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.5
+offset_right = 36.5
 offset_bottom = 23.0
+grow_horizontal = 2
 theme = ExtResource("1_pfwla")
 text = "Score: 00"
+horizontal_alignment = 1
 vertical_alignment = 2
 script = ExtResource("2_28w5n")
 BuildingScore = 50
 LikesBonus = 25
+likeAnimation = ExtResource("3_lqmbm")

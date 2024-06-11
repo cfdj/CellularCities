@@ -11,7 +11,6 @@ func setItemList(buildings:Array[Building]):
 
 func popItemList():
 	remove_item(0);
-	pass
 
 func pushItemList(building:Building):
 	##Add the current Building back to ItemList
@@ -20,4 +19,3 @@ func pushItemList(building:Building):
 	var texture = ImageTexture.create_from_image(image.get_region(Rect2(tileWidth*building.spriteLocation.x,tileHeight*building.spriteLocation.y,tileWidth,tileHeight)))
 	add_icon_item(texture,false);
 	move_item(item_count-1,0);
-	pass;

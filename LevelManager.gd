@@ -31,7 +31,6 @@ static var mouse = false;
 var camera:CameraZoom
 
 func _ready():
-	
 	camera = get_node("%Camera2D")
 	camera.level = self
 	currentBuilding = listOfBuildings[current];
@@ -170,7 +169,7 @@ func finishLevel():
 	SoundEffects.levelDoneSound();
 	await get_tree().create_timer(0.2).timeout
 	ui.showNextlevelButton();
-	ui.updateScore(map,playRegion);
+	ui.updateScore(map,listOfPlaced);
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i) ==null):
 			var fillLocation

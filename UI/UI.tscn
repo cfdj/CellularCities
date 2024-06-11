@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://nkuhehrwbpbk"]
+[gd_scene load_steps=11 format=3 uid="uid://nkuhehrwbpbk"]
 
 [ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_0awcs"]
 [ext_resource type="Script" path="res://UI/UImanager.gd" id="1_0w6w4"]
 [ext_resource type="Script" path="res://BuildingList.gd" id="2_kj2cp"]
 [ext_resource type="PackedScene" uid="uid://bndycms8l1fud" path="res://UI/score_display.tscn" id="3_wj8a3"]
+[ext_resource type="Texture2D" uid="uid://6cq5e0xl1i2f" path="res://UI/BuildingMenu/Line.png" id="4_i14xn"]
 [ext_resource type="PackedScene" uid="uid://dm3wak0gke5nq" path="res://UI/BuildingMenu/building_menu.tscn" id="4_witi0"]
 [ext_resource type="StyleBox" uid="uid://45sap28j1yvh" path="res://UI/Theme/backButtonDefault.tres" id="6_seiak"]
 [ext_resource type="StyleBox" uid="uid://drndgy3a8ov1b" path="res://UI/Theme/backButtonHover.tres" id="6_xqbjd"]
@@ -46,6 +47,18 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_0awcs")
 script = ExtResource("2_kj2cp")
+
+[node name="TextureRect" type="TextureRect" parent="BuildingList"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_right = 31.0
+offset_bottom = 54.0
+grow_horizontal = 2
+texture = ExtResource("4_i14xn")
+stretch_mode = 2
 
 [node name="ScoreDisplay" parent="." instance=ExtResource("3_wj8a3")]
 offset_right = 68.0
