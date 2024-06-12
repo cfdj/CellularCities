@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://k8yyggquwa4o"]
+[gd_scene load_steps=9 format=3 uid="uid://k8yyggquwa4o"]
 
 [ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_rg5vr"]
 [ext_resource type="Script" path="res://BuildAnimations/Shaders/TileMapVFX.gd" id="2_a023a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="3_olj8w"]
 [ext_resource type="PackedScene" uid="uid://doxk5o2fk6tkc" path="res://Zoom/zoomCamera.tscn" id="4_ei283"]
 [ext_resource type="Material" uid="uid://c1ytwyysk4sk8" path="res://BuildAnimations/Shaders/buildingLoadMaterial.tres" id="4_utr10"]
+[ext_resource type="PackedScene" uid="uid://1jrr7ftojrvf" path="res://BuildAnimations/AnimationScenes/hatesAnimationSprite.tscn" id="6_inxru"]
 
 [node name="PlacingPuzzle" type="Node2D"]
 
@@ -40,6 +41,7 @@ buildingLoadShader = ExtResource("4_utr10")
 [node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_atogg")]
 map = NodePath("..")
 listOfBuildings = [NodePath("Flats"), NodePath("Foundry"), NodePath("Flats"), NodePath("Foundry"), NodePath("Flats")]
+hatesAnimationSprite = ExtResource("6_inxru")
 ui = NodePath("../../UI")
 
 [node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_olj8w")]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://1jrr7ftojrvf"]
+
+[ext_resource type="SpriteFrames" uid="uid://b52aqm3xptnac" path="res://BuildAnimations/hatesAnimation.tres" id="1_yb3pr"]
+[ext_resource type="Script" path="res://BuildAnimations/LikesAnimator.gd" id="2_c7y25"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = ExtResource("1_yb3pr")
+autoplay = "default"
+script = ExtResource("2_c7y25")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

@@ -16,7 +16,10 @@ var streetLocations = [Vector2i(0,3),Vector2i(1,3),Vector2i(0,4),Vector2i(1,4)]
 var forestLocations = [Vector2i(5,0),Vector2i(4,1),Vector2i(5,1)]
 var negativeHint = Vector2i(2,0);
 var positiveHint = Vector2i(4,6);
+
+@export_category("Animations")
 @export var buildAnimation:AnimatedSprite2D;
+@export var hatesAnimationSprite:PackedScene;
 
 var playing = true;
 static var mouse = false;
@@ -24,6 +27,7 @@ static var mouse = false;
 @export var ui:UIManager;
 @export var allBuildings:Array[Building] ##An array of all buildings in ID order
 
+@export_category("Level setup details")
 @export var forestLevel:bool
 @export var levelDescription:String
 
@@ -110,6 +114,7 @@ func checkPlace(currentLocation):
 			if(n != null):
 				if currentBuilding.getHates(n.get_custom_data("BuildingID")):
 					valid = false;
+					cantPlaceAnimation(i);
 	else:
 		valid = false;
 	if(valid):
@@ -227,6 +232,18 @@ func inspect():
 		var string = currentBuilding.name
 		string = "To place a "+ string + DescriptionsParser.getDescription(string);
 		TTS.addText(string,true);
+
+##Helper function to let other objects check if the current tilemap is moused over
+func mouseOverMap() -> bool:
+	if(location!=null&&playRegion.has(location)):
+		return true;
+	return false;
+
+##Used to play a oneshote animation for when a placement fails
+func cantPlaceAnimation(i:Vector2i):
+	var hatesAnim = hatesAnimationSprite.instantiate();
+	hatesAnim.position = map.map_to_local(i);
+	add_child(hatesAnim);
 
 func _input(event):
 	if(event.is_action_pressed("Read")):

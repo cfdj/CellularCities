@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_pfwla"]
 [ext_resource type="Script" path="res://UI/ScoreDisplay.gd" id="2_28w5n"]
-[ext_resource type="PackedScene" uid="uid://l1qjswkdpy8u" path="res://BuildAnimations/likeAnimationSprite.tscn" id="3_lqmbm"]
+[ext_resource type="PackedScene" uid="uid://l1qjswkdpy8u" path="res://BuildAnimations/AnimationScenes/likeAnimationSprite.tscn" id="3_lqmbm"]
 
 [node name="ScoreDisplay" type="Label"]
 anchors_preset = 5

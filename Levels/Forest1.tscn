@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cplq47iy376tp"]
+[gd_scene load_steps=10 format=3 uid="uid://cplq47iy376tp"]
 
 [ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_mqm5l"]
 [ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="2_j452g"]
@@ -8,6 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://nb33gphoolpi" path="res://BuildAnimations/treeAnimation.tres" id="3_y1axo"]
 [ext_resource type="Material" uid="uid://c1ytwyysk4sk8" path="res://BuildAnimations/Shaders/buildingLoadMaterial.tres" id="4_pmd5v"]
 [ext_resource type="PackedScene" uid="uid://doxk5o2fk6tkc" path="res://Zoom/zoomCamera.tscn" id="5_oagyg"]
+[ext_resource type="PackedScene" uid="uid://1jrr7ftojrvf" path="res://BuildAnimations/AnimationScenes/hatesAnimationSprite.tscn" id="6_g3fd6"]
 
 [node name="PlacingPuzzle" type="Node2D"]
 
@@ -41,9 +42,9 @@ buildingLoadShader = ExtResource("4_pmd5v")
 [node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("2_j452g")]
 map = NodePath("..")
 listOfBuildings = [NodePath("Forest"), NodePath("Forest"), NodePath("Forest"), NodePath("Forest"), NodePath("Forest"), NodePath("Forest")]
+hatesAnimationSprite = ExtResource("6_g3fd6")
 ui = NodePath("../../UI")
 forestLevel = true
-levelDescription = null
 
 [node name="BuildAnimation" parent="TileMap/LevelManager" index="13"]
 sprite_frames = ExtResource("3_y1axo")

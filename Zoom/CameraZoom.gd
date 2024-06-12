@@ -9,7 +9,7 @@ var currentLevel = 0;
 var level:LevelManager
 
 func _input(event):
-	if(level.playing):
+	if(level.playing&&level.mouseOverMap()):
 		if(event.is_action_pressed("ZoomIn")):
 			zoomIn()
 		elif (event.is_action_pressed("ZoomOut")):
