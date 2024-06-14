@@ -49,5 +49,6 @@ level = NodePath("../TileMap/LevelManager")
 
 [node name="Camera2D" parent="." instance=ExtResource("4_kwsew")]
 unique_name_in_owner = true
+offset = Vector2(221, 144)
 
 [editable path="TileMap/LevelManager"]

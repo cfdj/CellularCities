@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://bndycms8l1fud"]
+[gd_scene load_steps=5 format=3 uid="uid://bndycms8l1fud"]
 
 [ext_resource type="Theme" uid="uid://dsfsg1to7ip3v" path="res://UI/Theme/UItheme.tres" id="1_pfwla"]
+[ext_resource type="StyleBox" uid="uid://jaxsig88qkwu" path="res://UI/Theme/ScoreBox.tres" id="2_4ngcw"]
 [ext_resource type="Script" path="res://UI/ScoreDisplay.gd" id="2_28w5n"]
 [ext_resource type="PackedScene" uid="uid://l1qjswkdpy8u" path="res://BuildAnimations/AnimationScenes/likeAnimationSprite.tscn" id="3_lqmbm"]
 
-[node name="ScoreDisplay" type="Label"]
+[node name="PanelContainer" type="PanelContainer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -36.5
-offset_right = 36.5
-offset_bottom = 23.0
+offset_left = -40.5
+offset_right = 40.5
+offset_bottom = 30.0
 grow_horizontal = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_pfwla")
+theme_override_styles/panel = ExtResource("2_4ngcw")
+
+[node name="ScoreDisplay" type="Label" parent="."]
+layout_mode = 2
 theme = ExtResource("1_pfwla")
 text = "Score: 00"
 horizontal_alignment = 1

@@ -53,5 +53,6 @@ unique_name_in_owner = true
 
 [editable path="TileMap/LevelManager"]
 [editable path="UI"]
+[editable path="UI/ScoreDisplay"]
 [editable path="UI/BuildingMenu"]
 [editable path="UI/SettingMenu"]

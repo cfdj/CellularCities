@@ -5,7 +5,8 @@ var input:InputEvent
 var labelString:String
 
 var listening:bool = false;
-
+static var controllerID:controllerType = controllerType.Unknown
+enum controllerType{Unknown,Sony,Xbox,Nintendo}
 #var pressedStyle = "res://UI/Theme/toggleButtonPressed.tres"
 
 func setAction(newAction:StringName,newInput:InputEvent):
@@ -21,8 +22,18 @@ func setAction(newAction:StringName,newInput:InputEvent):
 		buttonId = buttonId.replace("Joypad Button", "") 
 		buttonId = buttonId.replace("(","")
 		buttonId = buttonId.replace(")","")
+		var controllerNames = buttonId.split(",")
+		if(controllerNames.size()>1):
+			var sonyFixOffset = 0;
+			if(input.as_text().contains("Start")&&controllerID != controllerType.Unknown):
+				sonyFixOffset = 1;
+			buttonId = controllerNames[controllerID - sonyFixOffset]
+			##Slight Hack fix for Start Buttons, as Sony Doesn't have one???
 	elif input is InputEventJoypadMotion:
 		buttonId = input.as_text()
+		var removing = buttonId.rfind(",")
+		buttonId = buttonId.trim_suffix(buttonId.substr(removing))
+		buttonId = buttonId.trim_prefix(buttonId.left(buttonId.find("(")+1))
 	elif input is InputEventMouseButton:
 		var mask = input.button_index
 		match mask:

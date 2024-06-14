@@ -2,71 +2,71 @@
 
 [ext_resource type="Texture2D" uid="uid://cyfqc2g4fkvqj" path="res://BuildAnimations/hatesAnimation.png" id="1_74q71"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_26ri0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmitw"]
 atlas = ExtResource("1_74q71")
-region = Rect2(0, 0, 62, 64)
+region = Rect2(0, 0, 62, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwrqh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aer1j"]
 atlas = ExtResource("1_74q71")
-region = Rect2(62, 0, 62, 64)
+region = Rect2(62, 0, 62, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u47ko"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_28vea"]
 atlas = ExtResource("1_74q71")
-region = Rect2(124, 0, 62, 64)
+region = Rect2(124, 0, 62, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sdstk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i7x4"]
 atlas = ExtResource("1_74q71")
-region = Rect2(186, 0, 62, 64)
+region = Rect2(186, 0, 62, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qsqvs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvsl3"]
 atlas = ExtResource("1_74q71")
-region = Rect2(248, 0, 62, 64)
+region = Rect2(248, 0, 62, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4yw77"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_s40pc"]
 atlas = ExtResource("1_74q71")
-region = Rect2(310, 0, 62, 64)
+region = Rect2(310, 0, 62, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_flll8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf6ct"]
 atlas = ExtResource("1_74q71")
-region = Rect2(372, 0, 62, 64)
+region = Rect2(372, 0, 62, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15re7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jlgo"]
 atlas = ExtResource("1_74q71")
-region = Rect2(434, 0, 62, 64)
+region = Rect2(434, 0, 62, 49)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0xgho"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs52r"]
 atlas = ExtResource("1_74q71")
-region = Rect2(496, 0, 62, 64)
+region = Rect2(496, 0, 62, 49)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_26ri0")
+"texture": SubResource("AtlasTexture_fmitw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wwrqh")
+"texture": SubResource("AtlasTexture_aer1j")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u47ko")
+"texture": SubResource("AtlasTexture_28vea")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sdstk")
+"texture": SubResource("AtlasTexture_7i7x4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qsqvs")
+"texture": SubResource("AtlasTexture_xvsl3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4yw77")
+"texture": SubResource("AtlasTexture_s40pc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_flll8")
+"texture": SubResource("AtlasTexture_pf6ct")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_15re7")
+"texture": SubResource("AtlasTexture_0jlgo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0xgho")
+"texture": SubResource("AtlasTexture_qs52r")
 }],
 "loop": false,
 "name": &"default",

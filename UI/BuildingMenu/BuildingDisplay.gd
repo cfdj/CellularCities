@@ -7,7 +7,7 @@ var tileWidth = 62;
 var tileHeight = 48;
 var displayingBuildings:Array[Building];
 	
-func setBuilding(building:Building,allBuildings:Array[Building]):
+func setBuilding(building:Building,allBuildings:Array[Building],buildingsInLevel:Array[Building]):
 	for l in likesIcons:
 		l.visible = false;
 	for h in hatesIcons:
@@ -19,15 +19,17 @@ func setBuilding(building:Building,allBuildings:Array[Building]):
 	for like in likes.size():
 		if likes[like]:
 			var tempBuilding = allBuildings[like];
-			numLikes+=1
-			createIcon(tempBuilding,likesIcons[numLikes]);
+			if(buildingsInLevel.has(tempBuilding)):
+				numLikes+=1
+				createIcon(tempBuilding,likesIcons[numLikes]);
 	var hates = Building.hatesArray[building.id];
 	var numHates = 0;
 	for hate in hates.size():
 		if hates[hate]:
 			var tempBuilding = allBuildings[hate];
-			numHates +=1;
-			createIcon(tempBuilding,hatesIcons[numHates]);
+			if(buildingsInLevel.has(tempBuilding)):
+				numHates +=1;
+				createIcon(tempBuilding,hatesIcons[numHates]);
 func createIcon(building:Building,icon:TextureRect):
 	var image = building.texture.get_image();
 	icon.texture = ImageTexture.create_from_image(image.get_region(Rect2(tileWidth*building.spriteLocation.x,tileHeight*building.spriteLocation.y,tileWidth,tileHeight)))

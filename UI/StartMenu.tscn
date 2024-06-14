@@ -150,8 +150,8 @@ script = ExtResource("4_spj7m")
 [node name="SettingMenu" parent="." instance=ExtResource("9_igjbn")]
 visible = false
 layout_mode = 1
-offset_left = -67.5
-offset_right = 67.5
+offset_left = -93.0
+offset_right = 93.0
 
 [connection signal="focus_entered" from="MenuButtons/Start" to="." method="speakFocus"]
 [connection signal="pressed" from="MenuButtons/Start" to="." method="startGame"]

@@ -109,7 +109,7 @@ func inspectBuilding(building:Building):
 	string+=" "+ DescriptionsParser.getDescription(string);
 	addText(string,true)
 func stop():
-	#print("Stopping")
+	print("Stopping")
 	DisplayServer.tts_stop();
 
 func guide(buildings:Array[Building],level:LevelManager):
@@ -118,12 +118,11 @@ func guide(buildings:Array[Building],level:LevelManager):
 		if(!alreadyRead.has(b)):
 			addText(b.name + " likes",false)
 			for t in level.allBuildings.size():
-				print(t)
-				if(b.getlike(t)):
+				if(b.getlike(t)&&buildings.has(level.allBuildings[t])):
 					readBuilding(level.allBuildings[t])
 			addText("hates",false)
 			for t in b.hatesArray[b.id].size():
-				if(b.getHates(t)):
+				if(b.getHates(t)&&buildings.has(level.allBuildings[t])):
 					readBuilding(level.allBuildings[t])
 		alreadyRead.append(b)
 

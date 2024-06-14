@@ -1,12 +1,17 @@
 class_name CameraZoom extends Camera2D
 
-var baseOffsetX = 240
-var baseOffsetY = 160
-var currentCenter:Vector2=Vector2(240,160)
+var baseOffsetX = 221;
+var baseOffsetY = 144;
+var currentCenter:Vector2;
 
 var zoomLevels:Array[Vector2] = [Vector2(1,1),Vector2(2,2),Vector2(4,4)]
 var currentLevel = 0;
 var level:LevelManager
+
+func _ready():
+	offset.x = baseOffsetX;
+	offset.y = baseOffsetY;
+	currentCenter = offset;
 
 func _input(event):
 	if(level.playing&&level.mouseOverMap()):

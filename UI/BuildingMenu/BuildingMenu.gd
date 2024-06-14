@@ -11,7 +11,7 @@ func setDisplays(buildings:Array[Building],allBuildings:Array[Building]):
 		if !displayingBuildings.has(b):
 			displayingBuildings.append(b);
 	for c in displayingBuildings.size():
-		displays[c].setBuilding(displayingBuildings[c],allBuildings);
+		displays[c].setBuilding(displayingBuildings[c],allBuildings,buildings);
 		displays[c].visible = true;
 
 signal displaysSet
