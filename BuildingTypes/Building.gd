@@ -1,5 +1,7 @@
 class_name Building extends Node
-
+###Base class for handling placeable buildings
+###Handles checking the validity of placement (this was previously handled by the level manager
+###This functionality was moved so more complex buildings could handle their own checking
 @export var spriteLocation:Vector2i;
 @export var id:int;
 @export var texture:Texture2D
@@ -41,3 +43,43 @@ func getlike(checkingId:int) -> bool:
 func getHates(checkId:int) -> bool:
 	var hates = hatesArray[id][checkId];
 	return hates;
+
+##Refactoring to allow more complex buildings
+func checkPlaceable(map:TileMap,location:Vector2i) -> squareValidity:
+	var currentValidity = squareValidity.NEUTRAL;
+	var neighbours = relevantTiles(map,location);
+	##Check hates, then if it can be placed, check likes
+	for i in neighbours:
+		var n = map.get_cell_tile_data(0,i);
+		if(n != null):
+			if getHates(n.get_custom_data("BuildingID")):
+				currentValidity = squareValidity.HATES;
+	if(currentValidity != squareValidity.HATES):
+		for i in neighbours:
+			var n = map.get_cell_tile_data(0,i);
+			if(n != null):
+				if getlike(n.get_custom_data("BuildingID")):
+					currentValidity = squareValidity.LIKES;
+	return currentValidity;
+
+##Used for checking individual squares to play animations
+##Requires constructing an internal list of which tiles it interacts with, as it might not always be neighbours
+func checkIndividual(map:TileMap,location:Vector2i,otherTile:Vector2i)->squareValidity:
+	var validity = squareValidity.NEUTRAL;
+	var neighbours = relevantTiles(map,location); ##This is currently purely for safety
+	if(neighbours.has(otherTile)):
+		var n = map.get_cell_tile_data(0,otherTile);
+		if(n != null):
+			if getHates(n.get_custom_data("BuildingID")):
+				validity = squareValidity.HATES;
+		if(validity != squareValidity.HATES):
+			if(n != null):
+				if getlike(n.get_custom_data("BuildingID")):
+					validity = squareValidity.LIKES;
+	return validity;
+	
+func relevantTiles(map:TileMap, location:Vector2i)->Array[Vector2i]:
+	var relevant:Array[Vector2i]
+	relevant = map.get_surrounding_cells(location);
+	return relevant;
+enum squareValidity{NEUTRAL,HATES,LIKES}

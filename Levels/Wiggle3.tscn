@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://pxbvt4raba5y"]
+
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_mgvec"]
+[ext_resource type="Script" path="res://BuildAnimations/Shaders/TileMapVFX.gd" id="2_vdlym"]
+[ext_resource type="Material" uid="uid://bgdldorgbogrn" path="res://BuildAnimations/Shaders/tileLoadMaterial.tres" id="3_qg02l"]
+[ext_resource type="Material" uid="uid://c1ytwyysk4sk8" path="res://BuildAnimations/Shaders/buildingLoadMaterial.tres" id="4_we171"]
+[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="5_jmw4c"]
+[ext_resource type="PackedScene" uid="uid://1jrr7ftojrvf" path="res://BuildAnimations/AnimationScenes/hatesAnimationSprite.tscn" id="6_sl5v6"]
+[ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="7_m01ms"]
+[ext_resource type="PackedScene" uid="uid://doxk5o2fk6tkc" path="res://Zoom/zoomCamera.tscn" id="8_vsxpi"]
+
+[node name="PlacingPuzzle" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_mgvec")
+format = 2
+layer_0/name = "Buildings"
+layer_0/y_sort_enabled = true
+layer_0/z_index = 1
+layer_0/navigation_enabled = false
+layer_0/tile_data = PackedInt32Array(131079, 131072, 6, 7, 65536, 5, 196615, 0, 6, -65529, 0, 6, 65544, 196608, 5, 131080, 65536, 6, 8, 131072, 5)
+layer_1/name = "Ground"
+layer_1/y_sort_enabled = true
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array(8, 65537, 1, 65544, 65537, 1, 131080, 65537, 1, 196616, 65537, 1, 262152, 1, 2, 9, 65537, 1, 65545, 65537, 1, 131081, 65537, 1, 196617, 65537, 1, 262153, 1, 2, 10, 131073, 2, 65546, 131073, 2, 131082, 131073, 2, 196618, 131073, 2, 262154, 65537, 2, -65529, 65537, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 1, -65528, 131073, 0, -65527, 131073, 0, -65526, 131073, 1)
+layer_2/name = "Indicator"
+layer_2/y_sort_enabled = true
+layer_2/z_index = 1
+layer_2/navigation_enabled = false
+layer_2/tile_data = PackedInt32Array(8, 262144, 5, 65544, 262144, 5, 131080, 262144, 5, 196616, 262144, 5, 9, 262144, 5, 65545, 262144, 5, 131081, 262144, 5, 196617, 262144, 5, -65529, 262144, 5, 7, 262144, 5, 65543, 262144, 5, 131079, 262144, 5, 196615, 262144, 5, -65528, 262144, 5, -65527, 262144, 5)
+layer_3/name = "Cursor"
+layer_3/y_sort_enabled = true
+layer_3/z_index = 1
+layer_3/navigation_enabled = false
+layer_3/tile_data = PackedInt32Array()
+script = ExtResource("2_vdlym")
+tileLoadShader = ExtResource("3_qg02l")
+buildingLoadShader = ExtResource("4_we171")
+
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("5_jmw4c")]
+map = NodePath("..")
+listOfBuildings = [NodePath("University"), NodePath("Foundry"), NodePath("Flats"), NodePath("Flats")]
+hatesAnimationSprite = ExtResource("6_sl5v6")
+ui = NodePath("../../UI")
+
+[node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("7_m01ms")]
+level = NodePath("../TileMap/LevelManager")
+
+[node name="Camera2D" parent="." instance=ExtResource("8_vsxpi")]
+unique_name_in_owner = true
+offset = Vector2(221, 144)
+
+[editable path="TileMap/LevelManager"]

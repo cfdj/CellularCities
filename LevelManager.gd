@@ -108,11 +108,10 @@ func checkPlace(currentLocation):
 	if !playRegion.has(currentLocation):
 		valid = false
 	if(map.get_cell_tile_data(0,currentLocation) == null):
-		var neighbours = map.get_surrounding_cells(currentLocation);
-		for i in neighbours:
+		for i in currentBuilding.relevantTiles(map,currentLocation):
 			var n = map.get_cell_tile_data(0,i);
 			if(n != null):
-				if currentBuilding.getHates(n.get_custom_data("BuildingID")):
+				if currentBuilding.checkIndividual(map,currentLocation,i) == Building.squareValidity.HATES:
 					valid = false;
 					cantPlaceAnimation(i);
 	else:
@@ -187,19 +186,13 @@ func finishLevel():
 	TTS.addText("Total score: " +str(ui.scoreDisplay.totalScore),true)
 func hint():
 	for i in playRegion:
-		if(map.get_cell_tile_data(0,i)!= null):
-			var id = map.get_cell_tile_data(0,i).get_custom_data("BuildingID")
-			if currentBuilding.getHates(id):
-				var neighbours = map.get_surrounding_cells(i);
-				for n in neighbours:
-					if(map.get_cell_tile_data(0,n)==null &&playRegion.has(n)):
-						map.set_cell(2,n,0,negativeHint);
-			elif currentBuilding.getlike(id):
-				var neighbours = map.get_surrounding_cells(i);
-				for n in neighbours:
-					##Hates will override likes
-					if(map.get_cell_tile_data(0,n)==null &&playRegion.has(n)&& map.get_cell_tile_data(2,n)==null):
-						map.set_cell(2,n,0,positiveHint);
+		if(map.get_cell_tile_data(0,i) == null):
+			var validity = currentBuilding.checkPlaceable(map,i);
+			match validity:
+				Building.squareValidity.HATES:
+					map.set_cell(2,i,0,negativeHint);
+				Building.squareValidity.LIKES:
+					map.set_cell(2,i,0,positiveHint);
 func clearHint():
 	for i in playRegion:
 		map.erase_cell(2,i);
