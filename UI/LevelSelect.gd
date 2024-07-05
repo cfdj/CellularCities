@@ -3,8 +3,10 @@ extends ItemList
 func _ready():
 	for l in Loader.levels:
 		var name = str(l);
+		var labelStart = name.rfind("/");
+		name =name.substr(labelStart);
 		name = name.rstrip(".tscn");
-		name = name.lstrip("res://Levels/")
+		name = name.lstrip("/")
 		add_item(name);
 
 

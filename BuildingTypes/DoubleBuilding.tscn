@@ -5,4 +5,5 @@
 
 [node name="DoubleBuilding" type="Node2D"]
 script = ExtResource("1_w41d5")
+spriteLocation = Vector2i(4, 4)
 texture = ExtResource("2_s33f7")

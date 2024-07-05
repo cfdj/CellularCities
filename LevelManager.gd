@@ -18,7 +18,6 @@ var negativeHint = Vector2i(2,0);
 var positiveHint = Vector2i(4,6);
 
 @export_category("Animations")
-@export var buildAnimation:AnimatedSprite2D;
 @export var hatesAnimationSprite:PackedScene;
 
 var playing = true;
@@ -26,7 +25,7 @@ static var mouse = false;
 
 @export var ui:UIManager;
 @export var allBuildings:Array[Building] ##An array of all buildings in ID order
-
+var buildingsForGuide:Array[Building] ##All buildings which should be displayed in a levels guide
 @export_category("Level setup details")
 @export var forestLevel:bool
 @export var levelDescription:String
@@ -41,17 +40,13 @@ func _ready():
 	playRegion = map.get_used_cells_by_id(2,0,playRegionMarker)
 	for i in playRegion:
 		map.erase_cell(2,i);
-	ui.setBuildingList(listOfBuildings);
+	setupUI();
 	hint();
 	level = Loader.levels.find(get_parent().get_parent().scene_file_path);
-	ui.setBuildingMenu();
 	if(!mouse):
 		location = playRegion[0];
 		previousLocation = playRegion[0];
-		if map.get_cell_tile_data(0,location) == null:
-			map.set_cell(3,location,0,currentBuilding.spriteLocation);
-		else:
-			map.set_cell(3,location,0,Vector2i(0,0))
+		currentBuilding.cursor(map,location);
 	TTS.stop()
 
 	describeLevel(true);
@@ -93,12 +88,9 @@ func _physics_process(delta):
 				var string = "City limit"
 				TTS.addText(string,true)
 		if location != previousLocation:
-			map.erase_cell(3,previousLocation);
+			currentBuilding.clearCursor(map,previousLocation);
 			if playRegion.has(location):
-				if map.get_cell_tile_data(0,location) == null:
-					map.set_cell(3,location,0,currentBuilding.spriteLocation);
-				else:
-					map.set_cell(3,location,0,Vector2i(0,0))
+				currentBuilding.cursor(map,location);
 				describeSquare(location);
 				camera.move(map.to_global(map.map_to_local(location)))
 			previousLocation = location;
@@ -111,7 +103,7 @@ func checkPlace(currentLocation):
 		for i in currentBuilding.relevantTiles(map,currentLocation):
 			var n = map.get_cell_tile_data(0,i);
 			if(n != null):
-				if currentBuilding.checkIndividual(map,currentLocation,i) == Building.squareValidity.HATES:
+				if currentBuilding.checkIndividual(map,currentLocation,i,playRegion) == Building.squareValidity.HATES:
 					valid = false;
 					cantPlaceAnimation(i);
 	else:
@@ -125,13 +117,7 @@ func place(currentLocation):
 	map.erase_cell(3,currentLocation);
 	clearHint();
 	##setting a temporary building
-	map.set_cell(0,currentLocation,2,placing.spriteLocation);
-	buildAnimation.visible = false;
-	buildAnimation.stop();
-	buildAnimation.frame=0;
-	buildAnimation.position = map.map_to_local(currentLocation);
-	buildAnimation.visible= true;
-	buildAnimation.play();
+	placing.place(map,currentLocation)
 	SoundEffects.buildingSound(placing.id)
 	listOfPlaced.append(currentLocation);
 	TTS.placeBuilding(placing,currentLocation)
@@ -139,21 +125,18 @@ func place(currentLocation):
 	ui.popBuildingList();
 	if(current<listOfBuildings.size()):
 		currentBuilding = listOfBuildings[current];
-		
 		TTS.addText("Next building is",false);
 		TTS.readBuilding(currentBuilding);
 		hint();
 	else:
 		finishLevel();
-	await buildAnimation.animation_finished;
-	map.set_cell(0,currentLocation,0,placing.spriteLocation);
-	buildAnimation.visible = false;
 func undo():
 	if current >0:
+		get_viewport().gui_release_focus()
 		current -=1;
 		currentBuilding = listOfBuildings[current];
 		var clearLocation = listOfPlaced.pop_back();
-		map.erase_cell(0,clearLocation);
+		currentBuilding.undo(map,clearLocation);
 		TTS.undoBuilding(currentBuilding,clearLocation)
 		ui.pushBuildingList(currentBuilding);
 		if(mouse):
@@ -173,7 +156,7 @@ func finishLevel():
 	SoundEffects.levelDoneSound();
 	await get_tree().create_timer(0.2).timeout
 	ui.showNextlevelButton();
-	ui.updateScore(map,listOfPlaced);
+	ui.updateScore(map,playRegion);
 	for i in playRegion:
 		if(map.get_cell_tile_data(0,i) ==null):
 			var fillLocation
@@ -185,14 +168,14 @@ func finishLevel():
 			await get_tree().create_timer(0.2).timeout
 	TTS.addText("Total score: " +str(ui.scoreDisplay.totalScore),true)
 func hint():
-	for i in playRegion:
-		if(map.get_cell_tile_data(0,i) == null):
-			var validity = currentBuilding.checkPlaceable(map,i);
+	for t in playRegion:
+		if(map.get_cell_tile_data(0,t) == null):
+			var validity:Building.squareValidity = currentBuilding.checkPlaceable(map,t,playRegion);
 			match validity:
-				Building.squareValidity.HATES:
-					map.set_cell(2,i,0,negativeHint);
 				Building.squareValidity.LIKES:
-					map.set_cell(2,i,0,positiveHint);
+					map.set_cell(2,t,0,positiveHint);
+				Building.squareValidity.HATES:
+					map.set_cell(2,t,0,negativeHint);
 func clearHint():
 	for i in playRegion:
 		map.erase_cell(2,i);
@@ -218,12 +201,12 @@ func describeBuildings():
 func inspect():
 	var tile = map.get_cell_tile_data(0,location);
 	if(playRegion.has(location)&& tile != null):
-		var buildingName = allBuildings[tile.get_custom_data("BuildingID")].name;
+		var buildingName = allBuildings[tile.get_custom_data("BuildingID")].getName();
 		var string = "A "+ buildingName + DescriptionsParser.getDescription(buildingName);
 		TTS.addText(string,true);
 	else:
-		var string = currentBuilding.name
-		string = "To place a "+ string + DescriptionsParser.getDescription(string);
+		var string = currentBuilding.getName();
+		string = "To place a "+ string;
 		TTS.addText(string,true);
 
 ##Helper function to let other objects check if the current tilemap is moused over
@@ -238,6 +221,26 @@ func cantPlaceAnimation(i:Vector2i):
 	hatesAnim.position = map.map_to_local(i);
 	add_child(hatesAnim);
 
+##Adds all buildings to be placed and which are already on the map to the UI for displaing in the guide
+func setupUI():
+	for b in listOfBuildings:
+		if(b is DoubleBuilding):
+			var tempB = b.getBuilding();
+			for t in tempB:
+				if(!buildingsForGuide.has(t)):
+					buildingsForGuide.append(t);
+		else:
+			if(!buildingsForGuide.has(b)):
+				buildingsForGuide.append(b);
+	for p in playRegion:
+		var data = map.get_cell_tile_data(0,p);
+		if(data!=null):
+			var tempBuilding = allBuildings[data.get_custom_data("BuildingID")];
+			if(!buildingsForGuide.has(tempBuilding)):
+				buildingsForGuide.append(tempBuilding);
+	ui.setBuildingList(listOfBuildings);
+	ui.setBuildingMenu();
+	
 func _input(event):
 	if(event.is_action_pressed("Read")):
 		TTS.stop();

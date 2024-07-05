@@ -21,6 +21,7 @@ func addText(text:String,interrupt:bool):
 		if(vString == null):
 			vString = DisplayServer.tts_get_voices_for_language("en")[voice]
 		DisplayServer.tts_speak(text,vString,volume,1.0,speed,id,interrupt)
+		print(text)
 
 ##Currently reads empty spaces and neighbours, followed by buildings to place
 ##Levels should probably have an introduction
@@ -56,7 +57,7 @@ func readMap(playRegion:Array[Vector2i],map:TileMap,level:LevelManager,buildings
 				speechString += readTile2(tempVector,map,level) + " "
 	speechString += " Buildings to place are:"
 	for b in buildings:
-		var string = " "+ str(b.name)+","
+		var string = " "+ b.getName()+","
 		speechString+=string;
 	addText(speechString,false)
 
@@ -67,7 +68,7 @@ func readtile(pos:Vector2i,map:TileMap,level:LevelManager):
 		string += " is empty"
 		addText(string,false);
 	else:
-		string += " is a " +level.allBuildings[tile.get_custom_data("BuildingID")].name
+		string += " is a " +level.allBuildings[tile.get_custom_data("BuildingID")].getName();
 		addText(string,false);
 
 ##Used for testing an alternative level reading method
@@ -78,7 +79,7 @@ func readTile2(pos:Vector2i,map:TileMap,level:LevelManager):
 		string += " is empty"
 		return string;
 	else:
-		string += " is a " +level.allBuildings[tile.get_custom_data("BuildingID")].name
+		string += " is a " +level.allBuildings[tile.get_custom_data("BuildingID")].getName();
 	return string;
 
 func readNeighbours(pos:Vector2i,map:TileMap,level:LevelManager):
@@ -88,21 +89,22 @@ func readNeighbours(pos:Vector2i,map:TileMap,level:LevelManager):
 			readtile(n,map,level);
 
 func readBuilding(building:Building):
-	var string = str(building.name)
+	var string = building.getName();
 	addText(string,false);
+##Needs updating to support multiple buildings
 func placeBuilding(building:Building, pos:Vector2i):
 	var xName = pos.x-topLeft.x
 	var yName = pos.y-topLeft.y
 	if(xName <xNames.size() && yName <yNames.size()):
 		var locationString:String = xNames[pos.x-topLeft.x] + "," + yNames[pos.y-topLeft.y]
-		var string:String = building.name + " placed in " + locationString
+		var string:String = building.getName() + " placed in " + locationString
 		addText(string,true)
 func undoBuilding(building:Building, pos:Vector2i):
 	var xName = pos.x-topLeft.x
 	var yName = pos.y-topLeft.y
 	if(xName <xNames.size() && yName <yNames.size()):
 		var locationString:String = xNames[pos.x-topLeft.x] + "," + yNames[pos.y-topLeft.y]
-		var string:String = building.name + " removed from " +locationString
+		var string:String = building.getName() + " removed from " +locationString
 		addText(string,true)
 func inspectBuilding(building:Building):
 	var string = building.name;

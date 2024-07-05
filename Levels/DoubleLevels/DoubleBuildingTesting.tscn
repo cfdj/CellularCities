@@ -41,7 +41,7 @@ buildingLoadShader = ExtResource("4_05tl5")
 
 [node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("5_wc1ym")]
 map = NodePath("..")
-listOfBuildings = [NodePath("University"), NodePath("Mine"), NodePath("Flats"), NodePath("Flats")]
+listOfBuildings = [NodePath("DoubleBuilding"), NodePath("Mine")]
 hatesAnimationSprite = ExtResource("6_e7s8b")
 ui = NodePath("../../UI")
 

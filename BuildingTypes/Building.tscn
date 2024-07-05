@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://4455mml58hw2"]
+[gd_scene load_steps=4 format=3 uid="uid://4455mml58hw2"]
 
 [ext_resource type="Script" path="res://BuildingTypes/Building.gd" id="1_ho44y"]
 [ext_resource type="Texture2D" uid="uid://y3po8f87p8e5" path="res://Buildings.png" id="2_uwiy3"]
+[ext_resource type="SpriteFrames" uid="uid://cqeqvrixn64kg" path="res://BuildAnimations/buildAnimation.tres" id="3_ha2mi"]
 
-[node name="Building" type="Node2D"]
+[node name="Building" type="Node2D" node_paths=PackedStringArray("buildAnimation")]
 script = ExtResource("1_ho44y")
 spriteLocation = Vector2i(0, 1)
 texture = ExtResource("2_uwiy3")
+buildAnimation = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("3_ha2mi")
