@@ -8,8 +8,8 @@
 script = ExtResource("1_ho44y")
 spriteLocation = Vector2i(0, 1)
 texture = ExtResource("2_uwiy3")
-buildAnimation = NodePath("AnimatedSprite2D")
+buildAnimation = NodePath("BuildingAnimation")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="BuildingAnimation" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = ExtResource("3_ha2mi")

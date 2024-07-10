@@ -20,7 +20,7 @@ layer_0/name = "Buildings"
 layer_0/y_sort_enabled = true
 layer_0/z_index = 1
 layer_0/navigation_enabled = false
-layer_0/tile_data = PackedInt32Array(131079, 131072, 6, 196615, 0, 6, 65544, 196608, 5, 131080, 65536, 6, 8, 0, 6, -65528, 0, 6, 7, 65536, 0, 196616, 65536, 0)
+layer_0/tile_data = PackedInt32Array(196616, 65536, 0, -65527, 0, 6, 9, 0, 6, 65545, 196608, 5, 131081, 0, 6, 196617, 0, 6, 8, 65536, 2, -65529, 65536, 2, 196615, 65536, 2, 7, 65536, 0)
 layer_1/name = "Ground"
 layer_1/y_sort_enabled = true
 layer_1/navigation_enabled = false
@@ -41,14 +41,14 @@ buildingLoadShader = ExtResource("4_i2rlm")
 
 [node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("5_du0xi")]
 map = NodePath("..")
-listOfBuildings = [NodePath("DoubleBuilding"), NodePath("Mine")]
+listOfBuildings = [NodePath("DoubleBuilding")]
 hatesAnimationSprite = ExtResource("6_tp10f")
 ui = NodePath("../../UI")
 levelDescription = "Double buildings are both placed at once, one above the other. You place the lower building but both buildings must have their requirements met."
 
 [node name="DoubleBuilding" parent="TileMap/LevelManager" node_paths=PackedStringArray("upperBuilding", "lowerBuilding") instance=ExtResource("7_l8hrn")]
 upperBuilding = NodePath("../Flats")
-lowerBuilding = NodePath("../University")
+lowerBuilding = NodePath("../Flats")
 
 [node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("8_bsu16")]
 level = NodePath("../TileMap/LevelManager")

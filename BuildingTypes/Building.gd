@@ -71,6 +71,9 @@ func checkPlaceable(map:TileMap,location:Vector2i,playRegion:Array[Vector2i]) ->
 func checkIndividual(map:TileMap,location:Vector2i,otherTile:Vector2i,playRegion:Array[Vector2i])->squareValidity:
 	var validity = squareValidity.NEUTRAL;
 	var neighbours = relevantTiles(map,location);
+	##Checking the location is empty if its where is being checked
+	if(location == otherTile && map.get_cell_tile_data(0,otherTile)!=null):
+		validity = squareValidity.HATES;
 	if(!playRegion.has(location)):
 		validity = squareValidity.HATES;
 	elif(neighbours.has(otherTile)):
@@ -96,6 +99,7 @@ func place(map:TileMap,location:Vector2i):
 	await buildAnimation.animation_finished;
 	buildAnimation.visible = false;
 	map.set_cell(0,location,0,spriteLocation);
+	emit_signal("placingComplete")
 
 func undo(map:TileMap,location:Vector2i):
 	map.erase_cell(0,location)
@@ -108,9 +112,11 @@ func cursor(map:TileMap,location:Vector2i):
 func clearCursor(map:TileMap,location:Vector2i):
 	map.erase_cell(3,location);
 
+##Returns tiles relevant to placing in a location, this includes the location itself for checking its empty
 func relevantTiles(map:TileMap, location:Vector2i)->Array[Vector2i]:
 	var relevant:Array[Vector2i]
 	relevant = map.get_surrounding_cells(location);
+	relevant.append(location);
 	return relevant;
 enum squareValidity{NEUTRAL,HATES,LIKES}
 
@@ -124,3 +130,5 @@ func getName()-> String:
 func getBuilding() -> Array[Building]:
 	var building:Array[Building] = [self];
 	return building;
+
+signal placingComplete;

@@ -26,31 +26,19 @@ func checkIndividual(map:TileMap,location:Vector2i,otherTile:Vector2i,playRegion
 	var validity = squareValidity.NEUTRAL;
 	var neighbours = lowerBuilding.relevantTiles(map,location); 
 	var upperneighbours = upperBuilding.relevantTiles(map,location+upperLocationVector);
-	if(!(playRegion.has(location)&&playRegion.has(location+upperLocationVector))):
+	if(!(playRegion.has(location)&& playRegion.has(location+upperLocationVector))):
 		validity = squareValidity.HATES;
-	elif(neighbours.has(otherTile)):
-		var n = map.get_cell_tile_data(0,otherTile);
-		if(n != null):
-			if lowerBuilding.getHates(n.get_custom_data("BuildingID")):
-				validity = squareValidity.HATES;
-		if(validity != squareValidity.HATES):
-			if(n != null):
-				if lowerBuilding.getlike(n.get_custom_data("BuildingID")):
-					validity = squareValidity.LIKES;
-	elif upperneighbours.has(otherTile):
-		var n = map.get_cell_tile_data(0,otherTile);
-		if(n != null):
-			if upperBuilding.getHates(n.get_custom_data("BuildingID")):
-				validity = squareValidity.HATES;
-		if(validity != squareValidity.HATES):
-			if(n != null):
-				if upperBuilding.getlike(n.get_custom_data("BuildingID")):
-					validity = squareValidity.LIKES;
+	if(neighbours.has(otherTile)):
+		validity = lowerBuilding.checkIndividual(map,location,otherTile,playRegion)
+	if upperneighbours.has(otherTile) && validity!=squareValidity.HATES:
+		validity = upperBuilding.checkIndividual(map,location+upperLocationVector,otherTile,playRegion);
 	return validity;
 
 func place(map:TileMap,location:Vector2i):
-	lowerBuilding.place(map,location);
 	upperBuilding.place(map,location+upperLocationVector);
+	await upperBuilding.placingComplete;
+	lowerBuilding.place(map,location);
+
 
 func undo(map:TileMap,location:Vector2i):
 	lowerBuilding.undo(map,location);

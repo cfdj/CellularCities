@@ -21,7 +21,7 @@ func addText(text:String,interrupt:bool):
 		if(vString == null):
 			vString = DisplayServer.tts_get_voices_for_language("en")[voice]
 		DisplayServer.tts_speak(text,vString,volume,1.0,speed,id,interrupt)
-		print(text)
+	##	print(text)
 
 ##Currently reads empty spaces and neighbours, followed by buildings to place
 ##Levels should probably have an introduction

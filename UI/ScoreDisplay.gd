@@ -27,7 +27,8 @@ func updateScore(map:TileMap,buildings:Array[Vector2i]):
 ##			await get_tree().create_timer(0.2).timeout ##Currently produces a bug where streets are counted as it happens during street placing
 
 func levelEnd():
-	set_anchors_preset(Control.PRESET_CENTER_TOP,true);
+	pass;
+	##set_anchors_preset(Control.PRESET_CENTER_TOP,true);
 
 func animateLike(location:Vector2i,map:TileMap):
 	var animation = likeAnimation.instantiate()

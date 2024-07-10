@@ -9,7 +9,6 @@ class_name UIManager extends CanvasLayer
 @export var settingMenu:SettingMenu;
 var settingsOpen = false;
 func setBuildingMenu():
-	print(level.buildingsForGuide)
 	buildingMenu.setDisplays(level.buildingsForGuide,level.allBuildings);
 
 func _on_guide_pressed():

@@ -7,7 +7,6 @@ var tileWidth = 62;
 var tileHeight = 48;
 	
 func setBuilding(building:Building,allBuildings:Array[Building],buildingsInLevel:Array[Building]):
-	print(building)
 	for l in likesIcons:
 		l.visible = false;
 	for h in hatesIcons:

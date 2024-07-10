@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://d4k4t6ev35lm4"]
+
+[ext_resource type="TileSet" uid="uid://b128y5cktgl7h" path="res://BuildingTiles.tres" id="1_06mjn"]
+[ext_resource type="Script" path="res://BuildAnimations/Shaders/TileMapVFX.gd" id="2_lgs7l"]
+[ext_resource type="Material" uid="uid://bgdldorgbogrn" path="res://BuildAnimations/Shaders/tileLoadMaterial.tres" id="3_xplis"]
+[ext_resource type="Material" uid="uid://c1ytwyysk4sk8" path="res://BuildAnimations/Shaders/buildingLoadMaterial.tres" id="4_yb56e"]
+[ext_resource type="PackedScene" uid="uid://dme0jr035617t" path="res://level_manager.tscn" id="5_xgkyf"]
+[ext_resource type="PackedScene" uid="uid://1jrr7ftojrvf" path="res://BuildAnimations/AnimationScenes/hatesAnimationSprite.tscn" id="6_3afj4"]
+[ext_resource type="PackedScene" uid="uid://o5a1o5wg7q6q" path="res://BuildingTypes/DoubleBuilding.tscn" id="7_c6wa5"]
+[ext_resource type="PackedScene" uid="uid://nkuhehrwbpbk" path="res://UI/UI.tscn" id="8_l12wh"]
+[ext_resource type="PackedScene" uid="uid://doxk5o2fk6tkc" path="res://Zoom/zoomCamera.tscn" id="9_7bm4m"]
+
+[node name="PlacingPuzzle" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_06mjn")
+format = 2
+layer_0/name = "Buildings"
+layer_0/y_sort_enabled = true
+layer_0/z_index = 1
+layer_0/navigation_enabled = false
+layer_0/tile_data = PackedInt32Array(196614, 0, 3, 7, 196608, 2, 131078, 0, 3, 196615, 65536, 3, 131080, 0, 1)
+layer_1/name = "Ground"
+layer_1/y_sort_enabled = true
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array(65544, 65537, 1, 131080, 65537, 1, 196616, 65537, 1, 262152, 1, 2, 65545, 65537, 1, 131081, 65537, 1, 196617, 65537, 1, 262153, 1, 2, 65546, 131073, 2, 131082, 131073, 2, 196618, 131073, 2, 262154, 65537, 2, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 2, 262150, 1, 1, 10, 131073, 1, 196614, 65537, 1, 131078, 65537, 1, 65542, 65537, 1, 6, 65537, 1, 7, 65537, 1, 8, 65537, 1, 9, 65537, 1)
+layer_2/name = "Indicator"
+layer_2/y_sort_enabled = true
+layer_2/z_index = 1
+layer_2/navigation_enabled = false
+layer_2/tile_data = PackedInt32Array(65544, 262144, 5, 131080, 262144, 5, 196616, 262144, 5, 65545, 262144, 5, 131081, 262144, 5, 196617, 262144, 5, 65543, 262144, 5, 131079, 262144, 5, 196615, 262144, 5, 196614, 262144, 5, 131078, 262144, 5, 65542, 262144, 5, 6, 262144, 5, 7, 262144, 5, 8, 262144, 5, 9, 262144, 5)
+layer_3/name = "Cursor"
+layer_3/y_sort_enabled = true
+layer_3/z_index = 1
+layer_3/navigation_enabled = false
+layer_3/tile_data = PackedInt32Array()
+script = ExtResource("2_lgs7l")
+tileLoadShader = ExtResource("3_xplis")
+buildingLoadShader = ExtResource("4_yb56e")
+
+[node name="LevelManager" parent="TileMap" node_paths=PackedStringArray("map", "listOfBuildings", "ui") instance=ExtResource("5_xgkyf")]
+map = NodePath("..")
+listOfBuildings = [NodePath("DoubleBuilding"), NodePath("DoubleBuilding2")]
+hatesAnimationSprite = ExtResource("6_3afj4")
+ui = NodePath("../../UI")
+levelDescription = "Double buildings are both placed at once, one above the other. You place the lower building but both buildings must have their requirements met."
+
+[node name="DoubleBuilding" parent="TileMap/LevelManager" node_paths=PackedStringArray("upperBuilding", "lowerBuilding") instance=ExtResource("7_c6wa5")]
+upperBuilding = NodePath("../Foundry")
+lowerBuilding = NodePath("../Foundry")
+
+[node name="DoubleBuilding2" parent="TileMap/LevelManager" node_paths=PackedStringArray("upperBuilding", "lowerBuilding") instance=ExtResource("7_c6wa5")]
+upperBuilding = NodePath("../Flats")
+lowerBuilding = NodePath("../University")
+
+[node name="UI" parent="." node_paths=PackedStringArray("level") instance=ExtResource("8_l12wh")]
+level = NodePath("../TileMap/LevelManager")
+
+[node name="Camera2D" parent="." instance=ExtResource("9_7bm4m")]
+unique_name_in_owner = true
+offset = Vector2(221, 144)
+
+[editable path="TileMap/LevelManager"]

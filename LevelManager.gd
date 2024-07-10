@@ -55,8 +55,8 @@ func _physics_process(delta):
 	if playing:
 		if mouse:
 			var mousePos = get_viewport().get_mouse_position();
-			location = map.to_local(mousePos);
-			location = map.local_to_map(mousePos);
+			location = map.get_local_mouse_position();
+			location = map.local_to_map(location);
 		elif !mouse:
 			##For when mouse is switched off
 			if(!playRegion.has(location)):
@@ -89,6 +89,8 @@ func _physics_process(delta):
 				TTS.addText(string,true)
 		if location != previousLocation:
 			currentBuilding.clearCursor(map,previousLocation);
+			print(location)
+			print( get_viewport().get_mouse_position())
 			if playRegion.has(location):
 				currentBuilding.cursor(map,location);
 				describeSquare(location);
@@ -99,22 +101,19 @@ func checkPlace(currentLocation):
 	var valid = true;
 	if !playRegion.has(currentLocation):
 		valid = false
-	if(map.get_cell_tile_data(0,currentLocation) == null):
-		for i in currentBuilding.relevantTiles(map,currentLocation):
-			var n = map.get_cell_tile_data(0,i);
-			if(n != null):
-				if currentBuilding.checkIndividual(map,currentLocation,i,playRegion) == Building.squareValidity.HATES:
-					valid = false;
-					cantPlaceAnimation(i);
-	else:
-		valid = false;
+	for i in currentBuilding.relevantTiles(map,currentLocation):
+		var n = map.get_cell_tile_data(0,i);
+		if(n != null):
+			if currentBuilding.checkIndividual(map,currentLocation,i,playRegion) == Building.squareValidity.HATES:
+				valid = false;
+				cantPlaceAnimation(i);
 	if(valid):
-		place(location);
+		place(currentLocation);
 	else:
 		SoundEffects.cantSound();
 func place(currentLocation):
 	var placing = currentBuilding;
-	map.erase_cell(3,currentLocation);
+	currentBuilding.clearCursor(map,currentLocation);
 	clearHint();
 	##setting a temporary building
 	placing.place(map,currentLocation)
@@ -143,9 +142,9 @@ func undo():
 			var mousePos = get_viewport().get_mouse_position();
 			location = map.to_local(mousePos);
 			location = map.local_to_map(mousePos);
-			map.erase_cell(3,previousLocation);
+			currentBuilding.clearCursor(map,location);
 		if playRegion.has(location):
-			map.set_cell(3,location,0,currentBuilding.spriteLocation);
+			currentBuilding.cursor(map,location);
 		clearHint();
 		hint();
 func finishLevel():
@@ -252,9 +251,8 @@ func _input(event):
 	if(playing):
 		if(event.is_action_pressed("Place")&&playRegion.has(location)):
 			if(event is InputEventMouse):
-				var mousePos = get_viewport().get_mouse_position();
-				var tempLocation = map.to_local(mousePos);
-				tempLocation = map.local_to_map(mousePos);
+				var tempLocation = map.get_local_mouse_position();
+				tempLocation = map.local_to_map(tempLocation);
 				if(playRegion.has(tempLocation)):
 					checkPlace(location);
 			else:
