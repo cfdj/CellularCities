@@ -37,7 +37,7 @@ DescriptionsParser="*res://Inspector/descriptions_parser.tscn"
 
 window/size/viewport_width=400
 window/size/viewport_height=240
-window/size/mode=2
+window/size/mode=3
 window/size/transparent=true
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"

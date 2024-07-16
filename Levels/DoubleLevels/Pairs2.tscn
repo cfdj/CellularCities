@@ -44,7 +44,6 @@ map = NodePath("..")
 listOfBuildings = [NodePath("DoubleBuilding")]
 hatesAnimationSprite = ExtResource("6_mb8nn")
 ui = NodePath("../../UI")
-levelDescription = "Double buildings are both placed at once, one above the other. You place the lower building but both buildings must have their requirements met."
 
 [node name="DoubleBuilding" parent="TileMap/LevelManager" node_paths=PackedStringArray("upperBuilding", "lowerBuilding") instance=ExtResource("7_d56s1")]
 upperBuilding = NodePath("../Flats")
