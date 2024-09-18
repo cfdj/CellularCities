@@ -142,7 +142,7 @@ func undo():
 			var mousePos = get_viewport().get_mouse_position();
 			location = map.to_local(mousePos);
 			location = map.local_to_map(mousePos);
-			currentBuilding.clearCursor(map,location);
+		currentBuilding.clearCursor(map,location);
 		if playRegion.has(location):
 			currentBuilding.cursor(map,location);
 		clearHint();
